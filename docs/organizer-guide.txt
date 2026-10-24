@@ -1,0 +1,276 @@
+﻿Clean Tech Hackathon @ Stanford Climate Week 2026                           October 23-24, 2026
+
+
+⚡️Guide to Cleantech Hackathon⚡️
+
+
+We’re so delighted to see you at the third annual Stanford Cleantech Hackathon, a flagship event of Stanford Climate Week! Here’s a comprehensive guide of everything you need to know about the hackathon.  
+
+
+💡 This document will be updated with more information as we get closer to the event.
+🌐 Useful Links
+* Ultimate Guide (this doc)
+* Website
+* Luma Hackathon Registration
+* Slack
+* Devpost
+* Mentor, Panelist, Judge Directory
+* Judging Criteria
+
+
+🚀 Registration
+!! Register
+Sign up through Luma: 🔗Stanford Cleantech Hackathon · Luma 
+
+
+!! Slack
+Join our Slack Space
+* #all-cleantech-hackathon-2026: General channel
+* #announcements: Hackathon Important Information
+* #team-formation: Introductions and Form Teams
+* #mentorship: connect with mentors
+* #help-desk: Questions & Support
+📍 Time & Location
+The Cleantech Hackathon will take place October 23-24, 2026 in the following building:
+
+
+Mackenzie Room in the Jen-Hsun Huang Engineering Center
+Location: 
+Details: Mackenzie Room  is located on the top floor. We will have signs to lead you right!
+* Google Maps
+* Parking & Transportation
+   * Marguerite Shuttle 
+   * Parking: We recommend parking in:
+      * Via Ortega Garage (Parking Structure 2). Visitor parking is available in the garage. 
+      * Roble Field Garage. Visitor parking is available on Lower Level 1 (LL1). (Paid 8am to 4pm; 8 hour maximum per session)
+
+Registration: Registration will take place at the Jen-Hsun Huang Engineering Center  at the time of the event. Volunteers or organizers will lead you to any other event locations during the hackathon.
+📦 Packing list
+   * Government-issued ID and University ID
+   * Laptop and accessories (mouse, keyboard, etc.)
+   * Chargers (phone, laptop, etc.)
+   * Headphones / earbuds
+   * Sealable refillable water bottle
+   * A sweater / jacket in case it gets cold
+   * You, your friends, and your amazing energy!
+⏰ Schedule
+The full event schedule is also available on our website.
+
+
+KEY TIMES
+
+
+FRIDAY, OCTOBER 23 — Kickoff Day!
+ 📍Mackenzie Room (Top Floor)
+   * 3:30–4:00 PM – Registration
+   * !! 4:00-5:00 PM — Opening Ceremony + Official Hacking Begins 🎤 !!
+   * 5:00-6:00 PM— Workshop: Google Earth Engine 101 🏗️
+   * 6:00–8:00 PM — Reception (with food!) 🍽️
+
+
+
+
+SATURDAY, OCTOBER 24 — Hack Day!
+ 📍Mackenzie Room (Top Floor)
+   * 9:00 AM — Breakfast 🥐
+   * 9:00 – 11:00 AM — Mentorship Block A
+   * 11:00–12:00 PM — 🌍 Panel: From Stanford Research to Startup 
+   * 12:00–1:00 PM — Lunch 🌯
+   * 1:00 – 3:00 PM — Mentorship Block B
+   * 3:00 PM — Snacks
+   * 3:00–3:45 PM —🍀Panel: From Climate Data to Climate Action 
+   * 3:45–4:00 PM — Dance Break
+   * 4:00 – 5:00 PM — Mentorship Block C
+   * !! 5:00 PM — Project Submission Due 🚨 !!
+   * !! 5:00–7:00 PM — Demos & Judging 💻 !!
+   * 6:00–7:00 PM — Dinner 🥗
+   * 7:00–8:00 PM — Awards & Closing 🏆
+☁️ Wifi
+You can use Stanford Visitor, Stanford, or Eduroam.
+⚙️ Hackathon Tracks
+We’re excited to present three hackathon tracks for the event.
+
+
+⚡Track 1: Energy & the Grid
+Judging led by Silicon Valley Clean Energy
+How can customers and the grid use cleaner, cheaper energy at the right time?
+   1. Making time-of-use rates make sense. Most customers pay different prices at different times of day but have little sense of when to use energy or what an action will cost. Design a product, physical or virtual, that helps people understand their rates and consumption from a cost and carbon standpoint, and know when the good and bad times are to act.
+Source: Silicon Valley Clean Energy 
+   2. Open build. Bring your own solution to the track question, from smarter energy use at home to better ways of balancing supply and demand on the grid.
+🌎Track 2: Climate & Health
+Judging led by TotalEnergies and Stanford's Sustainability Accelerator
+ How can we turn climate and environmental data into public health action that saves lives?
+      1. Heat action plan audit. Build an LLM pipeline that finds US state and metro heat and cold plans, codes what they commit to, and scores them against the evidence of what actually works.
+      2. AI route planning for dengue surveillance. Turn predicted mosquito breeding sites into cost-effective inspection routes for public health teams working under real limits on staff, time, and budget.
+🔋Track 3: Resilient Systems
+Judging led by SE Ventures
+ How can we keep power on and communities safe as climate hazards intensify?
+      1. How AI agents can re-invent sustainable home automation. Apple has just announced a new Home Automation strategy. Google and Tesla are also creating connected ecosystems. How to create a more efficient, decarbonized, and secure home that will leverage the full capacity of AI?
+Source: SE Ventures 
+      2. Predictive power outage and reliability mapping. Combine outage records, weather, and infrastructure data to predict where outages will hit hardest, then recommend distributed energy resources for the most exposed users.
+Source: Rajagopal, Majumdar & Cezar, "ReliAdapt"
+
+
+
+
+🗒️ Curated Resources & Toolkits
+Climate Tech Atlas
+         * Climate Tech Atlas: https://climatetechatlas.com/ 
+Data Sources
+         * Planet.com - Daily, 4m, multispectral imagery of the Earth. 
+         * Stanford Affiliates sign up here: https://forms.gle/oTMeMi4zTqcD4U9n8 
+         * Non-Stanford EDU, here: https://www.planet.com/industries/education-and-research/ 
+         * AIRNOW.gov API - https://docs.airnowapi.org/ 
+
+Green Software Foundation
+            * Green Software Practitioner course: https://learn.greensoftware.foundation/
+            * Carbon Aware SDK documentation: https://carbon-aware-sdk.greensoftware.foundation/
+            * Impact Framework documentation: https://if.greensoftware.foundation/
+            * SCI Guidance: https://sci-guide.greensoftware.foundation/
+            * Green Software Patterns: https://patterns.greensoftware.foundation/
+            * Video Guide Introduction to Green Software Patterns: https://www.youtube.com/watch?v=rpcE_vakYIY
+Google Earth Engine
+            * Earth Engine Data Catalog: https://developers.google.com/earth-engine/datasets/ 
+GitHub
+            * Green Software Directory
+            * Top Green Software tools on GitHub
+            * Code Carbon highlight
+            * Copilot demo (from GitHub 'Climate Action Plan for Developers')
+            * Continuous AI
+            * Agentic Workflows
+            * Blog post from our lead developer on performance engineering
+Additional Resources
+            * The Natural Capital Project Data Hub: https://data.naturalcapitalproject.stanford.edu/ 
+            * Global Forest Watch
+https://www.globalforestwatch.org/ 
+ElevenLabs Access
+For the credit distribution, all hackathon participants can claim their free ElevenLabs access through our automated Discord system:
+Redemption Instructions for Participants:
+- Join the Discord server: https://discord.com/invite/VnBvbbcdEC
+- Gain access to the #│coupon-codes channel
+- Click "Start Redemption"
+- Select the event (Stanford Cleantech Hackathon 2026) and fill out the form using the email used for registration
+The bot sends the unique coupon code
+Video Tutorial: https://youtu.be/S143_JtCtV8
+
+
+🧠 Need project inspiration? Check this out.
+If you need additional ideas on challenges to tackle, see the following document:
+​🔗[PUBLIC] Stanford Cleantech Hackathon Challenges - Google Docs 
+
+We encourage you to brainstorm with your team, peers, and mentors to iterate on your ideas and solutions!
+❗ Rules
+In order to be eligible to win a prize, your team and project must follow all of the guidelines of Cleantech Hackathon:
+               1. All members of your team must have checked-in to the Cleantech Hackathon  and have your Hackathon badge
+               2. at least one member of your team must be physically present to demo your project to judges on Saturday (check schedule for specific time)
+               3. all building must have taken place during hacking hours (5pm on Friday, Oct. 23 - 5pm on Saturday Oct. 24).
+               1. Note: ideation and planning is allowed (and encouraged) before the hackathon, but all coding/building must take place during hacking hours.
+📚 Mentorship
+We are delighted and thankful for our amazing team of mentors. Mentorship will be provided in-person and online via Slack.
+
+
+Please join the #mentorship channel to ask questions and receive help during the hackathon. 
+🏆 Judging & Criteria
+In order to be judged, you'll need to submit your project on Devpost. You need to create an account on Devpost and join ‘Stanford Cleantech Hackathon’ to submit your project.
+On the Devpost, you give all the information about your project, including your team and the tracks you'd like to be considered for, including any challenges you might have hacked in.
+
+
+In order to win a prize, you must be physically present during judging to demo your project to the judges.
+
+
+Judging will take place in two rounds, the first will be reviewed on Devpost by the judges. Then 3 finalists per track will be chosen to present. The finalists will have 3 minutes presentation + 2 minutes questions (5 minute max) to present, so be ready to work through your demo quickly. Judges will then decide on the winner for each track.
+
+
+🥇 Prizes
+The Cleantech Hackathon 2026  will hand out prizes in the following categories:
+
+
+Track Prizes
+               * Energy & The Grid Winner - $1,000 & certificate of achievement
+               * Climate & Health Winner - $1,000 & certificate of achievement
+               * Resilient Systems Winner - $1,000 & certificate of achievement
+
+
+The cash prizes will be awarded following the events and divided evenly among members of the winning teams.
+🌯 Food
+We have lots of yummy food for the event. We will have plenty of dietary options for each meal. We will also provide 
+
+
+!! OPENING DINNER RECEPTION (Friday October 23rd) !!
+ 📍Mackenzie Room (Top Floor)
+ ⏰ Dinner: 6pm-8pm.
+
+
+HACKATHON FOOD (Saturday October 24th)
+ 📍Mackenzie Room (Top Floor)
+  ⏰ Breakfast: 9am-10am
+  ⏰ Lunch: 12pm-1pm
+  ⏰ Dinner: 6pm-7pm
+
+
+If you need help accommodating your food preferences, please contact angelali@stanford.edu before Monday October 19, 8am sharp.
+✨ Follow Up
+We encourage teams to keep working on their projects after the hackathon, and will facilitate pathways for 
+
+
+Call for participation: Global Sustainability Challenge
+Develop and showcase real-world Energy or Adaptation/Resilience solutions with expert guidance, create real  impact, and build a global community
+Phase 1 deadline: 22 November, 2026
+🔗 Website | Flyer 
+
+
+RFP Stanford Sustainability Accelerator
+Letter of Intent deadline: 30 October, 2026
+For students interested in this opportunity, we recommend reaching out to potential interested faculty to brainstorm ideas prior to the hackathon.
+🔗 Website
+🤩 Sponsors & Partners
+Thank you to all our sponsors & partners for making this hackathon possible!
+               * TotalEnergies 
+               * Silicon Valley Clean Energy        
+               * Schneider Electric Ventures 
+               * Google Earth Engine
+               * Eleven Labs
+               * Stanford Sustainability Accelerator 
+               * Stanford Ecopreneurship
+               * Stanford Climate Week
+🙋🙋‍♀️ FAQ
+
+
+How does team formation work?
+               * Team size: 2-5 people.
+               * We encourage students from different majors and backgrounds to participate in the same team, but this is not a hard requirement.
+               * Team formation: Pre-formed teams are allowed, and there will be dedicated team-building sessions during the event.
+
+
+Can I bring a previous project to the hackathon?
+You are encouraged to think about ideas and approaches beforehand, but all development should be done during the hackathon (honor code!).
+
+
+How will I receive updates during the event?
+We will use a dedicated Slack channel: https://join.slack.com/t/cleantechhack-i5r1006/shared_invite/zt-4bzex42ep-E8KheX8WnwFvj0Ke19mHLQ. 
+
+
+How does mentorship work?
+There will be dedicated tables and Slack channels with experienced mentors for the two tracks. Mentors are available to brainstorm ideas, approaches, help with bug fixes, and more!
+How do I submit a project?
+You must submit your project to the Devpost submission platform https://stanford-cleantech-hackathon.devpost.com/ before the submission deadline.
+When are projects due?
+Projects are due at 5pm Saturday October 24 at our Devpost submission platform: https://stanford-cleantech-hackathon.devpost.com/.
+Will food be provided during the event?
+Yes, we will have options for food during the following times:
+               * Dinner October 23
+               * Breakfast October 24
+               * Lunch October 24
+               * Dinner October 24
+
+
+Can I stay overnight at the venue?
+No, there will be no overnight options available.
+
+
+What if I need additional accommodations not listed?
+Please email angelali@stanford.edu and we will do our best to accommodate you!
+
+
+I have a question not answered here
+Please email angelali@stanford.edu and we will do our best to answer your questions!
