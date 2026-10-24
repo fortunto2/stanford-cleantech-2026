@@ -32,5 +32,20 @@ EPA AirData daily AQI by county (defining parameter PM2.5) × BLS QCEW private N
 - Enforcement waits for complaints and workers fear retaliation: the worker report button (§5141.1
   requires employers to encourage reports) is the lever that creates the urgency enforcement does not.
 
-To do with a DOL API key: §5141.1 and §3395 citations and complaints 2022–2026 from OSHA enforcement
-data (inspection, violation, related_activity tables; Cal/OSHA is a state plan and is included).
+## Enforcement (measured here, `work/evidence_citations.py`, DOL OSHA enforcement API)
+
+Cal/OSHA violations by issuance year, deleted citations excluded (current penalties). Cal/OSHA is a state
+plan, so its inspections are in the federal data; §3395/§3396/§5141.1 are California-only standards.
+
+| Year | Heat §3395 | Penalties | Smoke §5141.1 | Ag worker-days in smoke |
+|---|---:|---:|---:|---:|
+| 2020 | 1,246 | $1,055,702 | 0 | 3,321,216 |
+| 2021 | 946 | $919,977 | 16 (9 inspections, $11,690) | 1,230,571 |
+| 2022 | 1,190 | $958,320 | 0 | 13,367 |
+| 2023 | 1,205 | $1,066,126 | 0 | 297,375 |
+| 2024 | 1,098 | $1,396,334 | 0 | 17,511 |
+| 2025 | 1,118 | $1,410,945 | 1 ($250) | 8,449 |
+
+July 2019 to 18 Sep 2026: heat 8,507 violations, $8.1M; smoke 19; indoor heat §3396 (in force 2024)
+393. The state and industry split needs the inspection join, which the API keeps answering with 502;
+re-run the script, violations are cached in `work/output/evidence/violations.json`.

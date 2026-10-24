@@ -63,18 +63,23 @@ def get(table: str, filt: dict, fields: str, limit: int = 500) -> list[dict]:
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    viols = {}
+    cache = OUT / "violations.json"
+    viols = json.loads(cache.read_text()) if cache.exists() else {}
     for name, pattern in RULES.items():
+        if name in viols:
+            continue
         viols[name] = get("violation", {"and": [
             {"field": "standard", "operator": "like", "value": pattern},
             {"field": "issuance_date", "operator": "gt", "value": SINCE}]},
             "activity_nr,citation_id,standard,issuance_date,initial_penalty,current_penalty,viol_type,delete_flag")
         viols[name] = [v for v in viols[name] if v.get("delete_flag") != "X"]
+        cache.write_text(json.dumps(viols, default=str))  # the slow half survives a failed join
 
     nrs = sorted({v["activity_nr"] for vs in viols.values() for v in vs})
     insp = {}
-    for i in range(0, len(nrs), 200):
-        for row in get("inspection", {"field": "activity_nr", "operator": "in", "value": nrs[i:i + 200]},
+    # 40 per call: a 200-id filter makes a URL the API's front door answers with 403.
+    for i in range(0, len(nrs), 40):
+        for row in get("inspection", {"field": "activity_nr", "operator": "in", "value": nrs[i:i + 40]},
                        "activity_nr,site_state,site_city,naics_code,insp_type,open_date,estab_name"):
             insp[row["activity_nr"]] = row
     (OUT / "citations.json").write_text(json.dumps({"violations": viols, "inspections": insp}, default=str))
