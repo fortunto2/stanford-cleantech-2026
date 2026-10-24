@@ -26,3 +26,10 @@
 ## Self-correction for the judges
 - Open with the worker and the rule, not "I have many ideas".
 - Never say we predict how fast a fire arrives. We draw a wind cone and say so.
+
+## Overstory (looked up 15:10, after Carlo named them)
+- Vegetation and wildfire intelligence for utilities: satellite + AI, tree by tree, Fuel Detection Model;
+  PG&E and 50+ utilities, "6 of the 10 largest in North America"; Series B $43M Nov 2025 (~$68M total),
+  80 people, Amsterdam/Boston; partners Watch Duty, Arcos. Sales by demo, SOC 2.
+- Nothing on smoke, air quality, crews on the day, Cal/OSHA. They work before the fire, we work the hour
+  the air changes. A channel (Arcos runs crews), not a rival. Sources: overstory.com; Series B post.
