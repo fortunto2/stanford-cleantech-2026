@@ -11,6 +11,10 @@ demo 17:00–19:00 (3 min + 2 min Q&A), awards 19:00. Building allowed until 17:
 - **Live page: https://airsignal.app/crew** (form, hourly strip, BMS line, Print / Save PDF with a
   pre-shift sign-off) and **`/api/crew?place=&date=&shift=`** (JSON incl. `plan.bms.recirculate_at`).
   Same maths in Rust: `airq-core/src/crew.rs` → WASM `wasm_crew_plan`. This covers steps 2, 4 and most of 5.
+- **Checks on every plan** (Sat 00:30): NASA FIRMS VIIRS fires (warning within 50 km, with direction) and
+  the latest AirNow monitor hour within 25 km (agree within 1.5x → "sensor-confirmed"; otherwise the
+  forecast is scaled toward the monitor, ×0.5…×3, fading over ~12 h). Both keyless public files.
+  Python CLI does not have these checks yet; the demo should use the page.
 - CLI `crewair` on live Open-Meteo forecasts, rulebook engine, `rulebooks/us-ca.yaml`, 5 tests green.
 - Pitch deck (12 slides): https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ, sources in `pitch/`.
 - Repo public, single clean history.
