@@ -11,8 +11,8 @@ as JSON, for whoever controls a building, a home or a sensor.
 line-crew contractor. The pain is a crew lead at 6 a.m. with a rule and no tool; the cost is the fine,
 the downtime and the missing paper. Workers use it free.
 
-**Where it goes next (the mentors' angle).** Rongxin Yin (LBNL Grid Integration Group, pre-cooling and
-Auto-DR research, pilots with PG&E) confirmed the grid reading of the same signal: pre-cool before the
+**Where it goes next (the mentors' angle).** A grid-integration researcher at a national lab (pre-cooling and
+Auto-DR research, pilots with PG&E; name kept private, he is referenced by idea only) confirmed the grid reading of the same signal: pre-cool before the
 4–9 pm peak, hold the battery before a PSPS, close the damper in smoke. Carlo: name the pain, the
 one feeling it pays; utilities already buy fire prediction (Overstory), what they do not have is the
 hour the air changes for the crew. Asher: line crews after a fire, a reading at the work site when the
@@ -49,8 +49,8 @@ says whether it sees smoke, right 11 or 12 times out of 12 on known photos, neve
 crew lead sees it."
 
 1:50 **Grid.** "Heat and smoke days are the grid's worst days. The same strip carries the 4–9 pm peak
-price and the cheap hours to pre-cool. For a utility: thirteen SVCE cities on one map. LBNL's Grid
-Integration Group told us this afternoon they could take this into their PG&E panel pilots."
+price and the cheap hours to pre-cool. For a utility: thirteen SVCE cities on one map. A grid-integration
+researcher at a national lab told us this afternoon the signal could go into their utility panel pilots."
 
 2:10 **Line crews.** "After a fire, a utility crew needs the air determined and logged before it goes in;
 the monitor can be 48 km away. The API issues a sensor task; the reading comes back; the plan prints as
@@ -84,7 +84,7 @@ summer's peak days against our hours."
 1:50–2:00 airsignal.app/api, then the GitHub repo. "Built in the hacking hours. Crew Air."
 
 ## After the hackathon (do not lose)
-- Email Rongxin Yin (LBNL) within a week: the JSON, /crew/grid, offer OpenADR event or webhook, a 30-min call.
+- Email the LBNL researcher (contact in private memory) within a week: the JSON, /crew/grid, offer OpenADR event or webhook, a 30-min call.
 - Asher's line-crew case: find one utility contractor to ask what their dispatcher does today.
 - Carlo's point: write the one-sentence pain on the landing page first.
 - HRRR-Smoke raster instead of wind cones; OSM power layer on /crew/grid (Overpass failed from the venue).
