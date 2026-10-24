@@ -1,15 +1,15 @@
 <section id="matrix" data-transition="fade" style="background:#FBF7F2;color:#121826;font-family:'Rubik', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <h2 style="font-family:'Oswald', Arial, sans-serif;font-size:80px;font-weight:700;line-height:1.05;text-transform:uppercase">Who does what today</h2>
 <table style="font-size:26px;color:#121826">
-<tr><th style="width:22%;text-align:left">Product</th><th style="width:14%;text-align:left">Smoke forecast</th><th style="width:15%;text-align:left">Says what to do</th><th style="width:13%;text-align:left">Knows the law</th><th style="width:13%;text-align:left">Site + shift plan</th><th style="width:11%;text-align:left">Audit log</th><th style="width:12%;text-align:left">Drives building</th></tr>
-<tr><td>AirNow, Fire &amp; Smoke Map</td><td>Daily, by area</td><td>Generic advice</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
-<tr><td>PurpleAir, IQAir</td><td>Now, short-range</td><td>Generic advice</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+<tr><th style="width:22%;text-align:left">Product</th><th style="width:15%;text-align:left">Smoke data</th><th style="width:14%;text-align:left">Says what to do</th><th style="width:14%;text-align:left">Knows the law</th><th style="width:12%;text-align:left">Shift plan + log</th><th style="width:12%;text-align:left">Crew reports</th><th style="width:11%;text-align:left">Building</th></tr>
+<tr><td>AirNow, Fire &amp; Smoke Map</td><td>Now, by area</td><td>Generic advice</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+<tr><td>PurpleAir, IQAir</td><td>Now, sensors</td><td>Generic advice</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
 <tr><td>Watch Duty</td><td>Fire alerts</td><td>Evacuation info</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
-<tr><td>NOAA HRRR-Smoke</td><td>Yes, raw model</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
-<tr><td>Carrier / ALC BMS add-on</td><td>Outdoor AQ feed</td><td>Engineer writes rules</td><td>No</td><td>No</td><td>Partial</td><td>Yes</td></tr>
+<tr><td>County SMS alerts (Ventura)</td><td>Threshold text</td><td>At 151 and 500</td><td>Smoke</td><td>No</td><td>No</td><td>No</td></tr>
 <tr><td>OSHA Heat app</td><td>Heat only</td><td>Heat tips</td><td>Heat, federal</td><td>No</td><td>No</td><td>No</td></tr>
-<tr style="background:#FFE3D4"><td><b>Crew Air</b></td><td><b>Per address, 48 h</b></td><td><b>Yes, concrete</b></td><td><b>Cal/OSHA smoke + heat</b></td><td><b>Yes</b></td><td><b>Yes</b></td><td><b>Signal to BMS</b></td></tr>
+<tr><td>BMS outdoor-air add-ons</td><td>Outdoor AQ feed</td><td>Engineer writes rules</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
+<tr style="background:#FFE3D4"><td><b>Crew Air</b></td><td><b>Hourly NowCast, checked 4 ways</b></td><td><b>Yes, by the hour</b></td><td><b>Smoke + heat, as data</b></td><td><b>Yes</b></td><td><b>Yes, the ladder</b></td><td><b>Signal to BMS</b></td></tr>
 </table>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6A7080">Checked 23 Oct 2026 from public product pages. Smoke rule today: someone checks airnow.gov at shift start.</p>
-<aside>Here's the landscape. Maps and sensors show the air now, with generic advice. NOAA has a raw smoke forecast nobody turns into actions. BMS add-ons from Carrier feed outdoor air data, but an engineer has to write the rules. The OSHA heat app covers heat only. Today the Cal/OSHA smoke rule is met by someone checking airnow.gov at the start of the shift. Crew Air is the only row that goes from forecast to a concrete, legal plan with a log.</aside>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6A7080">Checked 23–24 Oct 2026 from public product pages</p>
+<aside>Here's the landscape. Maps and sensors show the air now with generic advice. Watch Duty is about fires and evacuation. Ventura County texts farmworkers at 151 and 500, which shows the demand, but it's a text, not a plan. The OSHA heat app covers heat only. Building add-ons take an outdoor feed but an engineer writes the rules. Crew Air is the only row that goes from forecast to a plan by the hour, checked, with a log and a channel for the crew.</aside>
 </section>

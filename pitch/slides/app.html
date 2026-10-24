@@ -1,31 +1,23 @@
-<section id="app" data-transition="fade" style="background:#FBF7F2;color:#121826;font-family:'Rubik', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<section id="app" data-transition="fade" style="background:#FBF7F2;color:#121826;font-family:'Rubik', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <h2 style="font-family:'Oswald', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1.05;text-transform:uppercase">In the crew’s pocket</h2>
-<div style="display:flex;gap:40px;justify-content:center">
-<div style="width:420px;display:flex;flex-direction:column;gap:16px;background:#FFF9F2;border:3px solid #121826;border-radius:48px;padding:40px 32px">
-<p style="font-size:26px;font-weight:700;color:#6A7080">Plan</p>
-<div style="display:flex;flex-direction:column;gap:8px;background:#E8402A;color:#FFFFFF;border-radius:28px;padding:28px">
-<p style="font-family:'Oswald', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1">170</p>
-<p style="font-size:30px;font-weight:700;line-height:1.2">N95s for everyone from 7:00</p>
+<div style="display:flex;gap:40px;justify-content:center;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+<img src="/_blob/913b9632e0b80db985765c15e686ae33" alt="Plan tab: peak AQI card, heat and heavy-work tiles, air by the hour" style="width:290px;height:630px;object-fit:contain;border-radius:36px;background:#FFFFFF">
+<p style="font-size:26px;font-weight:700">Plan</p>
 </div>
-<p style="font-size:26px;line-height:1.3;color:#4A5160">Heavy work 3–5 pm</p>
+<div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+<img src="/_blob/f648bb0fac73f283614eb82f4514adde" alt="Sky tab: a smoky photo checked by Jev, smoke 98 percent, looks worse than the forecast" style="width:290px;height:630px;object-fit:contain;border-radius:36px;background:#1B1F22">
+<p style="font-size:26px;font-weight:700">Check the sky</p>
 </div>
-<div style="width:420px;display:flex;flex-direction:column;gap:16px;background:#2B2F2C;color:#FBF7F2;border:3px solid #121826;border-radius:48px;padding:40px 32px">
-<p style="font-size:26px;font-weight:700;color:#C9BFB4">Sky</p>
-<div style="display:flex;flex-direction:column;gap:6px;background:#E8402A;border-radius:20px;padding:20px 24px">
-<p style="font-size:34px;font-weight:700">Fire 32 km S</p>
-<p style="font-size:24px">pinned on the real horizon</p>
+<div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+<img src="/_blob/1807c842efeebc2b5264108d7665ac52" alt="Report tab: four big report buttons and today's reports" style="width:290px;height:630px;object-fit:contain;border-radius:36px;background:#FFFFFF">
+<p style="font-size:26px;font-weight:700">Report</p>
 </div>
-<p style="font-size:26px;line-height:1.3;color:#C9BFB4">Point at the sky: “haze, ridge not visible” → report it</p>
-</div>
-<div style="width:420px;display:flex;flex-direction:column;gap:16px;background:#FFF9F2;border:3px solid #121826;border-radius:48px;padding:40px 32px">
-<p style="font-size:26px;font-weight:700;color:#6A7080">Report</p>
-<div style="display:flex;flex-direction:column;gap:12px">
-<p style="font-size:30px;font-weight:700;background:#E8402A;color:#FFFFFF;border-radius:20px;padding:18px 22px">Smoke or haze</p>
-<p style="font-size:30px;font-weight:700;background:#CFE3FF;border-radius:20px;padding:18px 22px">No N95s here</p>
-</div>
-<p style="font-size:26px;line-height:1.3;color:#4A5160">No name. Crew lead sees it with the evidence.</p>
+<div style="display:flex;flex-direction:column;gap:12px;align-items:center">
+<img src="/_blob/a640d0c219f466714a4b2372694456d6" alt="Crew lead board: report waiting, goes further in 30 minutes, evidence tiles, Mark fixed" style="width:290px;height:630px;object-fit:contain;border-radius:36px;background:#FFFFFF">
+<p style="font-size:26px;font-weight:700">Crew lead</p>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6A7080">Sky check on TypeSafe Jev: smoke call right 11–12 of 12 known-answer photos, never wrong, ~100 ms · faces blurred on the phone · also on airsignal.app/crew</p>
-<aside>The same thing in the crew's pocket. The plan, big and simple: one number, one action. The sky view pins the satellite fire detections and the nearest monitor on the real horizon through the camera, so "is that smoke coming to us" has an answer you can see. And the worker can point the phone at the sky: a vision model answers "is there haze, is the ridge visible", with a confidence, and that photo becomes a report with evidence. Privacy is built in: faces are blurred and the sky is cropped on the phone, only the sky leaves the device. And we checked the model before trusting it: twelve public-domain photos with known answers, smoke or clear. It got the smoke call right eleven or twelve times out of twelve across runs and was never wrong, it says 'not sure, take another photo' instead. Its visibility estimate was not reliable, so we don't use it for the verdict. The same check works on the web page, no app needed.</aside>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6A7080">Native iOS, English and Spanish · sky check on TypeSafe Jev: smoke call right 11–12 of 12 known-answer photos, never wrong · faces blacked out on the phone</p>
+<aside>The same thing in the crew's pocket, a native iPhone app in English and Spanish. The plan: one number, one action. Check the sky: point the camera at the horizon, a vision model answers whether there is smoke, and here it says the sky looks worse than the forecast, so the worker can report it in one tap. The report goes to the crew lead, who sees a countdown and the evidence and marks it fixed. We checked the vision model before trusting it: twelve photos with known answers, right eleven or twelve times out of twelve and never wrong; when it's unsure, it asks for another photo. Faces are blacked out on the phone before anything leaves it.</aside>
 </section>
