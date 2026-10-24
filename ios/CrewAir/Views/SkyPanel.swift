@@ -7,15 +7,28 @@ struct SkyPanel: View {
     let response: CrewResponse?
     let sky: SkyCheckModel
     let reports: ReportViewModel
+    let heading: HeadingProvider
     let cameraRunning: Bool
     @Binding var pickerItem: PhotosPickerItem?
     let onCamera: () -> Void
+    @State private var confirming = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
             if let result = sky.result {
-                SkyVerdict(result: result, checkedAt: sky.checkedAt)
+                SkyVerdict(result: result, origin: sky.origin)
                 if result.shouldReport { reportButton(result) }
+                if let image = sky.shareImage {
+                    ShareLink(
+                        item: Image(uiImage: image),
+                        preview: SharePreview(Text("Sky evidence"), image: Image(uiImage: image))
+                    ) {
+                        Label("Share the evidence card", systemImage: "square.and.arrow.up")
+                            .font(.system(size: 14, weight: .semibold)).foregroundStyle(Theme.skyInk)
+                            .frame(maxWidth: .infinity, minHeight: 40)
+                            .glass(.rect(cornerRadius: 10), interactive: true)
+                    }
+                }
             } else {
                 Text("YOUR SKY").font(Theme.Font.mono).kerning(0.7).foregroundStyle(Theme.skyAccent)
                 Text(sky.error ?? intro).font(.system(size: 16, weight: .semibold)).foregroundStyle(Theme.skyInk)
@@ -24,11 +37,26 @@ struct SkyPanel: View {
                 }
             }
             actions.padding(.top, Theme.Space.xs)
+            if sky.result == nil { SkyCheckDisclosure() }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, Theme.Space.l).padding(.vertical, 14)
         .background(Theme.skyPanel, in: .rect(cornerRadius: Theme.Radius.panel))
         .overlay(RoundedRectangle(cornerRadius: Theme.Radius.panel).stroke(Theme.skyStroke))
+        .task(id: sky.checkedAt) { renderShareCard() }
+    }
+
+    /// The forwardable card: the photo as sent, with the forecast and the satellites beside it.
+    private func renderShareCard() {
+        guard let result = sky.result, let photo = sky.sentImage else { return }
+        let card = EvidenceCard(
+            photo: photo, result: result, response: response,
+            headingDeg: sky.origin?.headingDeg ?? heading.origin(cameraHeading: true).headingDeg,
+            takenClock: sky.origin?.takenClock
+        )
+        let renderer = ImageRenderer(content: card)
+        renderer.scale = 3
+        sky.shareImage = renderer.uiImage
     }
 
     private var intro: String {
@@ -54,7 +82,7 @@ struct SkyPanel: View {
             Menu {
                 ForEach(SkyCheckModel.Sample.allCases) { sample in
                     Button(sample.title) {
-                        Task { await sky.check(sample: sample, place: response?.place.name ?? reports.place) }
+                        Task { await sky.check(sample: sample, place: reports.place) }
                     }
                 }
             } label: {
@@ -65,22 +93,48 @@ struct SkyPanel: View {
         }
     }
 
+    /// Report smoke, in two steps: first what will be sent and where, then Send.
+    @ViewBuilder
     private func reportButton(_ result: SkyCheckResult) -> some View {
-        Button {
-            Task {
-                reports.isLead = false
-                reports.selected = .smoke
-                reports.note = result.verdict
-                await reports.send()
-                sky.markReported()
+        if confirming && !sky.reported {
+            SendDisclosure(placeName: reports.placeName, sendsLocation: sendsLocation, dark: true)
+            HStack(spacing: Theme.Space.s) {
+                Button { confirming = false } label: {
+                    Text("Cancel").font(.system(size: 15, weight: .semibold)).foregroundStyle(Theme.skyInk)
+                        .frame(minWidth: 90, minHeight: 48)
+                        .glass(.rect(cornerRadius: 12), interactive: true)
+                }
+                Button { Task { await send(result) } } label: {
+                    Text(reports.isSending ? "Sending…" : "Send to the crew lead")
+                        .font(.system(size: 16, weight: .heavy)).foregroundStyle(.white)
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .background(Theme.color(.unhealthy), in: .rect(cornerRadius: 12))
+                }
+                .disabled(reports.isSending)
             }
-        } label: {
-            Text(sky.reported ? "Sent to the crew lead" : "Report smoke")
-                .font(.system(size: 16, weight: .heavy)).foregroundStyle(.white)
-                .frame(maxWidth: .infinity, minHeight: 48)
-                .background(Theme.color(.unhealthy), in: .rect(cornerRadius: 12))
+        } else {
+            Button { confirming = true } label: {
+                Text(sky.reported ? "Sent to the crew lead" : "Report smoke")
+                    .font(.system(size: 16, weight: .heavy)).foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(Theme.color(.unhealthy), in: .rect(cornerRadius: 12))
+            }
+            .disabled(sky.reported)
         }
-        .disabled(sky.reported || reports.isSending)
+    }
+
+    private var sendsLocation: Bool {
+        if let origin = sky.origin { return !origin.input.isEmpty }
+        return reports.sendsLocation
+    }
+
+    private func send(_ result: SkyCheckResult) async {
+        reports.isLead = false
+        reports.selected = .smoke
+        reports.note = result.verdict
+        await reports.send(origin: sky.origin?.input, sky: SkySummary(result))
+        sky.markReported()
+        confirming = false
     }
 
     /// What the plan says for now, so what you see can be held against it.
@@ -96,7 +150,7 @@ struct SkyPanel: View {
 /// Jev's answer: the verdict, the smoke score, and the forecast it disagrees with.
 struct SkyVerdict: View {
     let result: SkyCheckResult
-    let checkedAt: Date?
+    let origin: CheckOrigin?
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
@@ -111,6 +165,9 @@ struct SkyVerdict: View {
                     .background(Theme.heat, in: .rect(cornerRadius: 10))
             }
             if let detail { Text(detail).font(.system(size: 13)).foregroundStyle(Theme.skyInkSecondary) }
+            if let taken = origin.flatMap(OriginText.taken) {
+                Text(taken).font(Theme.Font.mono).foregroundStyle(Theme.skyInkSecondary)
+            }
         }
     }
 

@@ -4,7 +4,13 @@ import SwiftUI
 /// Rung three: out of the company, without the worker's name. Only the Cal/OSHA link is live.
 struct EscalateView: View {
     let report: Report
+    /// Fetches the server's complaint draft; nil in previews.
+    var draft: (@MainActor () async throws -> ComplaintDraft)?
     @Environment(\.dismiss) private var dismiss
+    @State private var complaint = ""
+    @State private var fileAt: URL?
+    @State private var draftError: String?
+    @State private var copied = false
 
     private static let calOSHA = URL(string: "https://www.dir.ca.gov/dosh/Complaint.htm")
 
@@ -21,6 +27,7 @@ struct EscalateView: View {
                     ink: Theme.nightInk, secondary: Theme.nightInkSecondary
                 )
                 summary
+                complaintEditor
                 if let url = Self.calOSHA {
                     Link(destination: url) {
                         card(String(localized: "Cal/OSHA complaint"),
@@ -45,7 +52,57 @@ struct EscalateView: View {
             .padding(.bottom, Theme.Space.xxl)
         }
         .background(Theme.night)
+        .task { await loadDraft() }
         .toolbar(.hidden, for: .navigationBar)
+    }
+
+    /// The draft the worker reads, fills and files themselves. Nothing is sent from here.
+    @ViewBuilder
+    private var complaintEditor: some View {
+        if !complaint.isEmpty || draftError != nil {
+            VStack(alignment: .leading, spacing: Theme.Space.s) {
+                Text("Cal/OSHA complaint, drafted").font(Theme.Font.chip).foregroundStyle(Theme.nightAccent)
+                Text("Fill the [brackets]. Nothing is sent from the app: you copy it into the form.")
+                    .font(.system(size: 13, weight: .medium)).foregroundStyle(Theme.nightInkSecondary)
+                if let draftError {
+                    Text(draftError).font(.system(size: 13)).foregroundStyle(Theme.nightInkSecondary)
+                } else {
+                    TextEditor(text: $complaint)
+                        .font(.system(size: 15, weight: .medium))
+                        .scrollContentBackground(.hidden)
+                        .foregroundStyle(Theme.ink)
+                        .frame(minHeight: 260)
+                        .padding(Theme.Space.s)
+                        .background(Theme.ground, in: .rect(cornerRadius: Theme.Radius.field))
+                    HStack(spacing: Theme.Space.s) {
+                        Button {
+                            UIPasteboard.general.string = complaint
+                            copied = true
+                        } label: {
+                            Text(copied ? "Copied" : "Copy").primaryButton(fill: Theme.nightCard, ink: Theme.nightInk)
+                        }
+                        if let url = fileAt ?? Self.calOSHA {
+                            Link(destination: url) {
+                                Text("Open the Cal/OSHA form").primaryButton(fill: Theme.ground, ink: Theme.ink)
+                            }
+                        }
+                    }
+                }
+            }
+            .padding(Theme.Space.l)
+            .background(Theme.nightCard.opacity(0.6), in: .rect(cornerRadius: Theme.Radius.tile))
+        }
+    }
+
+    private func loadDraft() async {
+        guard let draft, complaint.isEmpty, Int(report.id) != nil else { return }
+        do {
+            let result = try await draft()
+            complaint = result.complaint
+            fileAt = result.fileAt
+        } catch {
+            draftError = String(localized: "No draft for this report yet: \(error.localizedDescription)")
+        }
     }
 
     private var summary: some View {

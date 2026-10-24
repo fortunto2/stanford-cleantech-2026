@@ -11,8 +11,8 @@ struct SkyView: View {
     let response: CrewResponse?
     let sky: SkyCheckModel
     let reports: ReportViewModel
+    let heading: HeadingProvider
     var onClose: () -> Void = {}
-    @State private var heading = HeadingProvider()
     @State private var camera = CameraSession()
     @State private var cameraRunning = false
     @State private var dragStart: Double?
@@ -27,7 +27,7 @@ struct SkyView: View {
             topBar
             dragArea
             SkyPanel(
-                response: response, sky: sky, reports: reports, cameraRunning: cameraRunning,
+                response: response, sky: sky, reports: reports, heading: heading, cameraRunning: cameraRunning,
                 pickerItem: $pickerItem, onCamera: { Task { await checkCamera() } }
             )
         }
@@ -37,11 +37,11 @@ struct SkyView: View {
         .toolbarBackground(.visible, for: .tabBar)
         .toolbarColorScheme(.dark, for: .tabBar)
         .task {
-            heading.start()
+            heading.startMotion()
             if CameraSession.isAvailable { cameraRunning = await camera.start() }
         }
         .onDisappear {
-            heading.stop()
+            heading.stopMotion()
             camera.stop()
             cameraRunning = false
         }
@@ -124,14 +124,16 @@ struct SkyView: View {
             .onEnded { _ in dragStart = nil }
     }
 
-    private var place: String { response?.place.name ?? reports.place }
+    /// The plan's own query, so the check is held against the same forecast.
+    private var place: String { reports.place }
 
     /// The preview fills the screen's height, so the horizon's height on screen is its height
     /// in the portrait frame too.
     private func checkCamera() async {
         guard let data = await camera.capture(), let image = UIImage(data: data) else { return }
         let horizon = viewSize.height > 0 ? projection(in: viewSize).horizonY / viewSize.height : nil
-        await sky.check(image, horizon: horizon, place: place, showPhoto: false)
+        let origin = CheckOrigin(input: heading.origin(cameraHeading: true), takenClock: nil, fromLibrary: false)
+        await sky.check(image, horizon: horizon, place: place, showPhoto: false, origin: origin)
     }
 
     private func checkPicked() async {
@@ -139,7 +141,11 @@ struct SkyView: View {
         pickerItem = nil
         guard let data = try? await item.loadTransferable(type: Data.self),
               let image = UIImage(data: data) else { return }
-        await sky.check(image, horizon: nil, place: place, showPhoto: true)
+        let origin = CheckOrigin.exif(data)
+        // Checked against the forecast where the photo was taken, when it says.
+        var photoPlace: String?
+        if let lat = origin?.input.lat, let lon = origin?.input.lon { photoPlace = PlaceQuery.coordinate(lat, lon) }
+        await sky.check(image, horizon: nil, place: photoPlace ?? place, showPhoto: true, origin: origin)
     }
 }
 
@@ -166,10 +172,7 @@ struct CompassChip: View {
         .padding(.top, Theme.Space.s)
     }
 
-    static func point(_ degrees: Double) -> String {
-        let points = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
-        return points[Int((Compass.normalized(degrees) + 22.5) / 45) % 8]
-    }
+    static func point(_ degrees: Double) -> String { Compass.point(for: degrees) }
 }
 
 struct SkyMarker: Identifiable, Equatable {
@@ -276,6 +279,6 @@ struct SkyPin: View {
     let plan = PlanViewModel(service: PreviewCrewService(), response: .preview)
     SkyView(
         response: .preview, sky: SkyCheckModel(checker: StubSkyChecker()),
-        reports: ReportViewModel(service: PreviewCrewService(), plan: plan)
+        reports: ReportViewModel(service: PreviewCrewService(), plan: plan), heading: HeadingProvider()
     )
 }

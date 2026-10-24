@@ -7,6 +7,8 @@ protocol CrewService: Sendable {
     func sendReport(_ report: ReportRequest) async throws -> ReportReceipt
     func reports(place: String, date: String) async throws -> [Report]
     func handle(_ request: HandleRequest) async throws -> HandleReceipt
+    func places(matching text: String) async throws -> [PlaceSuggestion]
+    func complaint(report id: String) async throws -> ComplaintDraft
 }
 
 enum CrewServiceError: LocalizedError {
@@ -46,6 +48,16 @@ struct LiveCrewService: CrewService {
 
     func handle(_ request: HandleRequest) async throws -> HandleReceipt {
         try JSONDecoder().decode(HandleReceipt.self, from: try await post(request))
+    }
+
+    func places(matching text: String) async throws -> [PlaceSuggestion] {
+        let url = base.appending(path: "crew/places").appending(queryItems: [URLQueryItem(name: "q", value: text)])
+        return try JSONDecoder().decode(PlaceList.self, from: try await get(url)).places
+    }
+
+    func complaint(report id: String) async throws -> ComplaintDraft {
+        let url = base.appending(path: "crew/complaint").appending(queryItems: [URLQueryItem(name: "report", value: id)])
+        return try JSONDecoder().decode(ComplaintDraft.self, from: try await get(url))
     }
 
     private func post(_ body: some Encodable) async throws -> Data {

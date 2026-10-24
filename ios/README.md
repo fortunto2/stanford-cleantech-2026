@@ -51,6 +51,17 @@ CrewAir/
   lead board: open reports with a 30-minute countdown, the evidence the server attached,
   "What you did" and Mark fixed (`action: "handle"`).
 
+Every report carries the phone's position and true heading when location is allowed (the
+server rounds to ~100 m and works out "toward the fire"), and the sky check it came from.
+A library photo's EXIF (GPS, `GPSImgDirection`, `DateTimeOriginal`) is used instead of the
+live fix and shown on the verdict card. After a check, **Share the evidence card** renders
+the photo as sent with the forecast, satellite fire, monitor and heading, for forwarding.
+The plan follows the phone (`place=<lat>,<lon>`, named "near <city>" by the server) until a
+place is picked in the sheet under the place name: "Use my location", or a search with live
+suggestions from `/api/crew/places`. The choice is remembered.
+A first-launch guide (and "?" on Plan) has a worker path and an employer path; choosing
+employer turns on crew-lead mode.
+
 English and Spanish: `CrewAir/Resources/Localizable.xcstrings` and `InfoPlist.xcstrings`.
 Rule texts from the API stay in English. After adding UI strings, build, then sync:
 `xcrun xcstringstool sync CrewAir/Resources/Localizable.xcstrings --stringsdata $(find build-sim -path '*CrewAir.build*arm64*' -name '*.stringsdata')`.

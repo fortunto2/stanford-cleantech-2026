@@ -1,49 +1,75 @@
 import CoreLocation
 import CoreMotion
+import CrewKit
 import Foundation
 
-/// Which way the rear camera points, from device motion: no ARKit, no camera frames needed.
+/// Where the phone is and which way it points.
 ///
-/// Adapted from Starlapse's `AttitudeProvider`. True north needs a position (declination),
-/// so it asks for location when-in-use and falls back to magnetic north without it. With no
-/// motion hardware (the Simulator) it reports `isSimulated` and the view drives `heading`
-/// from a drag instead.
+/// Two headings, for two uses. In Sky, device motion gives the direction the rear camera
+/// looks along (adapted from Starlapse's `AttitudeProvider`), which works with the phone held
+/// up. Elsewhere, `CLHeading` gives the compass as the phone is held, which is what a report
+/// made from the Report tab should carry. True north needs a position (declination), so both
+/// fall back to magnetic until location is allowed. With no motion hardware (the Simulator)
+/// `isSimulated` is set and the Sky view drives `heading` from a drag.
 @MainActor
 @Observable
 final class HeadingProvider: NSObject {
-    /// Degrees from north the camera looks along.
+    /// Degrees from north the camera looks along (Sky).
     var heading: Double = 315
     /// Degrees above the horizon.
     private(set) var pitch: Double = 0
     private(set) var isTrueNorth = false
     private(set) var isSimulated = false
+    private(set) var isMotionRunning = false
+    /// The latest fix, once location is allowed.
+    private(set) var location: CLLocation?
+    /// The compass as held, degrees from north, true when available.
+    private(set) var compass: Double?
 
     private let motion = CMMotionManager()
-    private let location = CLLocationManager()
+    private let manager = CLLocationManager()
 
     override init() {
         super.init()
-        location.delegate = self
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
     }
 
-    func start() {
+    private var isAuthorized: Bool {
+        manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways
+    }
+
+    /// Asks once; tracks if allowed. Denied is fine: reports go without a position.
+    func startLocation() {
+        switch manager.authorizationStatus {
+        case .notDetermined: manager.requestWhenInUseAuthorization()
+        case .authorizedWhenInUse, .authorizedAlways: track()
+        default: break
+        }
+    }
+
+    private func track() {
+        manager.startUpdatingLocation()
+        if CLLocationManager.headingAvailable() { manager.startUpdatingHeading() }
+    }
+
+    /// What a report carries. From Sky, the camera's heading; elsewhere, the compass.
+    func origin(cameraHeading: Bool) -> ReportOrigin.Input {
+        let facing: Double? = cameraHeading && isMotionRunning && !isSimulated ? heading : compass
+        return ReportOrigin.Input(
+            lat: location?.coordinate.latitude, lon: location?.coordinate.longitude,
+            accuracyM: location.map(\.horizontalAccuracy), headingDeg: facing.map { ($0 * 10).rounded() / 10 }
+        )
+    }
+
+    func startMotion() {
+        startLocation()
         guard motion.isDeviceMotionAvailable else {
             isSimulated = true
             return
         }
-        if location.authorizationStatus == .notDetermined { location.requestWhenInUseAuthorization() }
-        startMotion()
-    }
-
-    func stop() {
-        motion.stopDeviceMotionUpdates()
-    }
-
-    private func startMotion() {
         let frames = CMMotionManager.availableAttitudeReferenceFrames()
-        let authorized = location.authorizationStatus == .authorizedWhenInUse
-            || location.authorizationStatus == .authorizedAlways
-        let frame: CMAttitudeReferenceFrame = authorized && frames.contains(.xTrueNorthZVertical)
+        let frame: CMAttitudeReferenceFrame = isAuthorized && frames.contains(.xTrueNorthZVertical)
             ? .xTrueNorthZVertical : .xMagneticNorthZVertical
         isTrueNorth = frame == .xTrueNorthZVertical
         motion.stopDeviceMotionUpdates()
@@ -52,6 +78,12 @@ final class HeadingProvider: NSObject {
             guard let self, let sample else { return }
             MainActor.assumeIsolated { self.update(from: sample.attitude.rotationMatrix) }
         }
+        isMotionRunning = true
+    }
+
+    func stopMotion() {
+        motion.stopDeviceMotionUpdates()
+        isMotionRunning = false
     }
 
     /// X is north, Z is up, so Y is west. The rear camera looks along the body's −Z axis;
@@ -68,9 +100,20 @@ extension HeadingProvider: CLLocationManagerDelegate {
     nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus
         Task { @MainActor in
-            guard status == .authorizedWhenInUse || status == .authorizedAlways,
-                  self.motion.isDeviceMotionActive, !self.isTrueNorth else { return }
-            self.startMotion()
+            guard status == .authorizedWhenInUse || status == .authorizedAlways else { return }
+            self.track()
+            // Now true north can be served; move to it if motion started on magnetic.
+            if self.isMotionRunning, !self.isTrueNorth { self.startMotion() }
         }
+    }
+
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let latest = locations.last else { return }
+        Task { @MainActor in self.location = latest }
+    }
+
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        let value = newHeading.trueHeading >= 0 ? newHeading.trueHeading : newHeading.magneticHeading
+        Task { @MainActor in self.compass = value }
     }
 }

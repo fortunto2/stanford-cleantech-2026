@@ -15,7 +15,12 @@ final class PlanViewModel {
         }
     }
 
-    var place = "Fresno"
+    /// What the API is asked for: a name ("Fresno") or a coordinate ("36.7477,-119.7724").
+    private(set) var place: String
+    /// The name to show for it, when the place is a coordinate the user picked.
+    private(set) var placeLabel: String?
+    /// Plan for where the phone is, as fixes arrive. On until a place is chosen by hand.
+    private(set) var followsLocation: Bool
     var day: Day = .today
     var shift = Shift(start: 7, end: 17)
     private(set) var response: CrewResponse?
@@ -25,9 +30,67 @@ final class PlanViewModel {
     private let service: CrewService
     private var loaded: String?
 
+    private enum Key {
+        static let place = "place"
+        static let label = "placeLabel"
+        static let follows = "followsLocation"
+    }
+
     init(service: CrewService, response: CrewResponse? = nil) {
         self.service = service
         self.response = response
+        let saved = UserDefaults.standard
+        place = saved.string(forKey: Key.place) ?? "Fresno"
+        placeLabel = saved.string(forKey: Key.label)
+        // A first launch follows the phone; a place picked by hand sticks.
+        followsLocation = saved.object(forKey: Key.follows) as? Bool ?? true
+    }
+
+    /// "Fresno", "near Fresno": the chosen name, else the name the plan came back with.
+    var displayName: String {
+        if let placeLabel { return placeLabel }
+        if let name = response?.place.name { return String(name.split(separator: ",").first ?? Substring(name)) }
+        return PlaceQuery.isCoordinate(place) ? String(localized: "Here") : place
+    }
+
+    /// The service, for the place search.
+    var placeService: CrewService { service }
+
+    /// A suggestion from the search, or a name typed and submitted.
+    func choose(_ suggestion: PlaceSuggestion) {
+        set(place: suggestion.query, label: suggestion.name, follows: false)
+    }
+
+    func choose(name: String) {
+        let trimmed = name.trimmingCharacters(in: .whitespaces)
+        guard !trimmed.isEmpty else { return }
+        set(place: trimmed, label: nil, follows: false)
+    }
+
+    /// "Use my location": follow the phone from now on.
+    func useLocation(lat: Double?, lon: Double?) {
+        followsLocation = true
+        UserDefaults.standard.set(true, forKey: Key.follows)
+        if let lat, let lon { located(lat: lat, lon: lon) }
+    }
+
+    /// A fix arrived. Re-plans only when following and the phone moved more than ~1 km.
+    func located(lat: Double, lon: Double) {
+        guard followsLocation else { return }
+        let query = PlaceQuery.coordinate((lat * 100).rounded() / 100, (lon * 100).rounded() / 100)
+        guard query != place else { return }
+        set(place: query, label: nil, follows: true)
+    }
+
+    private func set(place: String, label: String?, follows: Bool) {
+        self.place = place
+        placeLabel = label
+        followsLocation = follows
+        let saved = UserDefaults.standard
+        saved.set(place, forKey: Key.place)
+        saved.set(label, forKey: Key.label)
+        saved.set(follows, forKey: Key.follows)
+        Task { await load() }
     }
 
     var date: String {

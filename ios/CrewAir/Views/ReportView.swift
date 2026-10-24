@@ -30,7 +30,9 @@ struct ReportView: View {
             .task { await model.refresh() }
             .toolbar(.hidden, for: .navigationBar)
             .navigationDestination(for: String.self) { id in
-                if let report = model.reports.first(where: { $0.id == id }) { EscalateView(report: report) }
+                if let report = model.reports.first(where: { $0.id == id }) {
+                    EscalateView(report: report) { try await model.complaint(for: report) }
+                }
             }
         }
     }
@@ -60,6 +62,7 @@ struct WorkerReport: View {
                     .submitLabel(.send)
                     .onSubmit { Task { await model.send() } }
             }
+            SendDisclosure(placeName: model.placeName, sendsLocation: model.sendsLocation)
             Button { Task { await model.send() } } label: {
                 Text(model.isSending ? "Sending…" : "Send").primaryButton()
             }
@@ -102,7 +105,12 @@ struct WorkerReport: View {
         VStack(spacing: Theme.Space.m) {
             ForEach(model.reports) { report in
                 HStack(spacing: 10) {
-                    Text(report.headline).font(Theme.Font.row).foregroundStyle(Theme.ink).lineLimit(2)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(report.headline).font(Theme.Font.row).foregroundStyle(Theme.ink).lineLimit(2)
+                        if let from = report.evidence?.from.flatMap(OriginText.report) {
+                            Text(from).font(Theme.Font.caption).foregroundStyle(Theme.inkSecondary)
+                        }
+                    }
                     Spacer(minLength: 0)
                     StatusPill(report: report)
                 }

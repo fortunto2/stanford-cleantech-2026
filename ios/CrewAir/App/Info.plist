@@ -30,7 +30,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Point the camera at the horizon to see where fires and air monitors are.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location gives the compass true north, so fire and monitor labels sit on the right bearing. It is not sent anywhere.</string>
+	<string>Your location gives the compass true north, so fire and monitor labels sit on the right bearing. A report you send carries where you were, rounded to about 100 m.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Device motion tells the app which way the camera points, so labels stay on the horizon.</string>
 	<key>UIApplicationSceneManifest</key>

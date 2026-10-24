@@ -9,7 +9,7 @@ struct LeadBoard: View {
         VStack(alignment: .leading, spacing: Theme.Space.m) {
             ScreenTitle(
                 title: String(localized: "\(model.open.count) reports waiting"),
-                subtitle: String(localized: "Crew lead · \(model.place)")
+                subtitle: String(localized: "Crew lead · \(model.placeName)")
             )
             ForEach(model.open) { report in OpenReportCard(model: model, report: report) }
             if let message = model.message {
@@ -84,11 +84,14 @@ struct OpenReportCard: View {
     }
 }
 
+/// Four facts the server attached when the report was made.
 struct EvidenceTiles: View {
     let evidence: Evidence?
 
+    private let columns = [GridItem(.flexible(), spacing: Theme.Space.s), GridItem(.flexible(), spacing: Theme.Space.s)]
+
     var body: some View {
-        HStack(spacing: Theme.Space.s) {
+        LazyVGrid(columns: columns, spacing: Theme.Space.s) {
             tile(String(localized: "Forecast"), value: evidence?.metrics?.usAqiPm25.map { "AQI \($0)" },
                  fill: Theme.ok, ink: Theme.okInk)
             tile(String(localized: "Satellite"),
@@ -96,13 +99,30 @@ struct EvidenceTiles: View {
                  fill: Theme.sick, ink: Theme.sickInk)
             tile(String(localized: "Monitor"), value: evidence?.ground.map { "\(Int($0.pm25.rounded())) µg" },
                  fill: Theme.calm, ink: Theme.calmInk)
+            facingTile
         }
     }
 
-    private func tile(_ label: String, value: String?, fill: Color, ink: Color) -> some View {
+    /// "Facing S" with "toward the fire" or the coordinates under it.
+    private var facingTile: some View {
+        let from = evidence?.from
+        let value = from?.facing.map { String(localized: "Facing \(Compass.point(for: $0.headingDeg))") }
+        let note: String? = if from?.facing?.towardFire == true {
+            String(localized: "toward the fire")
+        } else {
+            from?.position.map { OriginText.coordinate($0.lat, $0.lon) }
+        }
+        let located = from?.position != nil ? String(localized: "Located") : nil
+        return tile(
+            String(localized: "Where"), value: value ?? located, note: note, fill: Theme.heat, ink: Theme.heatInk
+        )
+    }
+
+    private func tile(_ label: String, value: String?, note: String? = nil, fill: Color, ink: Color) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(label).font(.system(size: 12, weight: .bold)).foregroundStyle(ink)
             Text(value ?? "–").font(Theme.Font.evidence).lineLimit(1).minimumScaleFactor(0.6)
+            if let note { Text(note).font(.system(size: 12, weight: .semibold)).foregroundStyle(ink).lineLimit(1) }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(Theme.Space.m)

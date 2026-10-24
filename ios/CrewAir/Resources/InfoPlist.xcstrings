@@ -23,13 +23,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your location gives the compass true north, so fire and monitor labels sit on the right bearing. It is not sent anywhere."
+            "value": "Your location gives the compass true north, so fire and monitor labels sit on the right bearing. A report you send carries where you were, rounded to about 100 m."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tu ubicación le da a la brújula el norte verdadero, para que las etiquetas queden en la dirección correcta. No se envía a ningún lado."
+            "value": "Tu ubicación le da a la brújula el norte verdadero, para que las etiquetas queden en la dirección correcta. Un reporte que envías lleva dónde estabas, redondeado a unos 100 m."
           }
         }
       }

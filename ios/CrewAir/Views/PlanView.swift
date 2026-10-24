@@ -3,6 +3,8 @@ import SwiftUI
 
 struct PlanView: View {
     @Bindable var model: PlanViewModel
+    var location: HeadingProvider?
+    var onHelp: () -> Void = {}
     @State private var editing = false
     @Environment(\.openURL) private var openURL
 
@@ -31,7 +33,7 @@ struct PlanView: View {
         }
         .background(Theme.ground)
         .refreshable { await model.load(force: true) }
-        .sheet(isPresented: $editing) { PlanSettings(model: model) }
+        .sheet(isPresented: $editing) { PlanSettings(model: model, location: location) }
     }
 
     private var header: some View {
@@ -50,16 +52,20 @@ struct PlanView: View {
             .accessibilityHint(Text("Change place, day or shift"))
             Spacer()
             if let level = model.response?.plan.confidence?.level { ConfidenceChip(level: level) }
+            Button(action: onHelp) {
+                Image(systemName: "questionmark").font(.system(size: 15, weight: .heavy))
+                    .foregroundStyle(Theme.ink)
+                    .frame(width: 36, height: 36)
+                    .background(Theme.card, in: .circle)
+            }
+            .accessibilityLabel(Text("How Crew Air works"))
         }
         .padding(.top, Theme.Space.l)
         .padding(.horizontal, Theme.Space.s)
         .padding(.bottom, Theme.Space.xs)
     }
 
-    private var placeTitle: String {
-        guard let name = model.response?.place.name else { return model.place }
-        return String(name.split(separator: ",").first ?? Substring(name))
-    }
+    private var placeTitle: String { model.displayName }
 
     private var subtitle: String {
         let day = model.response.map { Clock.weekday($0.date) } ?? model.day.title
@@ -258,32 +264,124 @@ struct AirChart: View {
 /// Place, day and shift: out of the way until needed.
 struct PlanSettings: View {
     @Bindable var model: PlanViewModel
+    var location: HeadingProvider?
     @Environment(\.dismiss) private var dismiss
+    @State private var query = ""
+    @State private var suggestions: [PlaceSuggestion] = []
+    @State private var searching = false
 
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Place", text: $model.place)
-                    .submitLabel(.done)
-                Picker("Day", selection: $model.day) {
-                    ForEach(PlanViewModel.Day.allCases) { Text($0.title).tag($0) }
+                Section {
+                    Button { useLocation() } label: {
+                        Label {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Use my location").foregroundStyle(Theme.ink)
+                                if model.followsLocation {
+                                    Text("On: the plan follows where you are")
+                                        .font(Theme.Font.caption).foregroundStyle(Theme.okInk)
+                                }
+                            }
+                        } icon: {
+                            Image(systemName: model.followsLocation ? "location.fill" : "location")
+                                .foregroundStyle(Theme.ink)
+                        }
+                    }
+                    TextField("Search a town or city", text: $query)
+                        .autocorrectionDisabled()
+                        .submitLabel(.search)
+                        .onSubmit { pickFirstOrName() }
+                    results
+                } header: {
+                    Text("Place")
                 }
-                .pickerStyle(.segmented)
-                Stepper("Start \(Clock.hour(model.shift.start))", value: start, in: 0 ... 22)
-                Stepper("End \(Clock.hour(model.shift.end))", value: end, in: 1 ... 23)
+                Section {
+                    Picker("Day", selection: $model.day) {
+                        ForEach(PlanViewModel.Day.allCases) { Text($0.title).tag($0) }
+                    }
+                    .pickerStyle(.segmented)
+                    Stepper("Start \(Clock.hour(model.shift.start))", value: start, in: 0 ... 22)
+                    Stepper("End \(Clock.hour(model.shift.end))", value: end, in: 1 ... 23)
+                } header: {
+                    Text("Shift")
+                }
+                Section {
+                    if let url = PrivacyLink.url { Link("Privacy", destination: url) }
+                    Text("A planning aid, not legal advice.").foregroundStyle(Theme.inkSecondary)
+                } header: {
+                    Text("About")
+                }
             }
-            .navigationTitle("Shift")
+            .navigationTitle(model.displayName)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") {
-                        dismiss()
-                        Task { await model.load() }
+                    Button("Done") { close() }
+                }
+            }
+            .task(id: query) { await search() }
+        }
+        .presentationDetents([.large])
+    }
+
+    @ViewBuilder
+    private var results: some View {
+        if searching {
+            HStack(spacing: Theme.Space.s) {
+                ProgressView()
+                Text("Searching…").foregroundStyle(Theme.inkSecondary)
+            }
+        } else if query.trimmingCharacters(in: .whitespaces).count >= 2, suggestions.isEmpty {
+            Text("No places found").foregroundStyle(Theme.inkSecondary)
+        }
+        ForEach(suggestions) { place in
+            Button {
+                model.choose(place)
+                dismiss()
+            } label: {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(place.name).font(.system(size: 17, weight: .bold)).foregroundStyle(Theme.ink)
+                    if let detail = place.detail {
+                        Text(detail).font(Theme.Font.caption).foregroundStyle(Theme.inkSecondary)
                     }
                 }
             }
         }
-        .presentationDetents([.medium])
+    }
+
+    /// Live suggestions, a quarter second after the last keystroke.
+    private func search() async {
+        let text = query.trimmingCharacters(in: .whitespaces)
+        guard text.count >= 2 else {
+            suggestions = []
+            searching = false
+            return
+        }
+        searching = true
+        try? await Task.sleep(for: .milliseconds(250))
+        guard !Task.isCancelled else { return }
+        let found = (try? await model.placeService.places(matching: text)) ?? []
+        guard !Task.isCancelled else { return }
+        suggestions = found
+        searching = false
+    }
+
+    private func pickFirstOrName() {
+        if let first = suggestions.first { model.choose(first) } else { model.choose(name: query) }
+        dismiss()
+    }
+
+    private func useLocation() {
+        location?.startLocation()
+        let fix = location?.location?.coordinate
+        model.useLocation(lat: fix?.latitude, lon: fix?.longitude)
+        dismiss()
+    }
+
+    private func close() {
+        dismiss()
+        Task { await model.load() }
     }
 
     private var start: Binding<Int> {

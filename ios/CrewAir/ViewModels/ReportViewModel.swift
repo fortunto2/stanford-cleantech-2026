@@ -19,6 +19,9 @@ final class ReportViewModel {
     private(set) var handling: String?
     private(set) var message: String?
 
+    /// Position and compass at the moment of sending; set by the app.
+    var originProvider: (@MainActor () -> ReportOrigin.Input)?
+
     private let service: CrewService
     private let plan: PlanViewModel
     private var unsent: [Report] = []
@@ -31,17 +34,26 @@ final class ReportViewModel {
         isLead = UserDefaults.standard.bool(forKey: Self.leadKey)
     }
 
+    /// The API's `place`: a name or a coordinate.
     var place: String { plan.place }
+    var placeName: String { plan.displayName }
+    /// Whether a report sent now carries a position or heading.
+    var sendsLocation: Bool { originProvider?().isEmpty == false }
     var open: [Report] { reports.filter(\.isOpen) }
     var handled: [Report] { reports.filter(\.isHandled) }
     /// The one to take further: the oldest still open.
     var toEscalate: Report? { open.last }
 
-    func send() async {
+    /// - Parameters:
+    ///   - origin: where and which way, when it is not "here and now" (a library photo's EXIF).
+    ///   - sky: the sky check the report comes from.
+    func send(origin: ReportOrigin.Input? = nil, sky: SkySummary? = nil) async {
         isSending = true
         defer { isSending = false }
+        let here = origin ?? originProvider?()
         let body = ReportRequest(
-            place: plan.place, date: plan.date, shift: plan.shift.query, kind: selected, note: note
+            place: plan.place, date: plan.date, shift: plan.shift.query, kind: selected, note: note,
+            origin: here?.isEmpty == true ? nil : here, sky: sky
         )
         do {
             let receipt = try await service.sendReport(body)
@@ -77,6 +89,11 @@ final class ReportViewModel {
         } catch {
             message = String(localized: "Could not mark it fixed: \(error.localizedDescription)")
         }
+    }
+
+    /// The server's Cal/OSHA complaint draft for a report the server has (not an unsent one).
+    func complaint(for report: Report) async throws -> ComplaintDraft {
+        try await service.complaint(report: report.id)
     }
 
     func refresh() async {

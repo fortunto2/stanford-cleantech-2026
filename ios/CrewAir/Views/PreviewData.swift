@@ -39,6 +39,13 @@ struct PreviewCrewService: CrewService {
     func sendReport(_ report: ReportRequest) async throws -> ReportReceipt { throw CrewServiceError.notLive }
     func reports(place: String, date: String) async throws -> [Report] { Report.previews }
     func handle(_ request: HandleRequest) async throws -> HandleReceipt { HandleReceipt(status: "handled") }
+    func complaint(report id: String) async throws -> ComplaintDraft {
+        ComplaintDraft(complaint: "Hazard: outdoor work without [protection].", fileAt: nil, rules: nil)
+    }
+
+    func places(matching text: String) async throws -> [PlaceSuggestion] {
+        [PlaceSuggestion(name: "Fresno", detail: "Fresno, California", lat: 36.74773, lon: -119.77237)]
+    }
 }
 
 extension Report {

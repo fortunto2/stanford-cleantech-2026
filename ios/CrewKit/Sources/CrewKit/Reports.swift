@@ -30,13 +30,135 @@ public struct ReportRequest: Codable, Sendable, Equatable {
     public let shift: String
     public let kind: ReportKind
     public let note: String
+    /// Where the worker stood and which way they faced. The server rounds the position to
+    /// ~100 m. All optional: a report without location permission still goes.
+    public let lat: Double?
+    public let lon: Double?
+    public let accuracyM: Double?
+    public let headingDeg: Double?
+    /// The sky check the report came from, if any.
+    public let sky: SkySummary?
 
-    public init(place: String, date: String, shift: String, kind: ReportKind, note: String) {
+    public init(
+        place: String, date: String, shift: String, kind: ReportKind, note: String,
+        origin: ReportOrigin.Input? = nil, sky: SkySummary? = nil
+    ) {
         self.place = place
         self.date = date
         self.shift = shift
         self.kind = kind
         self.note = note
+        lat = origin?.lat
+        lon = origin?.lon
+        accuracyM = origin?.accuracyM
+        headingDeg = origin?.headingDeg
+        self.sky = sky
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case place, date, shift, kind, note, lat, lon, sky
+        case accuracyM = "accuracy_m"
+        case headingDeg = "heading_deg"
+    }
+}
+
+/// The sky check a report carries: `{smoke, smoke_call, verdict}`.
+public struct SkySummary: Codable, Sendable, Equatable {
+    public let smoke: Double
+    public let smokeCall: String
+    public let verdict: String
+
+    public init(smoke: Double, smokeCall: String, verdict: String) {
+        self.smoke = smoke
+        self.smokeCall = smokeCall
+        self.verdict = verdict
+    }
+
+    public init(_ result: SkyCheckResult) {
+        self.init(smoke: result.smoke, smokeCall: result.smokeCall.rawValue, verdict: result.verdict)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case smoke, verdict
+        case smokeCall = "smoke_call"
+    }
+}
+
+/// `evidence.from`: where the report was made and which way the worker faced, as the server
+/// stored it (position rounded, compass point and "toward the fire" worked out).
+public struct ReportOrigin: Codable, Sendable, Equatable {
+    /// What the phone knows when the report is made.
+    public struct Input: Sendable, Equatable {
+        public let lat: Double?
+        public let lon: Double?
+        public let accuracyM: Double?
+        public let headingDeg: Double?
+
+        public init(lat: Double?, lon: Double?, accuracyM: Double?, headingDeg: Double?) {
+            self.lat = lat
+            self.lon = lon
+            self.accuracyM = accuracyM
+            self.headingDeg = headingDeg
+        }
+
+        public var isEmpty: Bool { lat == nil && headingDeg == nil }
+    }
+
+    public let position: Position?
+    public let facing: Facing?
+    public let sky: SkySummary?
+
+    public init(position: Position?, facing: Facing?, sky: SkySummary?) {
+        self.position = position
+        self.facing = facing
+        self.sky = sky
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case facing, sky
+        case position = "where"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        position = try? c.decodeIfPresent(Position.self, forKey: .position)
+        facing = try? c.decodeIfPresent(Facing.self, forKey: .facing)
+        sky = try? c.decodeIfPresent(SkySummary.self, forKey: .sky)
+    }
+}
+
+public struct Position: Codable, Sendable, Equatable {
+    public let lat: Double
+    public let lon: Double
+    public let accuracyM: Double?
+
+    public init(lat: Double, lon: Double, accuracyM: Double?) {
+        self.lat = lat
+        self.lon = lon
+        self.accuracyM = accuracyM
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case lat, lon
+        case accuracyM = "accuracy_m"
+    }
+}
+
+public struct Facing: Codable, Sendable, Equatable {
+    public let headingDeg: Double
+    public let compass: String?
+    public let towardFire: Bool?
+
+    public init(headingDeg: Double, compass: String?, towardFire: Bool?) {
+        self.headingDeg = headingDeg
+        self.compass = compass
+        self.towardFire = towardFire
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case compass
+        case headingDeg = "heading_deg"
+        case towardFire = "toward_fire"
     }
 }
 
@@ -96,12 +218,18 @@ public struct Evidence: Codable, Sendable, Equatable {
     public let metrics: Metrics?
     public let fire: Fire?
     public let ground: Ground?
+    /// Where the worker stood and which way they faced; nil for reports sent without either.
+    public let from: ReportOrigin?
 
-    public init(hour: String? = nil, metrics: Metrics? = nil, fire: Fire? = nil, ground: Ground? = nil) {
+    public init(
+        hour: String? = nil, metrics: Metrics? = nil, fire: Fire? = nil, ground: Ground? = nil,
+        from: ReportOrigin? = nil
+    ) {
         self.hour = hour
         self.metrics = metrics
         self.fire = fire
         self.ground = ground
+        self.from = from
     }
 
     public init(from decoder: Decoder) throws {
@@ -110,6 +238,7 @@ public struct Evidence: Codable, Sendable, Equatable {
         metrics = try? c.decodeIfPresent(Metrics.self, forKey: .metrics)
         fire = try? c.decodeIfPresent(Fire.self, forKey: .fire)
         ground = try? c.decodeIfPresent(Ground.self, forKey: .ground)
+        from = try? c.decodeIfPresent(ReportOrigin.self, forKey: .from)
     }
 }
 
@@ -194,5 +323,24 @@ public enum ReportClock {
     /// Minutes until it can be escalated, 0 once it can.
     public static func minutesUntilEscalation(since iso: String, now: Date) -> Int? {
         minutesWaiting(since: iso, now: now).map { max(0, escalateAfterMinutes - $0) }
+    }
+}
+
+/// `GET /api/crew/complaint?report=`: a Cal/OSHA complaint drafted from a report's evidence.
+/// The worker fills the [brackets] and files it themselves; the app sends nothing.
+public struct ComplaintDraft: Codable, Sendable, Equatable {
+    public let complaint: String
+    public let fileAt: URL?
+    public let rules: String?
+
+    public init(complaint: String, fileAt: URL?, rules: String?) {
+        self.complaint = complaint
+        self.fileAt = fileAt
+        self.rules = rules
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case complaint, rules
+        case fileAt = "file_at"
     }
 }
