@@ -1133,6 +1133,26 @@
         }
       }
     },
+    "Open": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
+          }
+        }
+      }
+    },
+    "Open the %@ form": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir el formulario de %@"
+          }
+        }
+      }
+    },
     "Open the Cal/OSHA form": {
       "localizations": {
         "es": {

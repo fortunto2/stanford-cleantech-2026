@@ -56,4 +56,15 @@ import Testing
         #expect(o.facing?.towardFire == true)
         #expect(o.sky?.smokeCall == "yes")
     }
+
+    @Test func complaintAgenciesOptional() throws {
+        let json = #"{"complaint":"To: Cal/OSHA.","file_at":"https://www.dir.ca.gov/dosh/Complaint.htm","#
+            + #""agencies":[{"name":"Cal/OSHA","url":"https://www.dir.ca.gov/dosh/Complaint.htm","how":"Online"},"#
+            + #"{"name":"Federal OSHA","url":"https://www.osha.gov/workers/file-complaint","how":"By phone"}]}"#
+        let d = try JSONDecoder().decode(ComplaintDraft.self, from: Data(json.utf8))
+        #expect(d.agencies?.count == 2)
+        #expect(d.agencies?.first?.name == "Cal/OSHA")
+        let bare = try JSONDecoder().decode(ComplaintDraft.self, from: Data(#"{"complaint":"x"}"#.utf8))
+        #expect(bare.agencies == nil)
+    }
 }

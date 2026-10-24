@@ -332,15 +332,39 @@ public struct ComplaintDraft: Codable, Sendable, Equatable {
     public let complaint: String
     public let fileAt: URL?
     public let rules: String?
+    /// Where it can be filed: the place's state plan first, then Federal OSHA.
+    public let agencies: [Agency]?
 
-    public init(complaint: String, fileAt: URL?, rules: String?) {
+    public init(complaint: String, fileAt: URL?, rules: String?, agencies: [Agency]? = nil) {
         self.complaint = complaint
         self.fileAt = fileAt
         self.rules = rules
+        self.agencies = agencies
     }
 
     enum CodingKeys: String, CodingKey {
-        case complaint, rules
+        case complaint, rules, agencies
         case fileAt = "file_at"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        complaint = try c.decode(String.self, forKey: .complaint)
+        fileAt = try? c.decodeIfPresent(URL.self, forKey: .fileAt)
+        rules = try? c.decodeIfPresent(String.self, forKey: .rules)
+        agencies = try? c.decodeIfPresent([Agency].self, forKey: .agencies)
+    }
+}
+
+/// An agency that takes worker safety complaints.
+public struct Agency: Codable, Sendable, Equatable, Hashable {
+    public let name: String
+    public let url: URL
+    public let how: String?
+
+    public init(name: String, url: URL, how: String?) {
+        self.name = name
+        self.url = url
+        self.how = how
     }
 }

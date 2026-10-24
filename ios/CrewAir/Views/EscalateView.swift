@@ -9,6 +9,7 @@ struct EscalateView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var complaint = ""
     @State private var fileAt: URL?
+    @State private var agencies: [Agency] = []
     @State private var draftError: String?
     @State private var copied = false
 
@@ -29,12 +30,15 @@ struct EscalateView: View {
                 )
                 complaintEditor
                 summary
-                if let url = Self.calOSHA {
+                if agencies.isEmpty, let url = Self.calOSHA {
                     Link(destination: url) {
                         card(String(localized: "Cal/OSHA complaint"),
                              String(localized: "Anonymous if you want. Firing you for it is illegal."),
                              fill: Theme.ground, ink: Theme.inkSecondary)
                     }
+                }
+                ForEach(agencies, id: \.self) { agency in
+                    Link(destination: agency.url) { agencyCard(agency) }
                 }
                 card(String(localized: "Union or worker center"),
                      String(localized: "Coming: once a partner agrees to receive reports"),
@@ -82,7 +86,11 @@ struct EscalateView: View {
                         } label: {
                             Text(copied ? "Copied" : "Copy").primaryButton(fill: Theme.nightCard, ink: Theme.nightInk)
                         }
-                        if let url = fileAt ?? Self.calOSHA {
+                        if let first = agencies.first {
+                            Link(destination: first.url) {
+                                Text("Open the \(first.name) form").primaryButton(fill: Theme.ground, ink: Theme.ink)
+                            }
+                        } else if let url = fileAt ?? Self.calOSHA {
                             Link(destination: url) {
                                 Text("Open the Cal/OSHA form").primaryButton(fill: Theme.ground, ink: Theme.ink)
                             }
@@ -105,6 +113,7 @@ struct EscalateView: View {
             let result = try await draft()
             complaint = result.complaint
             fileAt = result.fileAt
+            agencies = result.agencies ?? []
         } catch {
             draftError = String(localized: "No draft for this report yet: \(error.localizedDescription)")
         }
@@ -131,6 +140,21 @@ struct EscalateView: View {
             parts.append(String(localized: "monitor \(Int(ground.pm25.rounded())) µg/m³"))
         }
         return parts.joined(separator: ". ") + "."
+    }
+
+    private func agencyCard(_ agency: Agency) -> some View {
+        HStack(spacing: Theme.Space.m) {
+            VStack(alignment: .leading, spacing: Theme.Space.xs) {
+                Text(agency.name).font(.system(size: 20, weight: .heavy)).foregroundStyle(Theme.ink)
+                if let how = agency.how { Text(how).font(Theme.Font.tileNote).foregroundStyle(Theme.inkSecondary) }
+            }
+            Spacer(minLength: 0)
+            Text("Open").font(Theme.Font.pill).pill(fill: Theme.ink, ink: Theme.ground)
+        }
+        .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+        .padding(Theme.Space.l + 2)
+        .background(Theme.ground, in: .rect(cornerRadius: Theme.Radius.tile))
+        .multilineTextAlignment(.leading)
     }
 
     private func card(_ title: String, _ note: String, fill: Color, ink: Color) -> some View {
