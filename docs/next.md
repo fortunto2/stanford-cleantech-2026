@@ -44,9 +44,10 @@ creates the urgency enforcement does not. Evidence: `docs/evidence.md`.
 - [x] iOS: `ios/` scaffold (XcodeGen, Swift 6, SwiftUI), thin client of /api/crew, Sky + Report tabs
 - [x] Design: Claude design artifact for the app (Plan, Sky AR, Report, Sheet)
 - [x] Sky check: /api/sky-check (Jev) + page upload + eval 11–12/12
-- [ ] iOS round 2 (agent): X / tab bar, scroll, real Check the sky, approved design, crew lead, Spanish
+- [x] iOS rounds 2–6: X / tab bar, scroll, Check the sky, design, crew lead, Spanish, EXIF, guide, agency cards
 - [ ] TestFlight: needs Rustam's web login (`asc web auth login`) to create the app record
-- [ ] DOL citations 2019–2026 into docs/evidence.md and the problem slide
+- [x] DOL citations by year in docs/evidence.md + 'fines' slide (the ag/complaint split is still downloading)
+- [x] /crew survives Open-Meteo's daily 429 (AirNow + NWS fallback)
 - [ ] Devpost by 17:00: text, 2-min video, repo link, tracks 2 and 3
 
 ## Later (after the hackathon)
