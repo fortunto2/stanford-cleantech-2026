@@ -7,6 +7,9 @@ extension CrewResponse {
         let json = """
         {"place":{"name":"Fresno, California","lat":36.74773,"lon":-119.77237},"date":"2026-10-24",
          "shift":{"start":7,"end":17},
+         "dispatch":{"sensor":"launch","bearing_deg":333,"distance_km":32,"detections_50km":1,
+                     "reason":"VIIRS fire 32 km NW: sample PM2.5 toward it, outside the fire's TFR, and report"},
+         "alerts":[{"event":"Red Flag Warning","onset":"2026-10-24T06:00","ends":"2026-10-24T20:00"}],
          "plan":{"jurisdiction":"US-CA",
           "hours":[
            {"time":"2026-10-24T07:00","metrics":{"us_aqi_pm25":95,"temp_f":48.4}},

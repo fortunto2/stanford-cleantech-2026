@@ -43,6 +43,16 @@
         }
       }
     },
+    "%@ km %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ km %2$@"
+          }
+        }
+      }
+    },
     "%@, direction unknown": {
       "localizations": {
         "es": {
@@ -189,6 +199,16 @@
         }
       }
     },
+    "AQI determined: %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AQI determinado: %@"
+          }
+        }
+      }
+    },
     "About": {
       "localizations": {
         "es": {
@@ -235,6 +255,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aire · %@ todo el turno"
+          }
+        }
+      }
+    },
+    "AirNow %1$@, %2$@ km": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirNow %1$@, a %2$@ km"
           }
         }
       }
@@ -321,6 +351,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Volver a la cámara"
+          }
+        }
+      }
+    },
+    "Bearing %lld°": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rumbo %lld°"
+          }
+        }
+      }
+    },
+    "Bearing unknown": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rumbo desconocido"
           }
         }
       }
@@ -923,6 +973,16 @@
         }
       }
     },
+    "NWS: %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NWS: %@"
+          }
+        }
+      }
+    },
     "No N95 rule yet: it starts at AQI 151": {
       "localizations": {
         "es": {
@@ -1263,6 +1323,16 @@
         }
       }
     },
+    "Record": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registro"
+          }
+        }
+      }
+    },
     "Report": {
       "localizations": {
         "es": {
@@ -1289,6 +1359,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Los reportes atendidos en 30 minutos quedan como un arreglo entre tú y tu cuadrilla, no una queja."
+          }
+        }
+      }
+    },
+    "Rule in force: %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Norma vigente: %@"
+          }
+        }
+      }
+    },
+    "Rule in force: Cal/OSHA T8 §5141.1 (below the AQI 151 trigger)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Norma vigente: Cal/OSHA T8 §5141.1 (por debajo del umbral AQI 151)"
           }
         }
       }
@@ -1395,6 +1485,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enviando…"
+          }
+        }
+      }
+    },
+    "Sensor task: launch": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tarea del sensor: lanzar"
+          }
+        }
+      }
+    },
+    "Sensor: standby · nearest fire %@ km": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sensor: en espera · incendio más cercano a %@ km"
           }
         }
       }
@@ -1971,6 +2081,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "incendio a %lld km %@ (satélite de la NASA)"
+          }
+        }
+      }
+    },
+    "forecast held at monitor %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pronóstico fijado en el monitor %@"
+          }
+        }
+      }
+    },
+    "forecast model only": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "solo modelo de pronóstico"
           }
         }
       }

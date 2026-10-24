@@ -6,6 +6,18 @@ public struct CrewResponse: Codable, Sendable, Equatable {
     public let date: String
     public let shift: Shift
     public let plan: CrewPlan
+    /// Line-crew fields, all optional: an older server leaves them out.
+    public let dispatch: Dispatch?
+    public let alerts: [WeatherAlert]?
+    public let home: HomeAdvice?
+    public let wind: [WindHour]?
+    public let firesNear: [[Double]]?
+    public let fallback: Fallback?
+
+    enum CodingKeys: String, CodingKey {
+        case place, date, shift, plan, dispatch, alerts, home, wind, fallback
+        case firesNear = "fires_near"
+    }
 
     public static func decode(_ data: Data) throws -> CrewResponse {
         try JSONDecoder().decode(CrewResponse.self, from: data)
@@ -180,5 +192,85 @@ public struct Ground: Codable, Sendable, Equatable {
         case modelPm25 = "model_pm25"
         case nearestLat = "nearest_lat"
         case nearestLon = "nearest_lon"
+    }
+}
+
+/// The sensor task: launch a node or a drone toward the fire, or stand by.
+public struct Dispatch: Codable, Sendable, Equatable {
+    public enum Sensor: String, Codable, Sendable {
+        case launch, standby
+    }
+
+    public let sensor: Sensor
+    public let bearingDeg: Double?
+    public let distanceKm: Double?
+    public let detections50km: Int
+    public let reason: String
+
+    enum CodingKeys: String, CodingKey {
+        case sensor, reason
+        case bearingDeg = "bearing_deg"
+        case distanceKm = "distance_km"
+        case detections50km = "detections_50km"
+    }
+
+    public init(sensor: Sensor, bearingDeg: Double?, distanceKm: Double?, detections50km: Int, reason: String) {
+        self.sensor = sensor
+        self.bearingDeg = bearingDeg
+        self.distanceKm = distanceKm
+        self.detections50km = detections50km
+        self.reason = reason
+    }
+
+    /// 8-point compass for the bearing: 333 → "NW".
+    public var direction: String? { bearingDeg.map(Compass.point(for:)) }
+}
+
+/// An active NWS alert for the place.
+public struct WeatherAlert: Codable, Sendable, Equatable, Identifiable {
+    public let event: String
+    public let onset: String?
+    public let ends: String?
+
+    public var id: String { event + (onset ?? "") }
+}
+
+/// Where the forecast was held at a monitor because the model was unavailable.
+public struct Fallback: Codable, Sendable, Equatable {
+    public let air: String?
+    public let monitor: String?
+    public let temp: String?
+    public let reason: String?
+}
+
+public struct HomeAdvice: Codable, Sendable, Equatable {
+    public struct Window: Codable, Sendable, Equatable {
+        public let start: Int
+        public let end: Int
+        public let tariff: String?
+    }
+
+    public let peakPrice: Window?
+    public let precool: Window?
+    public let closeWindowsAt: String?
+    public let openWindowsAt: String?
+    public let reason: String?
+
+    enum CodingKeys: String, CodingKey {
+        case precool, reason
+        case peakPrice = "peak_price"
+        case closeWindowsAt = "close_windows_at"
+        case openWindowsAt = "open_windows_at"
+    }
+}
+
+public struct WindHour: Codable, Sendable, Equatable {
+    public let time: String
+    public let dirDeg: Double?
+    public let kmh: Double?
+
+    enum CodingKeys: String, CodingKey {
+        case time, kmh
+        case dirDeg = "dir_deg"
     }
 }
