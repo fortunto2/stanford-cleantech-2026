@@ -50,6 +50,8 @@ creates the urgency enforcement does not. Evidence: `docs/evidence.md`.
 - [x] /crew survives Open-Meteo's daily 429 (AirNow + NWS fallback)
 - [ ] Devpost by 17:00: text (docs/devpost.md, tracks 2 + 1 + 3), 2-min video, repo link; Asher on the team
 - [x] Home signal for Track 1/3 (E-TOU-C peak band, pre-cool, NWS alerts) live on /crew and /api/crew (14:20)
+- [x] Smoke map on /crew (fires, monitor, per-hour downwind cones), dispatch signal, /crew/grid for SVCE's 13 cities, /api page (14:50)
+- [ ] OSM power layer on /crew/grid: Overpass timed out from the venue twice; src/data/svce-power.json is []
 
 ## Later (after the hackathon)
 - SEO pages for Cal/OSHA smoke/heat questions, analytics, lead form

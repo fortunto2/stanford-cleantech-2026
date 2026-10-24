@@ -34,13 +34,23 @@ afraid to complain.
   30 minutes it can go further anonymously (a Cal/OSHA complaint; union and legal-aid forwarding once
   partners agree).
 - **iOS app**: plan, AR horizon with fires and monitors pinned at their real bearing, sky check, reports.
+- **Where the smoke goes.** A map under every plan: VIIRS fire detections within 150 km, the monitor the
+  plan was checked against, and a downwind cone from each fire for every hour of the shift from that
+  hour's wind (Open-Meteo, NWS as fallback), with a sentence saying whether a fire is upwind. A cone, not a
+  dispersion model, and the page says so; HRRR-Smoke is next.
 - **The same hours for a home and the grid.** Heat and smoke days are the grid's worst days too. The
   hourly strip shows the PG&E E-TOU-C peak price (4–9 pm every day; SVCE bills generation on the same
   hours) next to heat and smoke, marks the cheap hours to pre-cool a house before the peak, and the smoke
   hour to shut windows (a closed house runs the air conditioner longer). Active NWS alerts (Red Flag
-  Warning, Heat Advisory) are on the page. All of it is in the JSON (`home`, `alerts`, `plan.bms`) for a
-  home agent or a DERMS. Rules, not an optimisation: we claim no dollars or megawatts, that needs a load
-  model and a pilot.
+  Warning, Heat Advisory) are on the page. All of it is in the JSON (`home`, `alerts`, `wind`,
+  `fires_near`, `dispatch`, `plan.bms`) for a home agent, a DERMS or a sensor node. Rules, not an
+  optimisation: we claim no dollars or megawatts, that needs a load model and a pilot.
+- **For a utility: airsignal.app/crew/grid.** Silicon Valley Clean Energy's 13 communities on one map with
+  the fires and cones, a city table (peak AQI, °F, nearest fire, wind, pre-cool window, windows-shut hour,
+  sensor task), and what a fire day does to that grid with sources: smoke cut CAISO solar ~30% in Sept
+  2020 and hour-ahead forecasts missed it by 10–50%; PSPS hit the foothill towns in 2019; SVCE's VPP with
+  Lunar Energy executes events but has no smoke trigger. Public data only.
+- **Every endpoint on one page: airsignal.app/api**, rendered from the OpenAPI document, with live examples.
 
 ## How we built it
 
