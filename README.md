@@ -3,60 +3,86 @@
 **Smoke and heat forecasts turned into a shift plan, so the job site keeps working and stays within the law.**
 
 Stanford Cleantech Hackathon 2026 · Track 2 Climate & Health (Track 3 Resilient Systems for the buildings angle)
-· [Pitch deck](https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ) · [pitch/](pitch/)
+· **Live: [airsignal.app/crew](https://airsignal.app/crew)** · [Pitch deck](https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ) · [pitch/](pitch/)
 
 ## The problem
 
-Air-quality maps tell you the air is bad *now*. Nobody tells the foreman what to do *tomorrow*. California
-already writes it down: at an AQI of 151 for PM2.5 the employer must provide N95s (Cal/OSHA §5141.1),
-at 95°F high-heat procedures start (§3395). Today someone checks airnow.gov at the start of the shift.
+California already writes down what an outdoor employer must do: at PM2.5 AQI 151 provide N95s and tell the
+crew (Cal/OSHA §5141.1), at 80°F shade and water, at 95°F high-heat procedures (§3395). Almost nobody does it.
+
+- In the 2020–21 fire seasons California farmworkers spent at least **4.5 million worker-days** at AQI 151+
+  (our calculation from EPA AirData × BLS QCEW, [docs/evidence.md](docs/evidence.md)). Cal/OSHA issued
+  **11** smoke-rule citations from July 2019 to October 2021.
+- About 60% of 300+ Central Valley farmworkers got no N95 from their employer (CCEJN survey).
+- Heat is the opposite: the most-cited Cal/OSHA standard in agriculture every year, and the classic miss is
+  no written plan in the field.
+
+Inspection waits for complaints, and workers are afraid to complain.
 
 ## What it does
 
-```
-$ uv run python -m crewair.cli "Three Rivers" --shift 06-18
-Three Rivers, California (36.439, -118.905) · 2026-10-24 · shift 06:00–18:00
-peak AQI 102 · peak 72°F
-No Cal/OSHA smoke or heat thresholds crossed. Normal shift.
-```
-
-On a smoky or hot day the same command prints the hour each threshold is crossed, the action the rule
-requires, and the clear hours to move heavy work into.
-
-- `crewair/forecast.py`: geocoding + hourly US AQI (PM2.5), PM2.5 µg/m³ and temperature from Open-Meteo, no API key
-- `crewair/rules.py`: a jurisdiction-agnostic engine, hourly forecast + rulebook → actions
-- `rulebooks/us-ca.yaml`: Cal/OSHA §5141.1 (smoke) and §3395 (heat) as data
-- `crewair/cli.py`: address + date + shift + rulebook → plan
-- `tests/test_rules.py`: the rules and the engine
+1. **Shift plan.** Place, day and shift in; the hour each rule starts, the action it requires, the clear window
+   for heavy work, and when a building should close outside air (BMS). One printed sheet with a pre-shift
+   briefing sign-off.
+2. **Checked four ways.** Model (hourly forecast, AQI as an EPA NowCast, not the 24-hour mean forecast feeds
+   give), satellite (NASA VIIRS fires within 50 km → warning), ground (AirNow monitors within 25 km; a
+   1.5x disagreement scales the forecast toward the monitor, never below half), and the crew.
+3. **Worker reports, the ladder.** A worker reports smoke, ash, symptoms, or missing N95s, shade or water. No
+   name, and the evidence for that hour attached. The crew lead marks it handled. After 30 minutes an open report can go further,
+   anonymously (Cal/OSHA complaint link is real; union and legal-aid forwarding is a mock until they agree).
 
 ```bash
-uv sync
-make plan P="Fresno" S=07-17
-make test
+curl 'https://airsignal.app/api/crew?place=Fresno&shift=07-17'          # plan + checks + BMS, JSON
+curl 'https://airsignal.app/api/crew/reports?place=Fresno'               # today's reports
+make plan P="Fresno" S=07-17                                             # the same engine idea in Python
+make test                                                                # Python rules + NowCast tests
+make evidence                                                            # the 4.5M worker-days table
 ```
+
+## Where the code is
+
+| Piece | Where | Built during the hackathon |
+|---|---|---|
+| Engine: NowCast, rulebook, plan, BMS, fire and monitor checks | [airq `airq-core/src/crew.rs`](https://github.com/fortunto2/airq/blob/main/airq-core/src/crew.rs) (Rust → WASM) | yes, all of it |
+| Page, API, reports, escalation mock | [air-signal-web `src/pages/crew.astro`, `src/lib/crew.ts`, `src/pages/api/crew/`](https://github.com/fortunto2/air-signal-web) | yes, all of it |
+| Python CLI + rulebook YAML + tests, evidence script | this repo: `crewair/`, `rulebooks/`, `tests/`, `work/` | yes |
+| iOS app (scaffold) | this repo: `ios/` | yes |
+| Pitch | `pitch/` | yes |
+
+Every commit for the above is dated 23–24 Oct 2026 inside hacking hours (Fri 17:00 – Sat 17:00 PT).
+
+**Earlier open-source work it stands on, disclosed:** the Air Signal site's hosting and layout
+(airsignal.app, [air-signal-web](https://github.com/fortunto2/air-signal-web)), and from the
+[airq-core](https://github.com/fortunto2/airq) library the EPA AQI breakpoints, the sensor/model merge
+(`merge.rs`) and haversine. The iOS AR overlay adapts camera-geometry code from our app
+[Starlapse](https://github.com/fortunto2/starlapse). All three are public repositories by the same author,
+older than the event. The rest is new.
 
 ## Rulebooks: one file per jurisdiction
 
-The engine knows no law. A rulebook names a metric (`us_aqi_pm25`, `pm25_ugm3`, `temp_f`, `temp_c`),
-a threshold, the action and the citation. Within a group the most severe rule crossed in the shift wins.
-A new state or country is a new YAML file, not new code: Oregon and Washington have their own smoke
-rules, Canadian provinces use AQHI, Spain and Italy restrict outdoor work in heatwaves. Only California
-ships today; each new rulebook gets its thresholds checked against the source text first.
+The engine knows no law. A rulebook names a metric (`us_aqi_pm25`, `pm25_nowcast_ugm3`, `pm25_ugm3`,
+`temp_f`, `temp_c`), a threshold, the action and the citation. Smoke rules use the NowCast concentration as
+§5141.1 Appendix A does (55.5 and 500.5 µg/m³): an AQI threshold of 501 can never trip, the scale stops at
+500. A new state or country is a new file, not new code: Oregon and Washington have smoke rules, Canadian
+provinces use AQHI, Spain and Italy restrict outdoor work in heatwaves. Only California ships.
 
-## Data sources and keys
+## Data sources
 
-| Source | Key | Note |
+| Source | Key | Use |
 |---|---|---|
-| Open-Meteo (CAMS air quality + weather), used now | none | free for non-commercial use; a product needs their paid plan |
-| NOAA HRRR-Smoke, next | none | open data on AWS, 3 km over the US |
-| NWS api.weather.gov | none | User-Agent header only |
-| NASA FIRMS | free MAP_KEY | active fires |
-| AirNow | free key | official US monitors, for calibration |
-| PurpleAir | paid key | dense community sensors |
+| Open-Meteo (CAMS air quality + weather) | none | hourly PM2.5 and temperature; free only non-commercially |
+| NASA FIRMS VIIRS, public 24 h CSV (NOAA-20, Suomi-NPP) | none | fires within 50 km |
+| AirNow hourly files (files.airnowtech.org) | none | regulatory monitors within 25 km |
+| EPA AirData, BLS QCEW | none | the evidence table |
+| Earth Engine, Sentinel-2 | gcloud login | burn scar and fire front for the pitch (`work/`) |
+| NOAA HRRR-Smoke | none | next: 3 km smoke over the US instead of CAMS ~40 km |
 
-Coverage does not depend on sensors: the forecast is a model over every grid cell (CAMS ~40 km
-worldwide, HRRR 3 km over the US). Sensors calibrate it; where none are near, the plan says
-"model only". Weakest spots: valleys and right next to a fire.
+## Model
+
+Free for crews, paid by employers, public data. The engine, rulebooks and worker app are open source
+(AGPL for airq-core and the site, MIT here). Employers pay per site for alerts in Spanish and English, many
+sites, the archive an inspector or insurer asks for, and the BMS feed. Raw reports stay private; exposure
+and report counts by county are published anonymized.
 
 ## Satellite side (Earth Engine)
 
@@ -66,19 +92,10 @@ Auth: `ee_init.py` uses your gcloud login (`EE_ACCOUNT`, `EE_PROJECT`).
 
 ![Sentinel-2 SWIR composite, active fire front near Sequoia, 17 Oct 2026](pitch/fire_s2_swir.png)
 
-## Status (Fri 23 Oct, night)
+Plan and status: [docs/next.md](docs/next.md). Event notes: [docs/event.md](docs/event.md), tracks and
+decision: [docs/tracks.md](docs/tracks.md).
 
-- [x] Idea, deck, pitched at team formation (Tracks 2 and 3)
-- [x] CLI on live forecasts, rules tested
-- [ ] Team (event rules: 2–5)
-- [ ] Sharper smoke forecast: NOAA HRRR-Smoke (3 km) instead of CAMS (~40 km, low near fires)
-- [ ] One web page for the demo: address → plan + fire map
-- [ ] BMS signal for buildings (JSON "recirculate at 12:00")
-- [ ] Devpost by Sat 17:00: text, 2-min video
-
-Built during hacking hours (Fri 17:00 – Sat 17:00). The author's earlier project Air Signal (airsignal.app)
-is background experience only; none of its code is here. Event notes: [docs/event.md](docs/event.md),
-tracks and decision: [docs/tracks.md](docs/tracks.md).
+A planning aid, not legal advice.
 
 ## License
 

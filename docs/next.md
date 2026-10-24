@@ -30,6 +30,21 @@ demo 17:00–19:00 (3 min + 2 min Q&A), awards 19:00. Building allowed until 17:
 5. **BMS signal** (Track 3): `crewair bms <place>` → JSON like `{"recirculate_at": "12:00", "reason": ...}`.
 6. **Devpost**: text from README, 2-min video (CLI + page), repo link, tracks 2 and 3.
 
+## Saturday run (task list, kept here so it survives context compaction)
+
+Positioning: heat paperwork is the wedge (enforced every summer), smoke rides on the same sheet;
+the worker report ladder (worker → crew lead → anonymous escalation to union / legal aid / Cal/OSHA)
+creates the urgency enforcement does not. Evidence: `docs/evidence.md`.
+
+- [ ] Site: manual worker reports on /crew (D1 `crew_reports`, evidence snapshot, crew-lead "handled",
+      30-min escalation mock), reports on the printed sheet
+- [ ] Deck: problem slide with the 4.5M / 11 numbers, ladder slide, heat-first wedge, checks slide
+- [ ] Docs: README (what is live, data sources incl. FIRMS + AirNow files), evidence, Devpost text
+- [ ] Harness: CLAUDE.md for this repo, `make` targets (test, evidence, ios), sensors green
+- [ ] iOS: `ios/` scaffold (XcodeGen, Swift 6, SwiftUI), thin client of /api/crew, Sky + Report tabs
+- [ ] Design: Claude design artifact for the app (Plan, Sky AR, Report, Sheet)
+- [ ] Devpost by 17:00: text, 2-min video, repo link, tracks 2 and 3
+
 ## Later (after the hackathon)
 - SEO pages for Cal/OSHA smoke/heat questions, analytics, lead form
   for multi-site and BMS.

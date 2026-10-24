@@ -1,22 +1,22 @@
 <section id="layers" data-transition="fade" style="background:#FBF7F2;color:#121826;font-family:'Rubik', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:64px">
-<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1.05;text-transform:uppercase">No sensors of our own needed</h2>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1.05;text-transform:uppercase">Every plan is checked four ways</h2>
 <div style="display:flex;gap:24px;align-items:center">
 <div style="flex:1;display:flex;flex-direction:column;gap:16px">
-<p style="font-size:32px;font-weight:500;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:16px">NOAA HRRR-Smoke forecast</p>
-<p style="font-size:32px;font-weight:500;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:16px">AirNow + PurpleAir nearby</p>
-<p style="font-size:32px;font-weight:500;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:16px">NWS heat forecast</p>
-<p style="font-size:32px;font-weight:500;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:16px">NASA FIRMS fires (Earth Engine)</p>
+<p style="font-size:32px;font-weight:500;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:16px"><b>Model:</b> hourly smoke + heat forecast, NowCast</p>
+<p style="font-size:32px;font-weight:500;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:16px"><b>Satellite:</b> NASA VIIRS fires within 50 km</p>
+<p style="font-size:32px;font-weight:500;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:16px"><b>Ground:</b> AirNow monitors within 25 km</p>
+<p style="font-size:32px;font-weight:500;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:16px"><b>Crew:</b> reports from the people on site</p>
 </div>
 <x-shape kind="arrow-right" style="width:100px;height:50px;background:#E8551C"></x-shape>
 <div style="width:380px;display:flex;flex-direction:column;gap:12px;background:#121826;color:#FBF7F2;padding:40px;border-radius:24px">
 <h3 style="font-size:44px;font-weight:700;color:#FF7A3D">Rulebook</h3>
-<p style="font-size:28px">Cal/OSHA thresholds as code</p>
+<p style="font-size:28px">Cal/OSHA thresholds as data, one file per state</p>
 </div>
 <x-shape kind="arrow-right" style="width:100px;height:50px;background:#E8551C"></x-shape>
 <div style="width:380px;display:flex;flex-direction:column;gap:12px;background:#E8551C;color:#121826;padding:40px;border-radius:24px">
 <h3 style="font-size:44px;font-weight:700">Plan + log</h3>
-<p style="font-size:28px">Per site, per shift</p>
+<p style="font-size:28px">Per site, per shift, with confidence</p>
 </div>
 </div>
-<aside>We combine public models and sensors: NOAA's smoke forecast, AirNow and PurpleAir, the heat forecast and NASA fire detections. Sparse sensors stop being a problem because the forecast comes from models and satellites.</aside>
+<aside>No sensors of our own. The forecast model covers every grid cell, but a forty-kilometre smoke model reads low right next to a fire, so every plan is checked. NASA's VIIRS satellites flag active fires; one within fifty kilometres puts a warning on the plan. AirNow's regulatory monitors within twenty-five kilometres are compared with the model; if they disagree by more than one and a half times, the forecast is pulled toward the monitor, never below half, because this is a safety tool. And the crew's own reports are the fourth check. Then the rulebook, which is just data: one file per jurisdiction, so Oregon or Spain is a new file, not new code.</aside>
 </section>
