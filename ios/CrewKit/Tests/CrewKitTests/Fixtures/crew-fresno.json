@@ -1,0 +1,148 @@
+{
+    "place": {
+        "name": "Fresno, California",
+        "lat": 36.74773,
+        "lon": -119.77237
+    },
+    "date": "2026-10-24",
+    "shift": {
+        "start": 7,
+        "end": 17
+    },
+    "plan": {
+        "jurisdiction": "US-CA",
+        "hours": [
+            {
+                "time": "2026-10-24T07:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 32.6,
+                    "pm25_ugm3": 37.3,
+                    "temp_c": 9.1,
+                    "temp_f": 48.379999999999995,
+                    "us_aqi_pm25": 95
+                }
+            },
+            {
+                "time": "2026-10-24T08:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 36.2,
+                    "pm25_ugm3": 39.9,
+                    "temp_c": 9.1,
+                    "temp_f": 48.379999999999995,
+                    "us_aqi_pm25": 103
+                }
+            },
+            {
+                "time": "2026-10-24T09:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 38.8,
+                    "pm25_ugm3": 41.4,
+                    "temp_c": 12.4,
+                    "temp_f": 54.32,
+                    "us_aqi_pm25": 109
+                }
+            },
+            {
+                "time": "2026-10-24T10:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 38.5,
+                    "pm25_ugm3": 38.2,
+                    "temp_c": 15.6,
+                    "temp_f": 60.08,
+                    "us_aqi_pm25": 108
+                }
+            },
+            {
+                "time": "2026-10-24T11:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 33.3,
+                    "pm25_ugm3": 28.2,
+                    "temp_c": 18.1,
+                    "temp_f": 64.58,
+                    "us_aqi_pm25": 96
+                }
+            },
+            {
+                "time": "2026-10-24T12:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 26.3,
+                    "pm25_ugm3": 19.3,
+                    "temp_c": 20.2,
+                    "temp_f": 68.36,
+                    "us_aqi_pm25": 83
+                }
+            },
+            {
+                "time": "2026-10-24T13:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 20.8,
+                    "pm25_ugm3": 15.4,
+                    "temp_c": 21.8,
+                    "temp_f": 71.24000000000001,
+                    "us_aqi_pm25": 73
+                }
+            },
+            {
+                "time": "2026-10-24T14:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 17.2,
+                    "pm25_ugm3": 13.7,
+                    "temp_c": 22.9,
+                    "temp_f": 73.22,
+                    "us_aqi_pm25": 66
+                }
+            },
+            {
+                "time": "2026-10-24T15:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 14.7,
+                    "pm25_ugm3": 12.2,
+                    "temp_c": 23.5,
+                    "temp_f": 74.3,
+                    "us_aqi_pm25": 61
+                }
+            },
+            {
+                "time": "2026-10-24T16:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 12.9,
+                    "pm25_ugm3": 11.2,
+                    "temp_c": 23.6,
+                    "temp_f": 74.48,
+                    "us_aqi_pm25": 58
+                }
+            }
+        ],
+        "actions": [],
+        "peak_aqi": 109,
+        "peak_temp_f": 74.48,
+        "bms": {
+            "threshold_aqi": 101,
+            "recirculate_at": "2026-10-24T08:00",
+            "resume_at": "2026-10-24T11:00",
+            "peak_aqi": 109,
+            "reason": "outdoor PM2.5 NowCast AQI reaches 101 at 08:00, peak 109: close outside air, recirculate through MERV 13+"
+        },
+        "confidence": {
+            "level": "sensor-confirmed",
+            "fire": {
+                "nearest_km": 250.5,
+                "direction": "NW",
+                "within_50km": 0
+            },
+            "ground": {
+                "time": "2026-10-23T22:00",
+                "pm25": 11.9,
+                "stations": 3,
+                "nearest": "Fresno-Foundry Park",
+                "nearest_km": 4.1,
+                "model_pm25": 8.1,
+                "divergence": 1.47,
+                "factor": 1
+            },
+            "notes": [
+                "AirNow monitor Fresno-Foundry Park, 4 km away, read 11.9 \u00b5g/m\u00b3 at 22:00; the model had 8.1. They agree."
+            ]
+        }
+    }
+}

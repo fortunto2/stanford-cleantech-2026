@@ -1,0 +1,65 @@
+name: CrewAir
+options:
+  developmentLanguage: en
+  bundleIdPrefix: co.superduperai
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+
+packages:
+  CrewKit:
+    path: CrewKit
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    # Empty on purpose: pass DEVELOPMENT_TEAM=... for a device build.
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+
+targets:
+  CrewAir:
+    type: application
+    platform: iOS
+    sources:
+      - path: CrewAir
+        excludes:
+          - "**/.DS_Store"
+    dependencies:
+      - package: CrewKit
+        product: CrewKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: co.superduperai.crewair
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+    info:
+      path: CrewAir/App/Info.plist
+      properties:
+        CFBundleDisplayName: Crew Air
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        UILaunchScreen:
+          UIColorName: ""
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        NSCameraUsageDescription: >-
+          Point the camera at the horizon to see where fires and air monitors are.
+        NSLocationWhenInUseUsageDescription: >-
+          Your location gives the compass true north, so fire and monitor labels sit on the
+          right bearing. It is not sent anywhere.
+        NSMotionUsageDescription: >-
+          Device motion tells the app which way the camera points, so labels stay on the horizon.
+        ITSAppUsesNonExemptEncryption: false
+
+schemes:
+  CrewAir:
+    build:
+      targets:
+        CrewAir: all

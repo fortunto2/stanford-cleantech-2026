@@ -1,0 +1,152 @@
+{
+    "place": {
+        "name": "Palm Springs, California",
+        "lat": 33.8303,
+        "lon": -116.54529
+    },
+    "date": "2026-10-24",
+    "shift": {
+        "start": 7,
+        "end": 17
+    },
+    "plan": {
+        "jurisdiction": "US-CA",
+        "hours": [
+            {
+                "time": "2026-10-24T07:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 2.1,
+                    "pm25_ugm3": 2.4,
+                    "temp_c": 19.9,
+                    "temp_f": 67.82,
+                    "us_aqi_pm25": 12
+                }
+            },
+            {
+                "time": "2026-10-24T08:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 2.2,
+                    "pm25_ugm3": 2.6,
+                    "temp_c": 20.1,
+                    "temp_f": 68.18,
+                    "us_aqi_pm25": 12
+                }
+            },
+            {
+                "time": "2026-10-24T09:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 2.3,
+                    "pm25_ugm3": 2.5,
+                    "temp_c": 23.8,
+                    "temp_f": 74.84,
+                    "us_aqi_pm25": 13
+                }
+            },
+            {
+                "time": "2026-10-24T10:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 2.2,
+                    "pm25_ugm3": 1.9,
+                    "temp_c": 25.1,
+                    "temp_f": 77.18,
+                    "us_aqi_pm25": 12
+                }
+            },
+            {
+                "time": "2026-10-24T11:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 1.9,
+                    "pm25_ugm3": 1.6,
+                    "temp_c": 26.6,
+                    "temp_f": 79.88,
+                    "us_aqi_pm25": 11
+                }
+            },
+            {
+                "time": "2026-10-24T12:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 1.9,
+                    "pm25_ugm3": 1.8,
+                    "temp_c": 27.7,
+                    "temp_f": 81.86,
+                    "us_aqi_pm25": 11
+                }
+            },
+            {
+                "time": "2026-10-24T13:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 1.9,
+                    "pm25_ugm3": 1.9,
+                    "temp_c": 28.1,
+                    "temp_f": 82.58,
+                    "us_aqi_pm25": 11
+                }
+            },
+            {
+                "time": "2026-10-24T14:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 1.9,
+                    "pm25_ugm3": 2.1,
+                    "temp_c": 28.6,
+                    "temp_f": 83.48,
+                    "us_aqi_pm25": 11
+                }
+            },
+            {
+                "time": "2026-10-24T15:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 2,
+                    "pm25_ugm3": 2.1,
+                    "temp_c": 28.8,
+                    "temp_f": 83.84,
+                    "us_aqi_pm25": 11
+                }
+            },
+            {
+                "time": "2026-10-24T16:00",
+                "metrics": {
+                    "pm25_nowcast_ugm3": 2,
+                    "pm25_ugm3": 2.1,
+                    "temp_c": 28.8,
+                    "temp_f": 83.84,
+                    "us_aqi_pm25": 11
+                }
+            }
+        ],
+        "actions": [
+            {
+                "time": "2026-10-24T07:00",
+                "rule": "plan",
+                "cite": "",
+                "text": "Heavy work in clear hours: 07:00\u201311:00"
+            },
+            {
+                "time": "2026-10-24T12:00",
+                "rule": "heat-shade",
+                "cite": "Cal/OSHA T8 \u00a73395",
+                "text": "82\u00b0F: shade up, water at hand"
+            }
+        ],
+        "peak_aqi": 13,
+        "peak_temp_f": 83.84,
+        "bms": {
+            "threshold_aqi": 101,
+            "recirculate_at": null,
+            "resume_at": null,
+            "peak_aqi": 18,
+            "reason": "outdoor AQI stays below 101 (peak 18): normal ventilation"
+        },
+        "confidence": {
+            "level": "model-only",
+            "fire": {
+                "nearest_km": 101.7,
+                "direction": "NW",
+                "within_50km": 0
+            },
+            "ground": null,
+            "notes": [
+                "No AirNow monitor within 25 km to check the model against."
+            ]
+        }
+    }
+}

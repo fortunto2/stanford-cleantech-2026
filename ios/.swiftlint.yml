@@ -1,0 +1,22 @@
+included:
+  - CrewAir
+  - CrewKit/Sources
+  - CrewKit/Tests
+
+excluded:
+  - build-sim
+  - CrewKit/.build
+
+disabled_rules:
+  - todo
+  - trailing_comma
+
+line_length:
+  warning: 120
+  error: 160
+  ignores_comments: true
+
+identifier_name:
+  min_length:
+    warning: 1
+    error: 1

@@ -1,0 +1,5 @@
+CrewAir.xcodeproj/
+build-sim/
+CrewKit/.build/
+CrewKit/.swiftpm/
+.DS_Store
