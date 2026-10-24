@@ -11,6 +11,7 @@ for state, industry (NAICS) and why the inspector came (insp_type B = complaint)
 import collections
 import json
 import os
+import sys
 import time
 import urllib.error
 import urllib.parse
@@ -35,7 +36,7 @@ def key() -> str:
     return k
 
 
-def get(table: str, filt: dict, fields: str, limit: int = 1000) -> list[dict]:
+def get(table: str, filt: dict, fields: str, limit: int = 500) -> list[dict]:
     rows, offset = [], 0
     while True:
         q = urllib.parse.urlencode({"X-API-KEY": key(), "limit": limit, "offset": offset,
@@ -49,10 +50,12 @@ def get(table: str, filt: dict, fields: str, limit: int = 1000) -> list[dict]:
                 break
             except urllib.error.HTTPError as e:
                 # 429 when throttled; it has also answered 403 while throttled. Wait it out.
-                if e.code not in (403, 429) or attempt == 11:
+                if e.code not in (403, 429, 500, 502, 503, 504) or attempt == 11:
                     raise
-                time.sleep(30 * (attempt + 1))
+                print(f"  {table}: HTTP {e.code}, waiting {15 * (attempt + 1)} s", file=sys.stderr, flush=True)
+                time.sleep(15 * (attempt + 1))
         rows += page
+        print(f"  {table}: {len(rows)} rows", file=sys.stderr, flush=True)
         if len(page) < limit:
             return rows
         offset += limit

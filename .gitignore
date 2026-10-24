@@ -8,3 +8,4 @@ work/output/
 .ipynb_checkpoints/
 docs/talks/
 work/frames/
+.playwright-mcp/

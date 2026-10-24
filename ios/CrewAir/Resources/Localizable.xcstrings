@@ -1649,6 +1649,16 @@
         }
       }
     },
+    "The crew lead sees it, and anyone with the link. Nothing goes to an agency, union or employer system unless someone forwards it.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La ve el jefe de cuadrilla y cualquiera con el enlace. No va a ninguna agencia, sindicato ni sistema del empleador a menos que alguien lo reenvíe."
+          }
+        }
+      }
+    },
     "The law, not a favour": {
       "localizations": {
         "es": {
@@ -2035,12 +2045,22 @@
         }
       }
     },
-    "the %@ page for today. The crew lead sees it, and anyone with the link. Nothing goes to an agency, union or employer system unless someone forwards it.": {
+    "the %@ page for today.": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "la página de %@ de hoy. La ve el jefe de cuadrilla y cualquiera con el enlace. No va a ninguna agencia, sindicato ni sistema del empleador a menos que alguien lo reenvíe."
+            "value": "la página de %@ de hoy."
+          }
+        }
+      }
+    },
+    "the page for the area near %@, today.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "la página de la zona cerca de %@, hoy."
           }
         }
       }

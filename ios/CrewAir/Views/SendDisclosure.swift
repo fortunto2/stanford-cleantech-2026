@@ -12,9 +12,9 @@ struct SendDisclosure: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
-            line(String(localized: "Goes to"), String(localized: """
-            the \(placeName) page for today. The crew lead sees it, and anyone with the link. Nothing goes \
-            to an agency, union or employer system unless someone forwards it.
+            line(String(localized: "Goes to"), destination + " " + String(localized: """
+            The crew lead sees it, and anyone with the link. Nothing goes to an agency, union or \
+            employer system unless someone forwards it.
             """))
             line(String(localized: "Sent"), String(localized: """
             kind, note, time, this hour's forecast, nearest satellite fire, nearest monitor.
@@ -37,6 +37,16 @@ struct SendDisclosure: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(dark ? Theme.skyStroke.opacity(0.5) : Theme.card, in: .rect(cornerRadius: Theme.Radius.panel))
         .accessibilityElement(children: .contain)
+    }
+
+    /// "the Fresno page for today", or for a coordinate the server named "near Barstow",
+    /// "the page for the area near Barstow, today".
+    private var destination: String {
+        if placeName.hasPrefix("near ") {
+            let town = String(placeName.dropFirst(5))
+            return String(localized: "the page for the area near \(town), today.")
+        }
+        return String(localized: "the \(placeName) page for today.")
     }
 
     private func line(_ label: String, _ text: String) -> some View {
