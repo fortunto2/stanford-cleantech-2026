@@ -32,12 +32,15 @@ def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
 
 def caption(src: Path, text: str, dst: Path) -> None:
     """A screenshot with a dark caption band at the bottom."""
+    import textwrap
+
     im = Image.open(src).convert("RGB").resize((W, H))
-    band = Image.new("RGB", (W, 150), INK)
-    im.paste(band, (0, H - 150))
+    band = Image.new("RGB", (W, 170), INK)
+    im.paste(band, (0, H - 170))
     d = ImageDraw.Draw(im)
-    d.rectangle([0, H - 150, 14, H], fill=ACCENT)
-    d.text((48, H - 112), text, font=font(40), fill=PAPER)
+    d.rectangle([0, H - 170, 14, H], fill=ACCENT)
+    for i, line in enumerate(textwrap.wrap(text, 92)[:2]):
+        d.text((90, H - 140 + i * 50), line, font=font(36), fill=PAPER)
     im.save(dst)
 
 
@@ -65,7 +68,7 @@ def phones(dst: Path) -> None:
         x = gap + i * (pw + gap)
         im.paste(p, (x, 90))
         d.text((x, 90 + ph + 16), label, font=font(30, True), fill=PAPER)
-    d.text((48, H - 112), "In the crew’s pocket: the plan, a sky check by a vision model, reports with no name, the crew lead’s board.", font=font(36), fill=PAPER)
+    d.text((90, H - 112), "In the crew’s pocket: the plan, a sky check by a vision model, reports with no name, the crew lead’s board.", font=font(34), fill=PAPER)
     d.rectangle([0, H - 150, 14, H], fill=ACCENT)
     im.save(dst)
 
@@ -124,7 +127,7 @@ def main() -> None:
     for i, (png, dur) in enumerate(seq):
         clip = OUT / f"clip{i:02d}.mp4"
         frames = int(dur * fps)
-        zoom = f"zoompan=z='min(1+0.0004*on,1.08)':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={fps}"
+        zoom = f"zoompan=z='min(1+0.00015*on,1.03)':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={fps}"
         subprocess.run([
             "ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-i", str(png), "-vf", zoom, "-t", str(dur),
             "-c:v", "libx264", "-pix_fmt", "yuv420p", "-r", str(fps), str(clip),
