@@ -1,0 +1,20 @@
+<section id="linecrew" data-transition="fade" style="background:#FBF7F2;color:#121826;font-family:'Rubik', Arial, sans-serif;padding:88px 128px 150px;display:flex;flex-direction:column;gap:28px">
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:80px;font-weight:700;line-height:1.05;text-transform:uppercase">Line crews after a fire: a reading, not a wait</h2>
+<p style="font-size:29px;line-height:1.35;max-width:1560px">A line is down behind a fire front. The rule wants the employer to determine the AQI before the crew goes in and to log it; the smoke model has 40 km cells and the nearest monitor can be 48 km away. The dispatcher either waits for a canyon the wind has already cleared, or sends people without a record.</p>
+<div style="display:flex;gap:32px">
+<div style="flex:1;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:24px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:22px;color:#6A7080;text-transform:uppercase;letter-spacing:2px">1 · Trigger</p>
+<p style="font-size:26px;line-height:1.3">VIIRS sees the fire; the API issues a task with a bearing and a distance (<span style="font-family:Menlo, monospace">dispatch</span>).</p>
+</div>
+<div style="flex:1;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:24px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:22px;color:#6A7080;text-transform:uppercase;letter-spacing:2px">2 · Reading</p>
+<p style="font-size:26px;line-height:1.3">A sensor node, or a drone outside the flight restriction, samples PM2.5 at the work site and reports it; a photo of the sky is the second check.</p>
+</div>
+<div style="flex:1;background:#FFFFFF;padding:24px 32px;border:1px solid #E6DED4;border-radius:24px;display:flex;flex-direction:column;gap:6px">
+<p style="font-size:22px;color:#6A7080;text-transform:uppercase;letter-spacing:2px">3 · Record</p>
+<p style="font-size:26px;line-height:1.3">The plan prints with the reading, the hour, the rule and the N95 line, signed at the briefing: the document the crew goes in with, and the one an inspector asks for.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#6A7080">Who pays: the utility or its contractor, per site, for the reading and the record. Hours saved per outage is the pilot’s number, not ours yet · §5141.1 requires N95s at AQI 151+, respirators above 500; it does not forbid the work</p>
+<aside>The same product for a utility’s line crews. A line is down behind a fire. The rule says determine the air and log it before the crew goes in; the model is coarse and the monitor is far, so the dispatcher waits for a canyon the wind has already cleared, or sends people without a record. Our API hands out the task when the satellite sees the fire, a node or a drone takes the reading outside the flight restriction, and the plan prints with the reading and the rule as the record the crew goes in with. We do not claim hours saved; that is the pilot’s number.</aside>
+</section>

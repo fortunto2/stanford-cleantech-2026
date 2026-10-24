@@ -51,6 +51,13 @@ afraid to complain.
   2020 and hour-ahead forecasts missed it by 10–50%; PSPS hit the foothill towns in 2019; SVCE's VPP with
   Lunar Energy executes events but has no smoke trigger. Public data only.
 - **Every endpoint on one page: airsignal.app/api**, rendered from the OpenAPI document, with live examples.
+- **Line crews after a fire (Track 3).** The same product for a utility's repair crews: a line is down behind
+  a fire front, the rule wants the AQI determined and logged before the crew goes in, the model has 40 km
+  cells and the nearest monitor can be 48 km away. When the satellite sees the fire the API issues a sensor
+  task with a bearing (`dispatch`); a fixed node or a drone outside the flight restriction takes the PM2.5
+  reading and reports it; the plan prints with the reading, the hour and the rule as the record the crew
+  goes in with. §5141.1 requires N95s at AQI 151+ and respirators above 500; it does not forbid the work,
+  so what we sell is the reading and the record, per site. Hours saved per outage is the pilot's number.
 
 ## How we built it
 
