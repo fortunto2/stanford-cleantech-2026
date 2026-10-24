@@ -63,7 +63,21 @@ built on our open air-quality engine; everything here was built in the hacking h
 2:50 **Ask.** "We want one farm and one utility contractor for next summer, and a CCA to backtest one
 summer's peak days against our hours."
 
+### What the judges said on the 15:28 panel (keep the Track 3 story, change the words)
+- "Red flag #1: we sell to utility" (regulated return, R&D line, no next bucket). So: the payer is the
+  employer of the crew, a contractor or the utility's own crew budget, per site; the utility is the channel
+  and the pilot. Never "we sell to utilities" as the business.
+- "Be part of a decision the customer already makes": the dispatcher already decides whether to send the
+  crew; we sit inside that decision.
+- "Explicit ask vs the implicit job: often you sell insurance for a decision": the record of how the AQI was
+  determined is that insurance.
+- "AI for AI's sake is a red flag": our engine is rules and physics, the NowCast is EPA's formula, ML only in
+  the sky check. Say it.
+- "Adaptation is the white space": say "adaptation, not mitigation; the fire is coming either way."
+- "Pick a customer whose pain has immediate consequences; 100 customer calls": next 30 days.
+
 ### Q&A, one line each
+- Who pays? The employer of the crew, per site: a contractor, a farm, a utility's own crew budget. The utility is the channel, not the customer we build the business on.
 - Why not AirNow / PurpleAir? They show a number; we give the hour the rule starts and the sheet.
 - How accurate is smoke? Reliable for 24 h, risk beyond; we say so and we hold the monitor when the model is down.
 - Dollars? Not claimed: a load model and a pilot.
