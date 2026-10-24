@@ -24,6 +24,8 @@ make plan P=Fresno S=07-17
 make evidence    # worker-days at AQI 151+ from EPA AirData × BLS QCEW
 make ios-test    # CrewKit tests (swift test), once ios/ exists
 make ios-build   # simulator build
+make -C ios install   # on Rustam's iPhone (TEAM/DEVICE in ios/Makefile.local, gitignored)
+uv run python work/sky_eval.py   # Jev known-answer eval against prod
 ```
 
 ## Rules learned here (do not relearn them)
@@ -34,4 +36,10 @@ make ios-build   # simulator build
 - A safety tool corrects down cautiously: ground factor clamped to [0.5, 3].
 - `wrangler dev` keeps the edge cache across restarts: add a throwaway query param when testing `/api/*`.
 - Numbers in the pitch come from `docs/evidence.md` with sources; never add one without a source.
+- Astro's origin check returns 403 to multipart/urlencoded POSTs without an Origin header (apps, curl).
+  App endpoints take JSON or a raw `image/jpeg` body.
+- DOL API: urllib's default User-Agent is refused; it also answers 403 while throttled (429). Retry slow.
+  §5141.1 is coded `51410001 <sub>`; a bare `5141 A` is the older §5141, not the smoke rule.
+- Jev: the smoke question is reliable on our eval, its visibility score is not. Re-run `work/sky_eval.py`
+  after changing any question wording; it prints every answer, not just the score.
 - Slides deck: edit via the Artifact (read first), then copy changed slides into `pitch/slides/`.

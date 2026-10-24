@@ -27,13 +27,21 @@ Inspection waits for complaints, and workers are afraid to complain.
 2. **Checked four ways.** Model (hourly forecast, AQI as an EPA NowCast, not the 24-hour mean forecast feeds
    give), satellite (NASA VIIRS fires within 50 km → warning), ground (AirNow monitors within 25 km; a
    1.5x disagreement scales the forecast toward the monitor, never below half), and the crew.
-3. **Worker reports, the ladder.** A worker reports smoke, ash, symptoms, or missing N95s, shade or water. No
+3. **Check the sky.** A photo of the horizon (phone or the page) goes to TypeSafe's Jev, a vision decision
+   model that answers typed questions with probabilities. The phone blurs faces and crops to the sky first.
+   On 12 public-domain photos with known answers it made the smoke call right 11–12/12 across runs, never
+   wrongly (`work/sky_eval.py`, `work/sky_eval.md`); its visibility estimate was unreliable, so the verdict
+   rests on the smoke question and visibility shows only when confident. Visible smoke under a forecast
+   below AQI 101 is flagged as "looks worse than the forecast" and pre-fills a report.
+4. **Worker reports, the ladder.** A worker reports smoke, ash, symptoms, or missing N95s, shade or water. No
    name, and the evidence for that hour attached. The crew lead marks it handled. After 30 minutes an open report can go further,
    anonymously (Cal/OSHA complaint link is real; union and legal-aid forwarding is a mock until they agree).
 
 ```bash
 curl 'https://airsignal.app/api/crew?place=Fresno&shift=07-17'          # plan + checks + BMS, JSON
 curl 'https://airsignal.app/api/crew/reports?place=Fresno'               # today's reports
+curl -H 'content-type: image/jpeg' --data-binary @sky.jpg \
+     'https://airsignal.app/api/sky-check?place=Fresno'                  # Jev on a sky photo
 make plan P="Fresno" S=07-17                                             # the same engine idea in Python
 make test                                                                # Python rules + NowCast tests
 make evidence                                                            # the 4.5M worker-days table
@@ -44,9 +52,10 @@ make evidence                                                            # the 4
 | Piece | Where | Built during the hackathon |
 |---|---|---|
 | Engine: NowCast, rulebook, plan, BMS, fire and monitor checks | [airq `airq-core/src/crew.rs`](https://github.com/fortunto2/airq/blob/main/airq-core/src/crew.rs) (Rust → WASM) | yes, all of it |
-| Page, API, reports, escalation mock | [air-signal-web `src/pages/crew.astro`, `src/lib/crew.ts`, `src/pages/api/crew/`](https://github.com/fortunto2/air-signal-web) | yes, all of it |
+| Page, API, reports, escalation mock, sky check | [air-signal-web `src/pages/crew.astro`, `src/lib/crew.ts`, `src/pages/api/crew/`, `src/pages/api/sky-check.ts`](https://github.com/fortunto2/air-signal-web) | yes, all of it |
 | Python CLI + rulebook YAML + tests, evidence script | this repo: `crewair/`, `rulebooks/`, `tests/`, `work/` | yes |
-| iOS app (scaffold) | this repo: `ios/` | yes |
+| iOS app: Plan, Sky (AR horizon + Jev check), Report, crew lead | this repo: `ios/` (`make -C ios gen test build install`) | yes |
+| Evidence and the Jev eval | this repo: `work/evidence_*.py`, `work/sky_eval.py` | yes |
 | Pitch | `pitch/` | yes |
 
 Every commit for the above is dated 23–24 Oct 2026 inside hacking hours (Fri 17:00 – Sat 17:00 PT).
@@ -74,6 +83,8 @@ provinces use AQHI, Spain and Italy restrict outdoor work in heatwaves. Only Cal
 | NASA FIRMS VIIRS, public 24 h CSV (NOAA-20, Suomi-NPP) | none | fires within 50 km |
 | AirNow hourly files (files.airnowtech.org) | none | regulatory monitors within 25 km |
 | EPA AirData, BLS QCEW | none | the evidence table |
+| DOL OSHA enforcement API | free key | §5141.1 / §3395 / §3396 citations (`work/evidence_citations.py`) |
+| TypeSafe Jev | key (Worker secret) | sky photo → smoke / visibility probabilities |
 | Earth Engine, Sentinel-2 | gcloud login | burn scar and fire front for the pitch (`work/`) |
 | NOAA HRRR-Smoke | none | next: 3 km smoke over the US instead of CAMS ~40 km |
 

@@ -36,13 +36,17 @@ Positioning: heat paperwork is the wedge (enforced every summer), smoke rides on
 the worker report ladder (worker → crew lead → anonymous escalation to union / legal aid / Cal/OSHA)
 creates the urgency enforcement does not. Evidence: `docs/evidence.md`.
 
-- [ ] Site: manual worker reports on /crew (D1 `crew_reports`, evidence snapshot, crew-lead "handled",
+- [x] Site: manual worker reports on /crew (D1 `crew_reports`, evidence snapshot, crew-lead "handled",
       30-min escalation mock), reports on the printed sheet
-- [ ] Deck: problem slide with the 4.5M / 11 numbers, ladder slide, heat-first wedge, checks slide
-- [ ] Docs: README (what is live, data sources incl. FIRMS + AirNow files), evidence, Devpost text
-- [ ] Harness: CLAUDE.md for this repo, `make` targets (test, evidence, ios), sensors green
-- [ ] iOS: `ios/` scaffold (XcodeGen, Swift 6, SwiftUI), thin client of /api/crew, Sky + Report tabs
-- [ ] Design: Claude design artifact for the app (Plan, Sky AR, Report, Sheet)
+- [x] Deck: problem slide with the 4.5M / 11 numbers, ladder slide, heat-first wedge, checks slide
+- [x] Docs: README (what is live, data sources incl. FIRMS + AirNow files), evidence, Devpost text
+- [x] Harness: CLAUDE.md for this repo, `make` targets (test, evidence, ios), sensors green
+- [x] iOS: `ios/` scaffold (XcodeGen, Swift 6, SwiftUI), thin client of /api/crew, Sky + Report tabs
+- [x] Design: Claude design artifact for the app (Plan, Sky AR, Report, Sheet)
+- [x] Sky check: /api/sky-check (Jev) + page upload + eval 11–12/12
+- [ ] iOS round 2 (agent): X / tab bar, scroll, real Check the sky, approved design, crew lead, Spanish
+- [ ] TestFlight: needs Rustam's web login (`asc web auth login`) to create the app record
+- [ ] DOL citations 2019–2026 into docs/evidence.md and the problem slide
 - [ ] Devpost by 17:00: text, 2-min video, repo link, tracks 2 and 3
 
 ## Later (after the hackathon)
