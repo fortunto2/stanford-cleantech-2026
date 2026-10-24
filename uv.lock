@@ -3187,6 +3187,7 @@ dependencies = [
     { name = "ipykernel" },
     { name = "jupyterlab" },
     { name = "pandas" },
+    { name = "pyyaml" },
     { name = "requests" },
     { name = "shapely" },
 ]
@@ -3199,6 +3200,7 @@ requires-dist = [
     { name = "ipykernel" },
     { name = "jupyterlab" },
     { name = "pandas" },
+    { name = "pyyaml", specifier = ">=6.0.3" },
     { name = "requests" },
     { name = "shapely" },
 ]

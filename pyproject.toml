@@ -2,4 +2,14 @@
 name = "stanford-cleantech-2026"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = ["earthengine-api", "geemap", "geopandas", "shapely", "jupyterlab", "ipykernel", "requests", "pandas"]
+dependencies = [
+    "earthengine-api",
+    "geemap",
+    "geopandas",
+    "shapely",
+    "jupyterlab",
+    "ipykernel",
+    "requests",
+    "pandas",
+    "pyyaml>=6.0.3",
+]

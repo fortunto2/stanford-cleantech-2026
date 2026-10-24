@@ -1,0 +1,30 @@
+# California, outdoor workplaces. One file per jurisdiction; the engine knows no law.
+# Metrics the forecast provides: us_aqi_pm25, pm25_ugm3, temp_f, temp_c.
+# Within a group the most severe rule crossed during the shift wins; its first hour is reported.
+jurisdiction: US-CA
+name: California (Cal/OSHA)
+rules:
+  - id: smoke-respirators
+    group: smoke
+    metric: us_aqi_pm25
+    gte: 501
+    action: "AQI {value}: respirators mandatory, move work to filtered indoor air if possible"
+    cite: Cal/OSHA T8 §5141.1
+  - id: smoke-n95
+    group: smoke
+    metric: us_aqi_pm25
+    gte: 151
+    action: "AQI {value}: hand out N95s, tell the crew, cut exposure"
+    cite: Cal/OSHA T8 §5141.1
+  - id: heat-high
+    group: heat
+    metric: temp_f
+    gte: 95
+    action: "{value:.0f}°F: high-heat procedures, pre-shift meeting, watch the crew"
+    cite: Cal/OSHA T8 §3395
+  - id: heat-shade
+    group: heat
+    metric: temp_f
+    gte: 80
+    action: "{value:.0f}°F: shade up, water at hand"
+    cite: Cal/OSHA T8 §3395

@@ -23,16 +23,40 @@ No Cal/OSHA smoke or heat thresholds crossed. Normal shift.
 On a smoky or hot day the same command prints the hour each threshold is crossed, the action the rule
 requires, and the clear hours to move heavy work into.
 
-- `crewair/forecast.py`: geocoding + hourly US AQI (PM2.5) and temperature from Open-Meteo, no API key
-- `crewair/rules.py`: Cal/OSHA thresholds as pure functions, hourly forecast → actions
-- `crewair/cli.py`: address + date + shift → plan
-- `tests/test_rules.py`: the rules
+- `crewair/forecast.py`: geocoding + hourly US AQI (PM2.5), PM2.5 µg/m³ and temperature from Open-Meteo, no API key
+- `crewair/rules.py`: a jurisdiction-agnostic engine, hourly forecast + rulebook → actions
+- `rulebooks/us-ca.yaml`: Cal/OSHA §5141.1 (smoke) and §3395 (heat) as data
+- `crewair/cli.py`: address + date + shift + rulebook → plan
+- `tests/test_rules.py`: the rules and the engine
 
 ```bash
 uv sync
 make plan P="Fresno" S=07-17
 make test
 ```
+
+## Rulebooks: one file per jurisdiction
+
+The engine knows no law. A rulebook names a metric (`us_aqi_pm25`, `pm25_ugm3`, `temp_f`, `temp_c`),
+a threshold, the action and the citation. Within a group the most severe rule crossed in the shift wins.
+A new state or country is a new YAML file, not new code: Oregon and Washington have their own smoke
+rules, Canadian provinces use AQHI, Spain and Italy restrict outdoor work in heatwaves. Only California
+ships today; each new rulebook gets its thresholds checked against the source text first.
+
+## Data sources and keys
+
+| Source | Key | Note |
+|---|---|---|
+| Open-Meteo (CAMS air quality + weather), used now | none | free for non-commercial use; a product needs their paid plan |
+| NOAA HRRR-Smoke, next | none | open data on AWS, 3 km over the US |
+| NWS api.weather.gov | none | User-Agent header only |
+| NASA FIRMS | free MAP_KEY | active fires |
+| AirNow | free key | official US monitors, for calibration |
+| PurpleAir | paid key | dense community sensors |
+
+Coverage does not depend on sensors: the forecast is a model over every grid cell (CAMS ~40 km
+worldwide, HRRR 3 km over the US). Sensors calibrate it; where none are near, the plan says
+"model only". Weakest spots: valleys and right next to a fire.
 
 ## Satellite side (Earth Engine)
 
