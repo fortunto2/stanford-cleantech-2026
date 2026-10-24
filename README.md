@@ -2,7 +2,7 @@
 
 **Smoke and heat forecasts turned into a shift plan, so the job site keeps working and stays within the law.**
 
-Stanford Cleantech Hackathon 2026 · Track 2 Climate & Health (Track 3 Resilient Systems for the buildings angle)
+Stanford Cleantech Hackathon 2026 · Track 2 Climate & Health · Track 1 Energy & the Grid (the same hours for a home, airsignal.app/crew/grid) · Track 3 Resilient Systems (building, home and sensor signals; line crews after a fire)
 · **Live: [airsignal.app/crew](https://airsignal.app/crew)** · [Pitch deck](https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ) · [pitch/](pitch/)
 
 ## The problem
@@ -38,7 +38,8 @@ Inspection waits for complaints, and workers are afraid to complain.
    anonymously (Cal/OSHA complaint link is real; union and legal-aid forwarding is a mock until they agree).
 
 ```bash
-curl 'https://airsignal.app/api/crew?place=Fresno&shift=07-17'          # plan + checks + BMS, JSON
+curl 'https://airsignal.app/api/crew?place=Fresno&shift=07-17'          # plan + checks + BMS, home, alerts, wind, fires_near, dispatch (JSON)
+# every endpoint: https://airsignal.app/api · a utility's 13 cities: https://airsignal.app/crew/grid
 curl 'https://airsignal.app/api/crew/reports?place=Fresno'               # today's reports
 curl -H 'content-type: image/jpeg' --data-binary @sky.jpg \
      'https://airsignal.app/api/sky-check?place=Fresno'                  # Jev on a sky photo

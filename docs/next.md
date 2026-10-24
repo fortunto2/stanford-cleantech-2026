@@ -59,3 +59,9 @@ creates the urgency enforcement does not. Evidence: `docs/evidence.md`.
 - More rulebooks (OR, WA, Canada AQHI, Spain/Italy heat), each checked against the source text.
 - Product loop: evening alerts (SMS/email), multiple sites, PDF log for inspectors, Spanish.
 - Open-Meteo is free only non-commercially: switch to HRRR + NWS or pay before any paid use.
+
+## After the hackathon (from docs/pitch.md)
+- [ ] Email Rongxin Yin, LBNL Grid Integration Group (contact in private memory): JSON fields, /crew/grid, OpenADR/webhook, 30-min call
+- [ ] One utility contractor interview on the line-crew case (Asher)
+- [ ] HRRR-Smoke raster on the map; OSM power layer on /crew/grid
+- [ ] TestFlight once the app record exists; App Store only with explicit OK
