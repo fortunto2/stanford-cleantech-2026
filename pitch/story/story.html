@@ -1,0 +1,164 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Crew Air, how it works</title>
+<style>
+  html,body{margin:0;background:#121826;width:1920px;height:1080px;overflow:hidden;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;color:#FBF7F2}
+  svg{display:block}
+  .cap{font-size:44px;font-weight:600;fill:#FBF7F2}
+  .sub{font-size:30px;fill:#C9BFB4}
+  .big{font-size:120px;font-weight:700;fill:#FF7A3D}
+  .mono{font-family:Menlo,monospace}
+</style></head>
+<body>
+<svg id="s" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A2236"/><stop offset="1" stop-color="#2A1A12"/></linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#FF7A3D" stop-opacity="0.9"/><stop offset="1" stop-color="#FF7A3D" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <!-- hills -->
+  <path d="M0 720 Q 300 560 620 680 T 1200 660 T 1920 700 L1920 1080 L0 1080Z" fill="#1E2740"/>
+  <path d="M0 800 Q 400 700 800 780 T 1920 790 L1920 1080 L0 1080Z" fill="#161D30"/>
+  <!-- fire -->
+  <g id="fire">
+    <circle cx="300" cy="640" r="140" fill="url(#glow)"/>
+    <path d="M250 660 L300 540 L350 660Z" fill="#FF7A3D"/>
+    <path d="M280 660 L300 590 L320 660Z" fill="#FBE3A1"/>
+    <path d="M330 665 L372 580 L410 665Z" fill="#E8551C"/>
+  </g>
+  <!-- smoke puffs -->
+  <g id="smoke" fill="#8A8F9C" opacity="0.55">
+    <circle id="p1" cx="340" cy="560" r="40"/><circle id="p2" cx="420" cy="520" r="55"/><circle id="p3" cx="520" cy="490" r="70"/>
+    <circle id="p4" cx="640" cy="470" r="85"/><circle id="p5" cx="780" cy="460" r="100"/><circle id="p6" cx="940" cy="455" r="115"/>
+  </g>
+  <!-- power line: poles and a broken span -->
+  <g stroke="#C9BFB4" stroke-width="6" fill="none">
+    <line x1="560" y1="700" x2="560" y2="520"/><line x1="900" y1="690" x2="900" y2="510"/><line x1="1240" y1="700" x2="1240" y2="520"/>
+    <line x1="560" y1="530" x2="730" y2="560"/><line id="brk" x1="900" y1="520" x2="1240" y2="530"/>
+    <line x1="730" y1="560" x2="800" y2="690" stroke="#FF7A3D"/>
+  </g>
+  <circle id="spark" cx="800" cy="690" r="14" fill="#FBE3A1"/>
+  <!-- truck -->
+  <g id="truck">
+    <rect x="1560" y="650" width="150" height="60" rx="8" fill="#FBF7F2"/>
+    <rect x="1700" y="665" width="60" height="45" rx="6" fill="#FBF7F2"/>
+    <circle cx="1595" cy="716" r="16" fill="#C9BFB4"/><circle cx="1725" cy="716" r="16" fill="#C9BFB4"/>
+    <rect x="1600" y="632" width="30" height="16" fill="#FF7A3D"/>
+  </g>
+  <!-- clock -->
+  <g id="clock">
+    <circle cx="1700" cy="200" r="90" fill="#121826" stroke="#FBF7F2" stroke-width="6"/>
+    <line id="hh" x1="1700" y1="200" x2="1700" y2="150" stroke="#FBF7F2" stroke-width="8" stroke-linecap="round"/>
+    <line id="mh" x1="1700" y1="200" x2="1700" y2="130" stroke="#FF7A3D" stroke-width="5" stroke-linecap="round"/>
+    <text id="ct" x="1700" y="330" text-anchor="middle" class="sub mono" style="font-size:40px">06:00</text>
+  </g>
+  <!-- map card -->
+  <g id="map" opacity="0">
+    <rect x="1040" y="120" width="560" height="380" rx="24" fill="#FBF7F2"/>
+    <text x="1070" y="170" class="sub" fill="#6A7080" style="font-size:24px;letter-spacing:3px">WHERE THE MONITOR IS</text>
+    <circle cx="1130" cy="400" r="14" fill="#3D74C4"/><text x="1155" y="408" fill="#121826" style="font-size:26px">work site</text>
+    <circle cx="1520" cy="230" r="14" fill="#2E9E5B"/><text x="1330" y="222" fill="#121826" style="font-size:26px">AirNow monitor</text>
+    <line x1="1130" y1="400" x2="1520" y2="230" stroke="#121826" stroke-width="3" stroke-dasharray="10 10"/>
+    <text x="1250" y="320" fill="#E8551C" style="font-size:64px;font-weight:700">48 km</text>
+  </g>
+  <!-- satellite -->
+  <g id="sat" opacity="0">
+    <rect x="-30" y="-14" width="60" height="28" rx="6" fill="#FBF7F2"/>
+    <rect x="-110" y="-8" width="70" height="16" fill="#3D74C4"/><rect x="40" y="-8" width="70" height="16" fill="#3D74C4"/>
+  </g>
+  <line id="beam" x1="0" y1="0" x2="0" y2="0" stroke="#FBE3A1" stroke-width="3" stroke-dasharray="12 12" opacity="0"/>
+  <!-- task card -->
+  <g id="task" opacity="0">
+    <rect x="1040" y="120" width="560" height="300" rx="24" fill="#1B2232" stroke="#FF7A3D" stroke-width="3"/>
+    <text x="1070" y="170" class="sub mono" style="font-size:26px">GET /api/crew · dispatch</text>
+    <text x="1070" y="230" class="mono" fill="#FF7A3D" style="font-size:40px">"sensor": "launch"</text>
+    <text x="1070" y="290" class="mono" fill="#FBF7F2" style="font-size:34px">"bearing_deg": 333</text>
+    <text x="1070" y="345" class="mono" fill="#FBF7F2" style="font-size:34px">"distance_km": 9</text>
+    <text x="1070" y="398" class="mono" fill="#C9BFB4" style="font-size:26px">sample PM2.5 toward it, outside the TFR</text>
+  </g>
+  <!-- drone -->
+  <g id="drone" opacity="0">
+    <rect x="-40" y="-10" width="80" height="20" rx="6" fill="#FBF7F2"/>
+    <line x1="-60" y1="-10" x2="-20" y2="-10" stroke="#C9BFB4" stroke-width="5"/><line x1="20" y1="-10" x2="60" y2="-10" stroke="#C9BFB4" stroke-width="5"/>
+    <rect x="-14" y="10" width="28" height="18" fill="#3D74C4"/>
+  </g>
+  <!-- reading card -->
+  <g id="read" opacity="0">
+    <rect x="1040" y="120" width="560" height="300" rx="24" fill="#FBF7F2"/>
+    <text x="1070" y="170" class="sub" fill="#6A7080" style="font-size:24px;letter-spacing:3px">READING AT THE SITE</text>
+    <text x="1070" y="260" fill="#121826" style="font-size:72px;font-weight:700">38 µg/m³</text>
+    <text x="1070" y="320" fill="#121826" style="font-size:34px">NowCast AQI 108 · N95s available</text>
+    <text x="1070" y="380" fill="#2E9E5B" style="font-size:34px;font-weight:700">Under 151: the crew can go</text>
+  </g>
+  <!-- sheet -->
+  <g id="sheet" opacity="0">
+    <rect x="1040" y="120" width="560" height="380" rx="12" fill="#FBF7F2"/>
+    <text x="1070" y="170" fill="#121826" style="font-size:26px;font-weight:700">SHIFT PLAN · 24 Oct · site 36.95,-120.15</text>
+    <line x1="1070" y1="200" x2="1570" y2="200" stroke="#C9BFB4" stroke-width="2"/>
+    <text x="1070" y="240" fill="#121826" style="font-size:21px">AQI determined: site reading 38 µg/m³ at 10:32</text>
+    <text x="1070" y="275" fill="#121826" style="font-size:21px">Instrument: PM2.5 node, Appendix A · AirNow 48 km</text>
+    <text x="1070" y="310" fill="#121826" style="font-size:21px">Rule: §5141.1 · N95s available · respirators above 500</text>
+    <text x="1070" y="345" fill="#121826" style="font-size:21px">Fire 9 km NW · wind NW 6 km/h · heat 74 °F</text>
+    <line x1="1070" y1="380" x2="1570" y2="380" stroke="#C9BFB4" stroke-width="2"/>
+    <text x="1070" y="420" fill="#121826" style="font-size:24px">Briefing given by ____________  at 10:40</text>
+    <text x="1070" y="470" fill="#121826" style="font-size:24px">Signed: ______  ______  ______  ______</text>
+  </g>
+  <!-- captions -->
+  <rect x="0" y="900" width="1920" height="180" fill="#0D1220"/>
+  <rect x="0" y="900" width="14" height="180" fill="#E8551C"/>
+  <text id="c1" x="90" y="975" class="cap"></text>
+  <text id="c2" x="90" y="1030" class="sub"></text>
+  <!-- end card -->
+  <g id="end" opacity="0">
+    <rect width="1920" height="1080" fill="#121826"/>
+    <text x="960" y="470" text-anchor="middle" fill="#FBF7F2" style="font-size:150px;font-weight:700;letter-spacing:4px">CREW AIR</text>
+    <text x="960" y="560" text-anchor="middle" fill="#C9BFB4" style="font-size:44px">A reading, not a wait. airsignal.app/crew</text>
+    <text x="960" y="640" text-anchor="middle" fill="#C9BFB4" style="font-size:32px">Rustam Salavatov · Asher Popper · Stanford Cleantech Hackathon 2026</text>
+  </g>
+</svg>
+<script>
+const $ = (id) => document.getElementById(id);
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const ease = (t) => t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t);
+const cap = (a, b) => { $("c1").textContent = a; $("c2").textContent = b; };
+function clock(h, m) {
+  const ang = (h % 12 + m / 60) * 30, mang = m * 6;
+  const r = (x, y, a) => { const s = Math.sin(a * Math.PI / 180), c = Math.cos(a * Math.PI / 180); return [1700 + x * c - y * s, 200 + x * s + y * c]; };
+  const [hx, hy] = r(0, -50, ang); $("hh").setAttribute("x2", hx); $("hh").setAttribute("y2", hy);
+  const [mx, my] = r(0, -70, mang); $("mh").setAttribute("x2", mx); $("mh").setAttribute("y2", my);
+  $("ct").textContent = String(h).padStart(2, "0") + ":" + String(Math.floor(m)).padStart(2, "0");
+}
+window.setT = function (t) {
+  // smoke drifts right, always
+  for (let i = 1; i <= 6; i++) { const p = $("p" + i); const base = 340 + (i - 1) * 120; p.setAttribute("cx", base + ((t * 40 + i * 37) % 120)); p.setAttribute("cy", (560 - (i - 1) * 22) + Math.sin(t * 1.5 + i) * 10); }
+  $("spark").setAttribute("opacity", t < 4 ? (Math.sin(t * 25) > 0 ? 1 : 0.2) : 0);
+  // scene 1: 0-4 fire + break; waiting clock runs 06:00 -> 10:00 over 0..8
+  const wait = clamp(t / 8, 0, 1); const mins = 240 * wait; clock(6 + Math.floor(mins / 60), mins % 60);
+  if (t < 4) cap("A fire takes down a line. The crew is ready at 06:00.", "Cal/OSHA: determine the air they will breathe, and log it, before they go in.");
+  // scene 2: 4-8 map, 48 km, waiting
+  $("map").setAttribute("opacity", ease((t - 4) / 0.6) * (1 - ease((t - 8) / 0.4)));
+  if (t >= 4 && t < 8) cap("The smoke model has 40 km cells. The nearest monitor is 48 km away.", "So the dispatcher waits. Hours pass while the wind has already cleared the canyon.");
+  // scene 3: 8-12 satellite + task
+  const sx = -200 + clamp((t - 8) / 3, 0, 1) * 1100, sy = 90;
+  $("sat").setAttribute("transform", `translate(${sx},${sy})`); $("sat").setAttribute("opacity", t >= 8 && t < 12.5 ? 1 : 0);
+  const beamOn = t >= 9 && t < 12; $("beam").setAttribute("opacity", beamOn ? 1 : 0);
+  $("beam").setAttribute("x1", sx); $("beam").setAttribute("y1", sy + 14); $("beam").setAttribute("x2", 320); $("beam").setAttribute("y2", 600);
+  $("task").setAttribute("opacity", ease((t - 9.5) / 0.5) * (1 - ease((t - 12.5) / 0.4)));
+  if (t >= 8 && t < 12.5) cap("NASA VIIRS sees the fire. The API issues a task.", "dispatch: launch · bearing 333° · 9 km · a fixed node, or a drone outside the flight restriction");
+  // scene 4: 12.5-17 drone flies from truck to the break, reading
+  const f = clamp((t - 12.5) / 2.5, 0, 1); const dx = 1640 + (800 - 1640) * ease(f), dy = 600 - Math.sin(ease(f) * Math.PI) * 160;
+  $("drone").setAttribute("transform", `translate(${dx},${dy})`); $("drone").setAttribute("opacity", t >= 12.5 && t < 20 ? 1 : 0);
+  $("read").setAttribute("opacity", ease((t - 15) / 0.5) * (1 - ease((t - 17.5) / 0.4)));
+  if (t >= 12.5 && t < 17.5) cap("A reading at the site, in minutes, not hours.", "PM2.5 at the break, reported through /api/crew/report; a photo of the sky is the second check.");
+  // scene 5: 17.5-21 sheet, truck goes, clock 10:40
+  $("sheet").setAttribute("opacity", ease((t - 17.5) / 0.5) * (1 - ease((t - 21.5) / 0.4)));
+  const g = clamp((t - 18.5) / 3, 0, 1); $("truck").setAttribute("transform", `translate(${-ease(g) * 700},0)`);
+  if (t >= 17.5 && t < 21.5) { cap("The record the rule requires, printed and signed. The crew goes in.", "How the AQI was determined, the instrument, the hour, the rule. The document an inspector asks for."); clock(10, 32 + 8 * clamp((t - 17.5) / 2, 0, 1)); }
+  if (t >= 8 && t < 17.5) clock(10, 0 + clamp((t - 12.5) / 5, 0, 1) * 32);
+  // end
+  $("end").setAttribute("opacity", ease((t - 21.5) / 0.6));
+};
+let start = performance.now();
+function loop() { const t = (performance.now() - start) / 1000; setT(t % 25); requestAnimationFrame(loop); }
+if (location.search.includes("play")) loop(); else setT(0);
+</script>
+</body></html>

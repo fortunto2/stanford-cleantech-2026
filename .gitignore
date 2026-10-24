@@ -10,3 +10,5 @@ docs/talks/
 work/frames/
 .playwright-mcp/
 pitch/video/build/
+pitch/story/frames/
+pitch/story/actions.json
