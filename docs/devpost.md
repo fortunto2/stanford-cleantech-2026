@@ -8,7 +8,7 @@ heat, smoke and the 4–9 pm peak price on one strip), Track 3 Resilient Systems
 as JSON for a building system or a home agent)
 
 **Links:** live https://airsignal.app/crew · code https://github.com/fortunto2/stanford-cleantech-2026 ·
-deck https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ · [video: TODO]
+deck https://claude.ai/artifact/2YRYbz8SuvFxQuQqYs9gTA · [video: TODO]
 
 ## Inspiration
 

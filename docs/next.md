@@ -16,7 +16,7 @@ demo 17:00–19:00 (3 min + 2 min Q&A), awards 19:00. Building allowed until 17:
   forecast is scaled toward the monitor, ×0.5…×3, fading over ~12 h). Both keyless public files.
   Python CLI does not have these checks yet; the demo should use the page.
 - CLI `crewair` on live Open-Meteo forecasts, rulebook engine, `rulebooks/us-ca.yaml`, 5 tests green.
-- Pitch deck (12 slides): https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ, sources in `pitch/`.
+- Pitch deck (12 slides): https://claude.ai/artifact/2YRYbz8SuvFxQuQqYs9gTA, sources in `pitch/`.
 - Repo public, single clean history.
 
 ## Saturday, in order
