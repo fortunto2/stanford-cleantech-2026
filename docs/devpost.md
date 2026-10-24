@@ -3,7 +3,9 @@
 **Tagline (≤200 chars):** Smoke and heat forecasts turned into the shift plan California law already requires,
 checked by satellite, ground monitors and the crew's own photos of the sky.
 
-**Tracks:** Track 2 Climate & Health (primary), Track 3 Resilient Systems (BMS signal)
+**Tracks:** Track 2 Climate & Health (primary), Track 1 Energy & the Grid (the same hours for a home:
+heat, smoke and the 4–9 pm peak price on one strip), Track 3 Resilient Systems (the BMS and home signal
+as JSON for a building system or a home agent)
 
 **Links:** live https://airsignal.app/crew · code https://github.com/fortunto2/stanford-cleantech-2026 ·
 deck https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ · [video: TODO]
@@ -13,9 +15,10 @@ deck https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ · [video: TODO]
 California tells outdoor employers exactly what to do: at PM2.5 AQI 151, N95s and tell the crew
 (Cal/OSHA §5141.1); at 80°F shade and water, at 95°F high-heat procedures (§3395). It almost never
 happens. In the 2020–21 fire seasons farmworkers spent at least 4.5 million worker-days at AQI 151+
-(our calculation from EPA AirData and BLS employment data). Cal/OSHA issued 11 smoke-rule citations from
-July 2019 to October 2021. About 60% of surveyed Central Valley farmworkers got no N95. Inspections wait
-for complaints, and workers are afraid to complain.
+(our calculation from EPA AirData and BLS employment data). Cal/OSHA cited the smoke rule 19 times in
+seven years (July 2019 to September 2026, DOL enforcement data) against 8,507 heat citations. About 60%
+of surveyed Central Valley farmworkers got no N95. Inspections wait for complaints, and workers are
+afraid to complain.
 
 ## What it does
 
@@ -31,6 +34,13 @@ for complaints, and workers are afraid to complain.
   30 minutes it can go further anonymously (a Cal/OSHA complaint; union and legal-aid forwarding once
   partners agree).
 - **iOS app**: plan, AR horizon with fires and monitors pinned at their real bearing, sky check, reports.
+- **The same hours for a home and the grid.** Heat and smoke days are the grid's worst days too. The
+  hourly strip shows the PG&E E-TOU-C peak price (4–9 pm every day; SVCE bills generation on the same
+  hours) next to heat and smoke, marks the cheap hours to pre-cool a house before the peak, and the smoke
+  hour to shut windows (a closed house runs the air conditioner longer). Active NWS alerts (Red Flag
+  Warning, Heat Advisory) are on the page. All of it is in the JSON (`home`, `alerts`, `plan.bms`) for a
+  home agent or a DERMS. Rules, not an optimisation: we claim no dollars or megawatts, that needs a load
+  model and a pilot.
 
 ## How we built it
 
@@ -50,7 +60,9 @@ enforcement; Earth Engine + Sentinel-2 for the burn-scar slide.
 ## What's next
 
 HRRR-Smoke (3 km), more rulebooks (OR, WA, Canada, Spain), SMS/WhatsApp alerts in Spanish, partners for
-step 3 (unions, legal aid), a pilot farm next summer.
+step 3 (unions, legal aid), a pilot farm next summer. For the grid: a backtest with a CCA of one summer's
+peak days against our heat and smoke hours, then hourly grid carbon on the strip; PM2.5 sensor nodes
+where the nearest monitor is far (48.7 km at one of our test sites).
 
 ## Built with
 

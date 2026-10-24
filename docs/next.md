@@ -45,10 +45,11 @@ creates the urgency enforcement does not. Evidence: `docs/evidence.md`.
 - [x] Design: Claude design artifact for the app (Plan, Sky AR, Report, Sheet)
 - [x] Sky check: /api/sky-check (Jev) + page upload + eval 11–12/12
 - [x] iOS rounds 2–6: X / tab bar, scroll, Check the sky, design, crew lead, Spanish, EXIF, guide, agency cards
-- [ ] TestFlight: needs Rustam's web login (`asc web auth login`) to create the app record
+- [ ] TestFlight: Apple 2FA locked (423) after the SMS code timed out; Rustam creates the app record on appstoreconnect.apple.com (Crew Air, co.superduperai.crewair, SKU crewair), then `asc publish testflight` with the API key
 - [x] DOL citations by year in docs/evidence.md + 'fines' slide (the ag/complaint split is still downloading)
 - [x] /crew survives Open-Meteo's daily 429 (AirNow + NWS fallback)
-- [ ] Devpost by 17:00: text, 2-min video, repo link, tracks 2 and 3
+- [ ] Devpost by 17:00: text (docs/devpost.md, tracks 2 + 1 + 3), 2-min video, repo link; Asher on the team
+- [x] Home signal for Track 1/3 (E-TOU-C peak band, pre-cool, NWS alerts) live on /crew and /api/crew (14:20)
 
 ## Later (after the hackathon)
 - SEO pages for Cal/OSHA smoke/heat questions, analytics, lead form
