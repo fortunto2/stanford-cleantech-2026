@@ -12,6 +12,7 @@ struct SkyPanel: View {
     @Binding var pickerItem: PhotosPickerItem?
     let onCamera: () -> Void
     @State private var confirming = false
+    @State private var complaintFor: Report?
 
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Space.s) {
@@ -111,6 +112,16 @@ struct SkyPanel: View {
                         .background(Theme.color(.unhealthy), in: .rect(cornerRadius: 12))
                 }
                 .disabled(reports.isSending)
+            }
+        } else if sky.reported, let sent = reports.lastSent, Int(sent.id) != nil {
+            Button { complaintFor = sent } label: {
+                (Text("Sent to the crew lead") + Text(" · ") + Text("Prepare a complaint").underline())
+                    .font(.system(size: 15, weight: .heavy)).foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(Theme.okSolid, in: .rect(cornerRadius: 12))
+            }
+            .sheet(item: $complaintFor) { report in
+                EscalateView(report: report) { try await reports.complaint(for: report) }
             }
         } else {
             Button { confirming = true } label: {

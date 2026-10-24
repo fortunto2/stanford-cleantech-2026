@@ -22,12 +22,13 @@ struct EscalateView: View {
                     .foregroundStyle(Theme.nightInkSecondary)
                     .padding(.horizontal, Theme.Space.s)
                 ScreenTitle(
-                    title: String(localized: "Not fixed in 30 minutes"),
+                    title: isOverdue ? String(localized: "Not fixed in 30 minutes")
+                        : String(localized: "Take it further"),
                     subtitle: String(localized: "Send it on. Your name is not in it."),
                     ink: Theme.nightInk, secondary: Theme.nightInkSecondary
                 )
-                summary
                 complaintEditor
+                summary
                 if let url = Self.calOSHA {
                     Link(destination: url) {
                         card(String(localized: "Cal/OSHA complaint"),
@@ -92,6 +93,10 @@ struct EscalateView: View {
             .padding(Theme.Space.l)
             .background(Theme.nightCard.opacity(0.6), in: .rect(cornerRadius: Theme.Radius.tile))
         }
+    }
+
+    private var isOverdue: Bool {
+        (ReportClock.minutesUntilEscalation(since: report.createdAt, now: .now) ?? 0) == 0
     }
 
     private func loadDraft() async {

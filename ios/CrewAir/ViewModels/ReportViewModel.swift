@@ -18,6 +18,8 @@ final class ReportViewModel {
     private(set) var isSending = false
     private(set) var handling: String?
     private(set) var message: String?
+    /// The last report the server accepted from this phone, for "Prepare a complaint".
+    private(set) var lastSent: Report?
 
     /// Position and compass at the moment of sending; set by the app.
     var originProvider: (@MainActor () -> ReportOrigin.Input)?
@@ -41,8 +43,6 @@ final class ReportViewModel {
     var sendsLocation: Bool { originProvider?().isEmpty == false }
     var open: [Report] { reports.filter(\.isOpen) }
     var handled: [Report] { reports.filter(\.isHandled) }
-    /// The one to take further: the oldest still open.
-    var toEscalate: Report? { open.last }
 
     /// - Parameters:
     ///   - origin: where and which way, when it is not "here and now" (a library photo's EXIF).
@@ -59,11 +59,11 @@ final class ReportViewModel {
             let receipt = try await service.sendReport(body)
             message = String(localized: "Sent to the crew lead.")
             note = ""
-            reports.insert(
-                Report(id: receipt.id, createdAt: receipt.createdAt, kind: selected, note: body.note,
-                       status: receipt.status),
-                at: 0
+            let sent = Report(
+                id: receipt.id, createdAt: receipt.createdAt, kind: selected, note: body.note, status: receipt.status
             )
+            lastSent = sent
+            reports.insert(sent, at: 0)
             await refresh()
         } catch {
             let local = Report(

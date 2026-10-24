@@ -56,7 +56,8 @@ struct LiveCrewService: CrewService {
     }
 
     func complaint(report id: String) async throws -> ComplaintDraft {
-        let url = base.appending(path: "crew/complaint").appending(queryItems: [URLQueryItem(name: "report", value: id)])
+        let url = base.appending(path: "crew/complaint")
+            .appending(queryItems: [URLQueryItem(name: "report", value: id)])
         return try JSONDecoder().decode(ComplaintDraft.self, from: try await get(url))
     }
 

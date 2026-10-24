@@ -71,14 +71,6 @@ struct WorkerReport: View {
                 Text(message).font(Theme.Font.caption).foregroundStyle(Theme.inkSecondary)
             }
             if !model.reports.isEmpty { list }
-            if let report = model.toEscalate {
-                NavigationLink(value: report.id) {
-                    Text("Not fixed in 30 min? Take it further →")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(Theme.inkSecondary)
-                        .padding(.horizontal, Theme.Space.s)
-                }
-            }
         }
     }
 
@@ -114,6 +106,10 @@ struct WorkerReport: View {
                     Spacer(minLength: 0)
                     StatusPill(report: report)
                 }
+                if report.isOpen, Int(report.id) != nil {
+                    NavigationLink(value: report.id) { ComplaintEntry(report: report) }
+                        .buttonStyle(.plain)
+                }
             }
         }
         .padding(.horizontal, Theme.Space.l + 2)
@@ -144,4 +140,28 @@ struct ScreenTitle: View {
 #Preview {
     let plan = PlanViewModel(service: PreviewCrewService(), response: .preview)
     ReportView(model: ReportViewModel(service: PreviewCrewService(), plan: plan, reports: Report.previews))
+}
+
+/// "Prepare a Cal/OSHA complaint", on every open report, from the first minute. The 30 minutes
+/// are a courtesy to the crew lead, said under it, not a lock.
+struct ComplaintEntry: View {
+    let report: Report
+
+    var body: some View {
+        TimelineView(.periodic(from: .now, by: 30)) { context in
+            let left = ReportClock.minutesUntilEscalation(since: report.createdAt, now: context.date) ?? 0
+            VStack(alignment: .leading, spacing: 2) {
+                Text(left > 0 ? "Prepare a Cal/OSHA complaint" : "Not handled: prepare a complaint")
+                    .font(.system(size: 15, weight: .heavy))
+                    .foregroundStyle(Theme.color(.unhealthy))
+                if left > 0 {
+                    Text("Usually give the crew lead 30 minutes first (\(left) left)")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundStyle(Theme.inkSecondary)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(.rect)
+        }
+    }
 }

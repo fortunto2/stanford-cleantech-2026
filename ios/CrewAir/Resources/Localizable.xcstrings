@@ -1,117 +1,127 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "%@ %lld°" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$lld°"
+  "sourceLanguage": "en",
+  "strings": {
+    " · ": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " · "
+          }
+        }
+      }
+    },
+    "%@ %lld°": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ %2$lld°"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ %lld°"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %lld°"
           }
         }
       }
     },
-    "%@ from %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ from %2$@"
+    "%@ from %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ from %2$@"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ desde las %@"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ desde las %@"
           }
         }
       }
     },
-    "%@, direction unknown" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@, dirección desconocida"
+    "%@, direction unknown": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, dirección desconocida"
           }
         }
       }
     },
-    "%@: AQI %lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@: AQI %2$lld"
+    "%@: AQI %lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@: AQI %2$lld"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@: AQI %lld"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: AQI %lld"
           }
         }
       }
     },
-    "%lld" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld"
+    "%lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
           }
         }
       }
     },
-    "%lld min" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld min"
+    "%lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
           }
         }
       }
     },
-    "%lld reports waiting" : {
-      "localizations" : {
-        "en" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld report waiting"
+    "%lld reports waiting": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld report waiting"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld reports waiting"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld reports waiting"
                 }
               }
             }
           }
         },
-        "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld reporte esperando"
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld reporte esperando"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld reportes esperando"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld reportes esperando"
                 }
               }
             }
@@ -119,1865 +129,2002 @@
         }
       }
     },
-    "%lld%%" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld%%"
+    "%lld%%": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
           }
         }
       }
     },
-    "1 min" : {
-
-    },
-    "A fix, not a complaint" : {
-
-    },
-    "A planning aid, not legal advice." : {
-
-    },
-    "A planning aid, not legal advice. The rules themselves are in Title 8, §5141.1 and §3395." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una ayuda para planear, no asesoría legal. Las reglas están en el Título 8, §5141.1 y §3395."
+    "1 min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 min"
           }
         }
       }
     },
-    "A pre-shift meeting, someone watching the crew, a way to call for help." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una reunión antes del turno, alguien que vigile a la cuadrilla y una forma de pedir ayuda."
+    "A fix, not a complaint": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un arreglo, no una queja"
           }
         }
       }
     },
-    "AQI" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AQI"
+    "A planning aid, not legal advice.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una ayuda para planear, no asesoría legal."
           }
         }
       }
     },
-    "About" : {
-
-    },
-    "Adjusted" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajustado"
+    "A planning aid, not legal advice. The rules themselves are in Title 8, §5141.1 and §3395.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una ayuda para planear, no asesoría legal. Las reglas están en el Título 8, §5141.1 y §3395."
           }
         }
       }
     },
-    "AgSafe/WCNGG Cal/OSHA enforcement summaries; DIR 2024-105; Sonoma County farmworker study 2025." : {
-
-    },
-    "Air by the hour" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aire por hora"
+    "AQI": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AQI"
           }
         }
       }
     },
-    "Air · %@ all shift" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aire · %@ todo el turno"
+    "About": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de"
           }
         }
       }
     },
-    "AirNow %@: %@ µg/m³" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "AirNow %1$@: %2$@ µg/m³"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "AirNow %@: %@ µg/m³"
+    "Adjusted": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustado"
           }
         }
       }
     },
-    "Also" : {
-
-    },
-    "Anonymous if you want. Firing you for it is illegal." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anónimo si quieres. Despedirte por esto es ilegal."
+    "AgSafe/WCNGG Cal/OSHA enforcement summaries; DIR 2024-105; Sonoma County farmworker study 2025.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resúmenes de inspecciones de Cal/OSHA de AgSafe/WCNGG; DIR 2024-105; estudio de trabajadores agrícolas del condado de Sonoma, 2025."
           }
         }
       }
     },
-    "Answer reports fast" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Responde rápido a los reportes"
+    "Air by the hour": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aire por hora"
           }
         }
       }
     },
-    "Ash" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ceniza"
+    "Air · %@ all shift": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aire · %@ todo el turno"
           }
         }
       }
     },
-    "Ash falling" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cae ceniza"
-          }
-        }
-      }
-    },
-    "At AQI 151 the employer provides them. You should not pay: in a 2025 Sonoma study nearly                   a third of farmworkers bought their own." : {
-
-    },
-    "Back" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atrás"
-          }
-        }
-      }
-    },
-    "Back to the camera" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Volver a la cámara"
-          }
-        }
-      }
-    },
-    "By the hour" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Por hora"
-          }
-        }
-      }
-    },
-    "Cal/OSHA complaint" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Queja ante Cal/OSHA"
-          }
-        }
-      }
-    },
-    "Cal/OSHA complaint, drafted" : {
-
-    },
-    "California law, Cal/OSHA §5141.1 and §3395." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ley de California, Cal/OSHA §5141.1 y §3395."
-          }
-        }
-      }
-    },
-    "Can go further now" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ya se puede llevar más lejos"
-          }
-        }
-      }
-    },
-    "Cancel" : {
-
-    },
-    "Change place, day or shift" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cambiar lugar, día o turno"
-          }
-        }
-      }
-    },
-    "Check again" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Revisar otra vez"
-          }
-        }
-      }
-    },
-    "Check the sky" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Revisar el cielo"
-          }
-        }
-      }
-    },
-    "Checked" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verificado"
-          }
-        }
-      }
-    },
-    "Checking…" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Revisando…"
-          }
-        }
-      }
-    },
-    "Clear mountains (sample)" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montañas despejadas (ejemplo)"
-          }
-        }
-      }
-    },
-    "Close" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cerrar"
-          }
-        }
-      }
-    },
-    "Coming: once a partner agrees to receive reports" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próximamente: cuando una organización acepte recibir reportes"
-          }
-        }
-      }
-    },
-    "Copied" : {
-
-    },
-    "Copy" : {
-
-    },
-    "Could not mark it fixed: %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se pudo marcar como arreglado: %@"
-          }
-        }
-      }
-    },
-    "Could not read that photo." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se pudo leer esa foto."
-          }
-        }
-      }
-    },
-    "Crew Air · airsignal.app/crew" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crew Air · airsignal.app/crew"
-          }
-        }
-      }
-    },
-    "Crew lead · %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jefe de cuadrilla · %@"
-          }
-        }
-      }
-    },
-    "Day" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Día"
-          }
-        }
-      }
-    },
-    "Done" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listo"
-          }
-        }
-      }
-    },
-    "Each hour of the shift is checked against Cal/OSHA's smoke and heat triggers: N95s from AQI 151, shade from 80°F, high-heat steps from 95°F." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cada hora del turno se compara con los límites de humo y calor de Cal/OSHA: N95 desde AQI 151, sombra desde 80°F, medidas de calor alto desde 95°F."
-          }
-        }
-      }
-    },
-    "End %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fin %@"
-          }
-        }
-      }
-    },
-    "Facing %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hacia el %@"
-          }
-        }
-      }
-    },
-    "Facing %@ %lld°" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Facing %1$@ %2$lld°"
+    "AirNow %@: %@ µg/m³": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "AirNow %1$@: %2$@ µg/m³"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hacia el %@ %lld°"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirNow %@: %@ µg/m³"
           }
         }
       }
     },
-    "Feels sick" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se siente mal"
+    "Also": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "También"
           }
         }
       }
     },
-    "Fill the [brackets]. Nothing is sent from the app: you copy it into the form." : {
-
-    },
-    "Fire %lld km" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Incendio %lld km"
+    "Anonymous if you want. Firing you for it is illegal.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anónimo si quieres. Despedirte por esto es ilegal."
           }
         }
       }
     },
-    "Fire %lld km %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Fire %1$lld km %2$@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Incendio a %lld km %@"
+    "Ash": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ceniza"
           }
         }
       }
     },
-    "Firing or punishing you for a safety report is illegal (Labor Code §6310)." : {
-
-    },
-    "Fixed %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arreglado %@"
+    "Ash falling": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cae ceniza"
           }
         }
       }
     },
-    "Forecast" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pronóstico"
+    "At AQI 151 the employer provides them. You should not pay: in a 2025 Sonoma study nearly a third of farmworkers bought their own.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desde AQI 151 el empleador los da. No deberías pagar: en un estudio de Sonoma de 2025 casi un tercio de los trabajadores agrícolas compró los suyos."
           }
         }
       }
     },
-    "Forecast AQI %lld" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pronóstico AQI %lld"
+    "Back": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atrás"
           }
         }
       }
     },
-    "Forecast AQI %lld · Your sky: smoke %lld%%" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Forecast AQI %1$lld · Your sky: smoke %2$lld%%"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pronóstico AQI %lld · Tu cielo: humo %lld%%"
+    "Back to the camera": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volver a la cámara"
           }
         }
       }
     },
-    "Free legal aid" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ayuda legal gratuita"
+    "By the hour": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por hora"
           }
         }
       }
     },
-    "From AQI 151 your employer must provide N95s and tell you the AQI." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Desde AQI 151 tu empleador debe darte N95 y decirte el AQI."
+    "Cal/OSHA complaint": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Queja ante Cal/OSHA"
           }
         }
       }
     },
-    "Goes further in" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se escala en"
+    "Cal/OSHA complaint, drafted": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Queja ante Cal/OSHA, borrador"
           }
         }
       }
     },
-    "Goes to" : {
-
-    },
-    "Heat" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Calor"
+    "California law, Cal/OSHA §5141.1 and §3395.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ley de California, Cal/OSHA §5141.1 y §3395."
           }
         }
       }
     },
-    "Heat illness (§3395) is Cal/OSHA's most-cited rule in agriculture every year: 130                   violations and $404,000 in 2017–18, about $3,300 each. Willful cases go far higher:                   $276,425 for one landscaping company in 2024." : {
-
-    },
-    "Heavy work" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trabajo pesado"
+    "Can go further now": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ya se puede llevar más lejos"
           }
         }
       }
     },
-    "Here" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aquí"
+    "Cancel": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
           }
         }
       }
     },
-    "High-heat steps" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Medidas de calor alto"
+    "Change place, day or shift": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar lugar, día o turno"
           }
         }
       }
     },
-    "How Crew Air works" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cómo funciona Crew Air"
+    "Check again": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisar otra vez"
           }
         }
       }
     },
-    "I run a crew / I'm the employer" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dirijo una cuadrilla / soy el empleador"
+    "Check the sky": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisar el cielo"
           }
         }
       }
     },
-    "I work outside" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trabajo al aire libre"
+    "Checked": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificado"
           }
         }
       }
     },
-    "I'm the crew lead" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Soy el jefe de cuadrilla"
+    "Checking…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisando…"
           }
         }
       }
     },
-    "If you run the crew" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Si diriges la cuadrilla"
+    "Clear mountains (sample)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Montañas despejadas (ejemplo)"
           }
         }
       }
     },
-    "If you work outside" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Si trabajas al aire libre"
+    "Close": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
           }
         }
       }
     },
-    "In Report, \"I'm the crew lead\" shows open reports with a countdown." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En Reportar, \"Soy el jefe de cuadrilla\" muestra los reportes abiertos con una cuenta regresiva."
+    "Coming: once a partner agrees to receive reports": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximamente: cuando una organización acepte recibir reportes"
           }
         }
       }
     },
-    "Labor Code §6310 protects workers who report safety problems." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El Código Laboral §6310 protege a quien reporta problemas de seguridad."
+    "Copied": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiado"
           }
         }
       }
     },
-    "Located" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ubicado"
+    "Copy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar"
           }
         }
       }
     },
-    "Looks worse than the forecast" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se ve peor que el pronóstico"
+    "Could not mark it fixed: %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo marcar como arreglado: %@"
           }
         }
       }
     },
-    "Mark fixed" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marcar arreglado"
+    "Could not read that photo.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer esa foto."
           }
         }
       }
     },
-    "Mode" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo"
+    "Crew Air · airsignal.app/crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crew Air · airsignal.app/crew"
           }
         }
       }
     },
-    "Model only" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo modelo"
+    "Crew lead · %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jefe de cuadrilla · %@"
           }
         }
       }
     },
-    "Monitor" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monitor"
+    "Day": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día"
           }
         }
       }
     },
-    "Monitor %lld km" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Monitor %lld km"
+    "Done": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
           }
         }
       }
     },
-    "N95s are owed to you" : {
-
-    },
-    "N95s for everyone" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "N95 para todos"
+    "End %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fin %@"
           }
         }
       }
     },
-    "N95s out, work moved west" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "N95 repartidos, trabajo al oeste"
+    "Facing %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hacia el %@"
           }
         }
       }
     },
-    "No N95 rule yet: it starts at AQI 151" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aún no hay regla de N95: empieza en AQI 151"
-          }
-        }
-      }
-    },
-    "No N95s" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin N95"
-          }
-        }
-      }
-    },
-    "No N95s here" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No hay N95 aquí"
-          }
-        }
-      }
-    },
-    "No camera here: check a photo instead" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No hay cámara: revisa una foto"
-          }
-        }
-      }
-    },
-    "No draft for this report yet: %@" : {
-
-    },
-    "No morning air checks" : {
-
-    },
-    "No name, with the evidence" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin nombre, con la evidencia"
-          }
-        }
-      }
-    },
-    "No places found" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se encontraron lugares"
-          }
-        }
-      }
-    },
-    "No plan on site. The briefing sheet is that plan, made in a minute." : {
-
-    },
-    "No reports today." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin reportes hoy."
-          }
-        }
-      }
-    },
-    "No shade" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin sombra"
-          }
-        }
-      }
-    },
-    "No shade or water" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin sombra o agua"
-          }
-        }
-      }
-    },
-    "No sky in this photo. Point higher." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se ve el cielo en la foto. Apunta más arriba."
-          }
-        }
-      }
-    },
-    "No water" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin agua"
-          }
-        }
-      }
-    },
-    "Not fixed in 30 min? Take it further →" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Sin arreglo en 30 min? Llévalo más lejos →"
-          }
-        }
-      }
-    },
-    "Not fixed in 30 minutes" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin arreglo en 30 minutos"
-          }
-        }
-      }
-    },
-    "Not sent" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No enviado"
-          }
-        }
-      }
-    },
-    "Not sent: %@ Kept on this phone." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se envió: %@ Se guardó en este teléfono."
-          }
-        }
-      }
-    },
-    "Not sure, take another photo" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No es seguro, toma otra foto"
-          }
-        }
-      }
-    },
-    "On: the plan follows where you are" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activado: el plan sigue dónde estás"
-          }
-        }
-      }
-    },
-    "One tap" : {
-
-    },
-    "Open the Cal/OSHA form" : {
-
-    },
-    "Other" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otro"
-          }
-        }
-      }
-    },
-    "Per heat-illness violation" : {
-
-    },
-    "Place" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lugar"
-          }
-        }
-      }
-    },
-    "Plan" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plan"
-          }
-        }
-      }
-    },
-    "Point the camera at the horizon" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apunta la cámara al horizonte"
-          }
-        }
-      }
-    },
-    "Point the phone at the horizon. Faces are blacked out on the phone, only the sky is                   sent. If it looks worse than the forecast, report it in one tap." : {
-
-    },
-    "Point the phone at the horizon. Faces are blacked out on the phone, only the sky is sent. If it looks worse than the forecast, report it in one tap." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apunta el teléfono al horizonte. Las caras se tapan en el teléfono, solo se envía el cielo. Si se ve peor que el pronóstico, repórtalo con un toque."
-          }
-        }
-      }
-    },
-    "Print" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Imprimir"
-          }
-        }
-      }
-    },
-    "Print it before the shift, go over it with the crew, keep it. It lists the hours, the actions and the sources." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Imprímela antes del turno, repásala con la cuadrilla y guárdala. Tiene las horas, las acciones y las fuentes."
-          }
-        }
-      }
-    },
-    "Print the briefing sheet" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Imprimir la hoja informativa"
-          }
-        }
-      }
-    },
-    "Privacy" : {
-
-    },
-    "Report" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reportar"
-          }
-        }
-      }
-    },
-    "Report smoke" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reportar humo"
-          }
-        }
-      }
-    },
-    "Reports handled within 30 minutes stay a fix between you and your crew, not a complaint." : {
-
-    },
-    "Satellite" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Satélite"
-          }
-        }
-      }
-    },
-    "Satellite fire %lld km %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Satellite fire %1$lld km %2$@"
+    "Facing %@ %lld°": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Facing %1$@ %2$lld°"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Incendio por satélite a %lld km %@"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hacia el %@ %lld°"
           }
         }
       }
     },
-    "Satellite · %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Satélite · %@"
+    "Feels sick": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se siente mal"
           }
         }
       }
     },
-    "Saving…" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guardando…"
+    "Fill the [brackets]. Nothing is sent from the app: you copy it into the form.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llena los [corchetes]. La app no envía nada: tú lo copias en el formulario."
           }
         }
       }
     },
-    "Search a town or city" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Busca un pueblo o ciudad"
+    "Fire %lld km": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incendio %lld km"
           }
         }
       }
     },
-    "Searching…" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Buscando…"
-          }
-        }
-      }
-    },
-    "Send" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enviar"
-          }
-        }
-      }
-    },
-    "Send it on. Your name is not in it." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Envíalo. Tu nombre no va incluido."
-          }
-        }
-      }
-    },
-    "Send to the crew lead" : {
-
-    },
-    "Sending…" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enviando…"
-          }
-        }
-      }
-    },
-    "Sent" : {
-
-    },
-    "Sent to the crew lead" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enviado al jefe de cuadrilla"
-          }
-        }
-      }
-    },
-    "Sent to the crew lead." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enviado al jefe de cuadrilla."
-          }
-        }
-      }
-    },
-    "Server answered %lld." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El servidor respondió %lld."
-          }
-        }
-      }
-    },
-    "Shade and water" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombra y agua"
-          }
-        }
-      }
-    },
-    "Shade and water at 80°F, breaks and a watchful eye at 95°F." : {
-
-    },
-    "Shade at %lld°" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombra a %lld°"
-          }
-        }
-      }
-    },
-    "Shade from %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombra desde las %@"
-          }
-        }
-      }
-    },
-    "Shade up and fresh water close by, and you may rest in the shade." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombra puesta y agua fresca cerca, y puedes descansar a la sombra."
-          }
-        }
-      }
-    },
-    "Share the evidence card" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Compartir la tarjeta de evidencia"
-          }
-        }
-      }
-    },
-    "Shift" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turno"
-          }
-        }
-      }
-    },
-    "Sky" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cielo"
-          }
-        }
-      }
-    },
-    "Sky evidence" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Evidencia del cielo"
-          }
-        }
-      }
-    },
-    "Smoke" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Humo"
-          }
-        }
-      }
-    },
-    "Smoke and heat, shift by shift" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Humo y calor, turno por turno"
-          }
-        }
-      }
-    },
-    "Smoke can shift fast. Check the sky." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El humo puede cambiar rápido. Revisa el cielo."
-          }
-        }
-      }
-    },
-    "Smoke or haze" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Humo o neblina"
-          }
-        }
-      }
-    },
-    "Smoke · %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Humo · %@"
-          }
-        }
-      }
-    },
-    "Smoky city (sample)" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ciudad con humo (ejemplo)"
-          }
-        }
-      }
-    },
-    "Someone feels sick" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alguien se siente mal"
-          }
-        }
-      }
-    },
-    "Something else" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otra cosa"
-          }
-        }
-      }
-    },
-    "Something wrong?" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Algo anda mal?"
-          }
-        }
-      }
-    },
-    "Start" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Empezar"
-          }
-        }
-      }
-    },
-    "Start %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicio %@"
-          }
-        }
-      }
-    },
-    "Taken at %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tomada en %@"
-          }
-        }
-      }
-    },
-    "Tap what is wrong. It goes to the crew lead with the forecast, the satellite fire and the nearest monitor. Not fixed in 30 minutes? You can take it further." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toca lo que anda mal. Le llega al jefe de cuadrilla con el pronóstico, el incendio por satélite y el monitor más cercano. ¿Sin arreglo en 30 minutos? Puedes llevarlo más lejos."
-          }
-        }
-      }
-    },
-    "Tell the crew lead. No name needed." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Avisa al jefe de cuadrilla. Sin tu nombre."
-          }
-        }
-      }
-    },
-    "The briefing sheet is your record" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La hoja informativa es tu registro"
-          }
-        }
-      }
-    },
-    "The law, not a favour" : {
-
-    },
-    "The model says AQI %lld here. If it looks worse, tell the crew lead." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El modelo dice AQI %lld aquí. Si se ve peor, avisa al jefe de cuadrilla."
-          }
-        }
-      }
-    },
-    "The plan gives the hour each rule starts and the clean window, so heavy work moves                   instead of the shift stopping." : {
-
-    },
-    "The plan tells you when" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El plan te dice cuándo"
-          }
-        }
-      }
-    },
-    "The report reaches the crew lead with the air data attached, so it is not your word                   against theirs. Not fixed in 30 minutes? You can take it further." : {
-
-    },
-    "The reports server is not reachable." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se puede conectar con el servidor de reportes."
-          }
-        }
-      }
-    },
-    "The usual miss is paper" : {
-
-    },
-    "This photo goes once to TypeSafe's vision model for analysis and is not stored by us. Faces are blacked out on your phone first." : {
-
-    },
-    "Today" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoy"
-          }
-        }
-      }
-    },
-    "Tomorrow" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mañana"
-          }
-        }
-      }
-    },
-    "Try a sample" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Probar un ejemplo"
-          }
-        }
-      }
-    },
-    "Turn on crew-lead mode" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Activa el modo jefe de cuadrilla"
-          }
-        }
-      }
-    },
-    "Union or worker center" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sindicato o centro de trabajadores"
-          }
-        }
-      }
-    },
-    "Use a photo" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usar una foto"
-          }
-        }
-      }
-    },
-    "Use my location" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usar mi ubicación"
-          }
-        }
-      }
-    },
-    "Waiting · %lld min" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esperando · %lld min"
-          }
-        }
-      }
-    },
-    "What California's rules give your crew today, and a way to speak up." : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lo que las reglas de California le dan hoy a tu cuadrilla, y una forma de hablar."
-          }
-        }
-      }
-    },
-    "What goes with it" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lo que se envía"
-          }
-        }
-      }
-    },
-    "What it is worth, in money and in time." : {
-
-    },
-    "What you are owed, how to report, how to check the sky" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lo que te corresponde, cómo reportar, cómo revisar el cielo"
-          }
-        }
-      }
-    },
-    "What you did" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Qué hiciste"
-          }
-        }
-      }
-    },
-    "What you must do and when, and the reports to answer" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lo que debes hacer y cuándo, y los reportes que contestar"
-          }
-        }
-      }
-    },
-    "What you must do, and when, for this shift." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lo que debes hacer, y cuándo, en este turno."
-          }
-        }
-      }
-    },
-    "Where" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dónde"
-          }
-        }
-      }
-    },
-    "Where? (optional)" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Dónde? (opcional)"
-          }
-        }
-      }
-    },
-    "YOUR SKY" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TU CIELO"
-          }
-        }
-      }
-    },
-    "YOUR SKY · JUST NOW" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TU CIELO · AHORA"
-          }
-        }
-      }
-    },
-    "You are protected" : {
-
-    },
-    "Your crew reports smoke, symptoms or missing N95s, shade or water. Fix it and mark it fixed. After 30 minutes a worker can take it to Cal/OSHA, a union or legal aid." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu cuadrilla reporta humo, síntomas o falta de N95, sombra o agua. Arréglalo y márcalo como arreglado. Después de 30 minutos el trabajador puede llevarlo a Cal/OSHA, a un sindicato o a ayuda legal."
-          }
-        }
-      }
-    },
-    "Your sky: smoke %lld%%" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu cielo: humo %lld%%"
-          }
-        }
-      }
-    },
-    "cleanest air" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "aire más limpio"
-          }
-        }
-      }
-    },
-    "east block" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "bloque este"
-          }
-        }
-      }
-    },
-    "fire %lld km %@ (NASA satellite)" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "fire %1$lld km %2$@ (NASA satellite)"
+    "Fire %lld km %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Fire %1$lld km %2$@"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "incendio a %lld km %@ (satélite de la NASA)"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incendio a %lld km %@"
           }
         }
       }
     },
-    "good" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "bueno"
+    "Firing or punishing you for a safety report is illegal (Labor Code §6310).": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despedirte o castigarte por reportar un problema de seguridad es ilegal (Código Laboral §6310)."
           }
         }
       }
     },
-    "hazardous" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "peligroso"
+    "Fixed %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arreglado %@"
           }
         }
       }
     },
-    "kind, note, time, this hour's forecast, nearest satellite fire, nearest monitor." : {
-
-    },
-    "magnetic" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "magnético"
+    "Forecast": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronóstico"
           }
         }
       }
     },
-    "moderate" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "moderado"
+    "Forecast AQI %lld": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronóstico AQI %lld"
           }
         }
       }
     },
-    "monitor %lld µg/m³" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "monitor %lld µg/m³"
+    "Forecast AQI %lld · Your sky: smoke %lld%%": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Forecast AQI %1$lld · Your sky: smoke %2$lld%%"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pronóstico AQI %lld · Tu cielo: humo %lld%%"
           }
         }
       }
     },
-    "simulated, drag to turn" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "simulado, arrastra para girar"
+    "Free legal aid": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ayuda legal gratuita"
           }
         }
       }
     },
-    "the %@ page for today. The crew lead sees it, and anyone with the link. Nothing goes to an agency, union or employer system unless someone forwards it." : {
-
-    },
-    "toward the fire" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "hacia el incendio"
+    "Goes further in": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se escala en"
           }
         }
       }
     },
-    "true north" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "norte verdadero"
+    "Goes to": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Va a"
           }
         }
       }
     },
-    "unhealthy" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "dañino"
+    "Heat": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calor"
           }
         }
       }
     },
-    "unhealthy for sensitive groups" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "dañino para grupos sensibles"
+    "Heat illness (§3395) is Cal/OSHA's most-cited rule in agriculture every year: 130 violations and $404,000 in 2017–18, about $3,300 each. Willful cases go far higher: $276,425 for one landscaping company in 2024.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las enfermedades por calor (§3395) son la regla más citada por Cal/OSHA en la agricultura cada año: 130 infracciones y $404,000 en 2017–18, unos $3,300 cada una. Los casos intencionales cuestan mucho más: $276,425 a una empresa de jardinería en 2024."
           }
         }
       }
     },
-    "very unhealthy" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "muy dañino"
+    "Heavy work": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trabajo pesado"
           }
         }
       }
     },
-    "you can see %@" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "se ve a %@"
+    "Here": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aquí"
           }
         }
       }
     },
-    "your location (~100 m) and which way the camera faced." : {
-
-    },
-    "your name, phone, email. Photos are not attached to reports." : {
-
-    },
-    "–" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "–"
+    "How Crew Air works": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cómo funciona Crew Air"
           }
         }
       }
     },
-    "← Back" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "← Volver"
+    "I run a crew / I'm the employer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirijo una cuadrilla / soy el empleador"
+          }
+        }
+      }
+    },
+    "I work outside": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trabajo al aire libre"
+          }
+        }
+      }
+    },
+    "I'm the crew lead": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soy el jefe de cuadrilla"
+          }
+        }
+      }
+    },
+    "If you run the crew": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si diriges la cuadrilla"
+          }
+        }
+      }
+    },
+    "If you work outside": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si trabajas al aire libre"
+          }
+        }
+      }
+    },
+    "In Report, \"I'm the crew lead\" shows open reports with a countdown.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Reportar, \"Soy el jefe de cuadrilla\" muestra los reportes abiertos con una cuenta regresiva."
+          }
+        }
+      }
+    },
+    "Labor Code §6310 protects workers who report safety problems.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El Código Laboral §6310 protege a quien reporta problemas de seguridad."
+          }
+        }
+      }
+    },
+    "Located": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicado"
+          }
+        }
+      }
+    },
+    "Looks worse than the forecast": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se ve peor que el pronóstico"
+          }
+        }
+      }
+    },
+    "Mark fixed": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcar arreglado"
+          }
+        }
+      }
+    },
+    "Mode": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo"
+          }
+        }
+      }
+    },
+    "Model only": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo modelo"
+          }
+        }
+      }
+    },
+    "Monitor": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monitor"
+          }
+        }
+      }
+    },
+    "Monitor %lld km": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monitor %lld km"
+          }
+        }
+      }
+    },
+    "N95s are owed to you": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te corresponden los N95"
+          }
+        }
+      }
+    },
+    "N95s out, work moved west": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "N95 repartidos, trabajo al oeste"
+          }
+        }
+      }
+    },
+    "No N95 rule yet: it starts at AQI 151": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay regla de N95: empieza en AQI 151"
+          }
+        }
+      }
+    },
+    "No N95s": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin N95"
+          }
+        }
+      }
+    },
+    "No N95s here": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay N95 aquí"
+          }
+        }
+      }
+    },
+    "No camera here: check a photo instead": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay cámara: revisa una foto"
+          }
+        }
+      }
+    },
+    "No draft for this report yet: %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay borrador para este reporte: %@"
+          }
+        }
+      }
+    },
+    "No morning air checks": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin revisar el aire cada mañana"
+          }
+        }
+      }
+    },
+    "No name, with the evidence": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin nombre, con la evidencia"
+          }
+        }
+      }
+    },
+    "No places found": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontraron lugares"
+          }
+        }
+      }
+    },
+    "No plan on site. The briefing sheet is that plan, made in a minute.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No tener un plan en el lugar. La hoja informativa es ese plan, hecho en un minuto."
+          }
+        }
+      }
+    },
+    "No reports today.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin reportes hoy."
+          }
+        }
+      }
+    },
+    "No shade": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin sombra"
+          }
+        }
+      }
+    },
+    "No shade or water": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin sombra o agua"
+          }
+        }
+      }
+    },
+    "No sky in this photo. Point higher.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ve el cielo en la foto. Apunta más arriba."
+          }
+        }
+      }
+    },
+    "No water": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin agua"
+          }
+        }
+      }
+    },
+    "Not fixed in 30 minutes": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin arreglo en 30 minutos"
+          }
+        }
+      }
+    },
+    "Not handled: prepare a complaint": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin atender: prepara una queja"
+          }
+        }
+      }
+    },
+    "Not sent": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No enviado"
+          }
+        }
+      }
+    },
+    "Not sent: %@ Kept on this phone.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se envió: %@ Se guardó en este teléfono."
+          }
+        }
+      }
+    },
+    "Not sure, take another photo": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No es seguro, toma otra foto"
+          }
+        }
+      }
+    },
+    "On: the plan follows where you are": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activado: el plan sigue dónde estás"
+          }
+        }
+      }
+    },
+    "One tap": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un toque"
+          }
+        }
+      }
+    },
+    "Open the Cal/OSHA form": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir el formulario de Cal/OSHA"
+          }
+        }
+      }
+    },
+    "Other": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otro"
+          }
+        }
+      }
+    },
+    "Per heat-illness violation": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Por infracción de calor"
+          }
+        }
+      }
+    },
+    "Place": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lugar"
+          }
+        }
+      }
+    },
+    "Plan": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plan"
+          }
+        }
+      }
+    },
+    "Point the camera at the horizon": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apunta la cámara al horizonte"
+          }
+        }
+      }
+    },
+    "Point the phone at the horizon. Faces are blacked out on the phone, only the sky is sent. If it looks worse than the forecast, report it in one tap.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apunta el teléfono al horizonte. Las caras se tapan en el teléfono, solo se envía el cielo. Si se ve peor que el pronóstico, repórtalo con un toque."
+          }
+        }
+      }
+    },
+    "Prepare a Cal/OSHA complaint": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparar una queja ante Cal/OSHA"
+          }
+        }
+      }
+    },
+    "Prepare a complaint": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparar una queja"
+          }
+        }
+      }
+    },
+    "Print the briefing sheet": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imprimir la hoja informativa"
+          }
+        }
+      }
+    },
+    "Privacy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacidad"
+          }
+        }
+      }
+    },
+    "Report": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar"
+          }
+        }
+      }
+    },
+    "Report smoke": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar humo"
+          }
+        }
+      }
+    },
+    "Reports handled within 30 minutes stay a fix between you and your crew, not a complaint.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los reportes atendidos en 30 minutos quedan como un arreglo entre tú y tu cuadrilla, no una queja."
+          }
+        }
+      }
+    },
+    "Satellite": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satélite"
+          }
+        }
+      }
+    },
+    "Satellite fire %lld km %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Satellite fire %1$lld km %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incendio por satélite a %lld km %@"
+          }
+        }
+      }
+    },
+    "Satellite · %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satélite · %@"
+          }
+        }
+      }
+    },
+    "Saving…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardando…"
+          }
+        }
+      }
+    },
+    "Search a town or city": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Busca un pueblo o ciudad"
+          }
+        }
+      }
+    },
+    "Searching…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscando…"
+          }
+        }
+      }
+    },
+    "Send": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar"
+          }
+        }
+      }
+    },
+    "Send it on. Your name is not in it.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envíalo. Tu nombre no va incluido."
+          }
+        }
+      }
+    },
+    "Send to the crew lead": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviar al jefe de cuadrilla"
+          }
+        }
+      }
+    },
+    "Sending…": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviando…"
+          }
+        }
+      }
+    },
+    "Sent": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se envía"
+          }
+        }
+      }
+    },
+    "Sent to the crew lead": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviado al jefe de cuadrilla"
+          }
+        }
+      }
+    },
+    "Sent to the crew lead.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviado al jefe de cuadrilla."
+          }
+        }
+      }
+    },
+    "Server answered %lld.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servidor respondió %lld."
+          }
+        }
+      }
+    },
+    "Shade and water at 80°F, breaks and a watchful eye at 95°F.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sombra y agua a 80°F, descansos y alguien atento a 95°F."
+          }
+        }
+      }
+    },
+    "Shade at %lld°": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sombra a %lld°"
+          }
+        }
+      }
+    },
+    "Shade from %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sombra desde las %@"
+          }
+        }
+      }
+    },
+    "Share the evidence card": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartir la tarjeta de evidencia"
+          }
+        }
+      }
+    },
+    "Shift": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turno"
+          }
+        }
+      }
+    },
+    "Sky": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cielo"
+          }
+        }
+      }
+    },
+    "Sky evidence": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Evidencia del cielo"
+          }
+        }
+      }
+    },
+    "Smoke": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Humo"
+          }
+        }
+      }
+    },
+    "Smoke and heat, shift by shift": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Humo y calor, turno por turno"
+          }
+        }
+      }
+    },
+    "Smoke can shift fast. Check the sky.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El humo puede cambiar rápido. Revisa el cielo."
+          }
+        }
+      }
+    },
+    "Smoke or haze": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Humo o neblina"
+          }
+        }
+      }
+    },
+    "Smoke · %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Humo · %@"
+          }
+        }
+      }
+    },
+    "Smoky city (sample)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciudad con humo (ejemplo)"
+          }
+        }
+      }
+    },
+    "Someone feels sick": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alguien se siente mal"
+          }
+        }
+      }
+    },
+    "Something else": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otra cosa"
+          }
+        }
+      }
+    },
+    "Something wrong?": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Algo anda mal?"
+          }
+        }
+      }
+    },
+    "Start": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar"
+          }
+        }
+      }
+    },
+    "Start %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio %@"
+          }
+        }
+      }
+    },
+    "Take it further": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Llévalo más lejos"
+          }
+        }
+      }
+    },
+    "Taken at %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomada en %@"
+          }
+        }
+      }
+    },
+    "Tell the crew lead. No name needed.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avisa al jefe de cuadrilla. Sin tu nombre."
+          }
+        }
+      }
+    },
+    "The law, not a favour": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Es la ley, no un favor"
+          }
+        }
+      }
+    },
+    "The model says AQI %lld here. If it looks worse, tell the crew lead.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El modelo dice AQI %lld aquí. Si se ve peor, avisa al jefe de cuadrilla."
+          }
+        }
+      }
+    },
+    "The plan gives the hour each rule starts and the clean window, so heavy work moves instead of the shift stopping.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El plan da la hora en que empieza cada regla y la ventana de aire limpio, así el trabajo pesado se mueve en vez de parar el turno."
+          }
+        }
+      }
+    },
+    "The report reaches the crew lead with the air data attached, so it is not your word against theirs. Not fixed in 30 minutes? You can take it further.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El reporte le llega al jefe de cuadrilla con los datos del aire, así no es tu palabra contra la suya. ¿Sin arreglo en 30 minutos? Puedes llevarlo más lejos."
+          }
+        }
+      }
+    },
+    "The reports server is not reachable.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se puede conectar con el servidor de reportes."
+          }
+        }
+      }
+    },
+    "The usual miss is paper": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La falla común es el papeleo"
+          }
+        }
+      }
+    },
+    "This photo goes once to TypeSafe's vision model for analysis and is not stored by us. Faces are blacked out on your phone first.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta foto va una vez al modelo de visión de TypeSafe para analizarla y no la guardamos. Antes, las caras se tapan en tu teléfono."
+          }
+        }
+      }
+    },
+    "Today": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
+          }
+        }
+      }
+    },
+    "Tomorrow": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mañana"
+          }
+        }
+      }
+    },
+    "Try a sample": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probar un ejemplo"
+          }
+        }
+      }
+    },
+    "Turn on crew-lead mode": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activa el modo jefe de cuadrilla"
+          }
+        }
+      }
+    },
+    "Union or worker center": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sindicato o centro de trabajadores"
+          }
+        }
+      }
+    },
+    "Use a photo": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar una foto"
+          }
+        }
+      }
+    },
+    "Use my location": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar mi ubicación"
+          }
+        }
+      }
+    },
+    "Usually give the crew lead 30 minutes first (%lld left)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normalmente se le dan 30 minutos al jefe de cuadrilla primero (quedan %lld)"
+          }
+        }
+      }
+    },
+    "Waiting · %lld min": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esperando · %lld min"
+          }
+        }
+      }
+    },
+    "What California's rules give your crew today, and a way to speak up.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo que las reglas de California le dan hoy a tu cuadrilla, y una forma de hablar."
+          }
+        }
+      }
+    },
+    "What goes with it": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo que se envía"
+          }
+        }
+      }
+    },
+    "What it is worth, in money and in time.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo que vale, en dinero y en tiempo."
+          }
+        }
+      }
+    },
+    "What you are owed, how to report, how to check the sky": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo que te corresponde, cómo reportar, cómo revisar el cielo"
+          }
+        }
+      }
+    },
+    "What you did": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué hiciste"
+          }
+        }
+      }
+    },
+    "What you must do and when, and the reports to answer": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo que debes hacer y cuándo, y los reportes que contestar"
+          }
+        }
+      }
+    },
+    "Where": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dónde"
+          }
+        }
+      }
+    },
+    "Where? (optional)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Dónde? (opcional)"
+          }
+        }
+      }
+    },
+    "YOUR SKY": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TU CIELO"
+          }
+        }
+      }
+    },
+    "YOUR SKY · JUST NOW": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TU CIELO · AHORA"
+          }
+        }
+      }
+    },
+    "You are protected": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estás protegido"
+          }
+        }
+      }
+    },
+    "Your sky: smoke %lld%%": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu cielo: humo %lld%%"
+          }
+        }
+      }
+    },
+    "cleanest air": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "aire más limpio"
+          }
+        }
+      }
+    },
+    "east block": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bloque este"
+          }
+        }
+      }
+    },
+    "fire %lld km %@ (NASA satellite)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "fire %1$lld km %2$@ (NASA satellite)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "incendio a %lld km %@ (satélite de la NASA)"
+          }
+        }
+      }
+    },
+    "good": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bueno"
+          }
+        }
+      }
+    },
+    "hazardous": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "peligroso"
+          }
+        }
+      }
+    },
+    "kind, note, time, this hour's forecast, nearest satellite fire, nearest monitor.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tipo, nota, hora, el pronóstico de esta hora, el incendio por satélite más cercano, el monitor más cercano."
+          }
+        }
+      }
+    },
+    "magnetic": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "magnético"
+          }
+        }
+      }
+    },
+    "moderate": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "moderado"
+          }
+        }
+      }
+    },
+    "monitor %lld µg/m³": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "monitor %lld µg/m³"
+          }
+        }
+      }
+    },
+    "simulated, drag to turn": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "simulado, arrastra para girar"
+          }
+        }
+      }
+    },
+    "the %@ page for today. The crew lead sees it, and anyone with the link. Nothing goes to an agency, union or employer system unless someone forwards it.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "la página de %@ de hoy. La ve el jefe de cuadrilla y cualquiera con el enlace. No va a ninguna agencia, sindicato ni sistema del empleador a menos que alguien lo reenvíe."
+          }
+        }
+      }
+    },
+    "toward the fire": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hacia el incendio"
+          }
+        }
+      }
+    },
+    "true north": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "norte verdadero"
+          }
+        }
+      }
+    },
+    "unhealthy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dañino"
+          }
+        }
+      }
+    },
+    "unhealthy for sensitive groups": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dañino para grupos sensibles"
+          }
+        }
+      }
+    },
+    "very unhealthy": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "muy dañino"
+          }
+        }
+      }
+    },
+    "you can see %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "se ve a %@"
+          }
+        }
+      }
+    },
+    "your location (~100 m) and which way the camera faced.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tu ubicación (~100 m) y hacia dónde apuntaba la cámara."
+          }
+        }
+      }
+    },
+    "your name, phone, email. Photos are not attached to reports.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tu nombre, teléfono, correo. Las fotos no se adjuntan a los reportes."
+          }
+        }
+      }
+    },
+    "–": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "–"
+          }
+        }
+      }
+    },
+    "← Back": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "← Volver"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }
