@@ -3,8 +3,8 @@
 <div style="display:flex;gap:56px;align-items:flex-start">
 <div style="flex:1;display:flex;flex-direction:column;gap:18px;font-size:27px;line-height:1.35">
 <p>Smoke models have 40 km cells and read low next to a fire. At one of our test sites the nearest monitor is 48.7 km away.</p>
-<p>So when a satellite sees fire within 30 km, the API now issues a task: a bearing, a distance, and “sample PM2.5 toward it”. A fixed sensor node answers; where there is no ground, a drone does, outside the fire’s flight restriction.</p>
-<p>The reading comes back through the same report endpoint, and the next plan is corrected by it the way it is by an AirNow monitor today.</p>
+<p>So when a satellite sees fire within 50 km, the API now issues a task: a bearing, a distance, and “sample PM2.5 toward it”. A fixed sensor node answers; where there is no ground, a drone does, outside the fire’s flight restriction.</p>
+<p>The reading comes back through the same report endpoint, and the next plan is corrected by it the way it is by an AirNow monitor today. Scout payload, a concept: an SPS30-class PM2.5 module and an LTE modem on a standard drone, intake ahead of the downwash; the API side is live, the payload is not built.</p>
 <p style="color:#C9BFB4;font-size:24px">Not today: autonomous flight over a fire (FAA TFR, Part 107 BVLOS) or “every second” sampling. Smoke takes 1–3 hours to travel 20 km; one reading every 15 minutes is what a plan needs.</p>
 </div>
 <pre style="width:720px;margin:0;padding:36px 40px;background:#1B2232;border-radius:24px;font-family:'SF Mono', Menlo, monospace;font-size:23px;line-height:1.45;color:#FBF7F2;white-space:pre-wrap">GET /api/crew?place=36.95,-120.15
@@ -19,5 +19,5 @@
     fire's TFR, and report"
 }</pre>
 </div>
-<aside>The satellite is the trigger, the sensor is the answer. When VIIRS sees fire within 30 km the API hands out a task with a bearing, a fixed node or a drone takes the reading from outside the flight restriction, and the reading corrects the next plan the way an AirNow monitor does today. We are explicit about what this is not: nobody flies over a fire, and nobody needs a reading every second, smoke takes hours to arrive.</aside>
+<aside>The satellite is the trigger, the sensor is the answer. When VIIRS sees fire within 50 km the API hands out a task with a bearing, a fixed node or a drone takes the reading from outside the flight restriction, and the reading corrects the next plan the way an AirNow monitor does today. We are explicit about what this is not: nobody flies over a fire, and nobody needs a reading every second, smoke takes hours to arrive.</aside>
 </section>
