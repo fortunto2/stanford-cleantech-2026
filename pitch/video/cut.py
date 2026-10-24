@@ -33,6 +33,7 @@ K = {
     "drone": D / "kling_20261025_VIDEO_A_small_in_1941_0.mp4",
     "lineman": D / "kling_20261025_VIDEO_A_lineman__1909_0.mp4",
     "lights": D / "kling_20261025_VIDEO_Power_line_1912_0.mp4",
+    "tenforty": D / "kling_20261025_VIDEO_giant_weat_1950_0.mp4",
     "hero": ROOT / "pitch" / "hero.jpg",
 }
 
@@ -50,7 +51,8 @@ SHOTS = [
     ("drone", 0.0, 2, "DRONE"),
     ("drone", 3.0, 1, "READING 38"),
     ("lineman", 0.0, 1, "RECORD"),
-    ("lineman", 1.7, 2, "SIGNED 10:40"),
+    ("lineman", 1.7, 1, "SIGNED"),
+    ("tenforty", 0.0, 2, ""),
     ("lights", 0.0, 2, "LIGHTS ON"),
     ("hero", 0.0, 2, "CREW AIR"),
     ("end", 0.0, 2, ""),
@@ -98,10 +100,12 @@ def main() -> None:
             chains.append(f"{base},setsar=1,format=yuv420p[v{i}]")
             continue
         inputs += ["-ss", f"{off:.3f}", "-t", f"{dur + 0.2:.3f}", "-i", str(K[clip])]
-        words.append((i, word_png(i, word), dur))
-        chains.append(
-            f"[{i}:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps={FPS},scale={W}:{H},eq=contrast=1.08:saturation=0.9:gamma=0.98,setsar=1[c{i}]"
-        )
+        base = f"[{i}:v]trim=0:{dur:.3f},setpts=PTS-STARTPTS,fps={FPS},scale={W}:{H},eq=contrast=1.08:saturation=0.9:gamma=0.98,setsar=1"
+        if word:
+            words.append((i, word_png(i, word), dur))
+            chains.append(f"{base}[c{i}]")
+        else:
+            chains.append(f"{base},format=yuv420p[v{i}]")
     total = DB[bar] - DB[0]
     n = len(SHOTS)
     # word overlays come after the clip inputs
