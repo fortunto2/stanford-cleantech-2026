@@ -8,7 +8,12 @@
 - Our answer for the pitch: the pain is a crew lead at 6 a.m. with a rule (§5141.1, §3395) and no tool;
   the payer is the employer (fine, downtime, the sheet an inspector asks for).
 
-## Ros (local, smart-panel + battery behind the meter, pilot with PG&E, street-light VPP; t=14–30)
+## Rongxin Yin, LBNL Grid Integration Group ("Ros" in the transcript; t=14–30)
+- Senior Scientific Engineering Associate at Lawrence Berkeley National Laboratory since 2007: demand
+  flexibility of commercial buildings, Auto-DR / OpenADR, thermal energy storage, and a 2010 paper on
+  pre-cooling commercial buildings with thermal mass in California (our `home.precool` is his topic).
+  DFAT toolkit (2025). Here: smart panel + battery behind the meter, pilot with PG&E, street-light VPP.
+  Confirmed interest in integrating; they take energy forecasts from PG&E. Contact kept privately.
 - Users he sees: building and facility managers, city managers, healthcare, hotels; "vulnerable populations".
 - Two uses he offered: evacuation planning on a detection; PSPS preparation: pre-charge the battery to 100%
   and plan 10–25 h of backup. Both map onto `home` and `dispatch` in our JSON.
