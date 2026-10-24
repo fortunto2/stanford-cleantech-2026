@@ -33,3 +33,9 @@ A Rust engine (NowCast, rulebooks as data, the plan, the checks) compiled to WAS
 A satellite sees heat, not smoke. A vision model is not a sensor. The rule does not forbid work in smoke; it requires a determination and a record, so that is what we sell. The drone payload is a concept; the API side is live.
 
 **Disclosure:** built in the hacking hours on top of our earlier open-source work (the Air Signal site, the AQI merge, camera geometry); the README says which is which.
+
+## 16:02 · Asher's story text is what is on Devpost now
+Pasted as he wrote it, with three edits: "legally binding" → "the record the rule requires"; "bleeding millions
+of dollars in grid downtime (SAIDI penalties)" → "losing hours of grid downtime and wasted truck rolls";
+"irrefutable compliance log" → "the compliance log"; plus "outside the FAA flight restriction" on the drone
+and the three live links. The SE Airborne Scout stays, labelled a concept in his own disclosure.
