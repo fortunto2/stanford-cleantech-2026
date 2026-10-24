@@ -24,7 +24,7 @@ certifying air. The employer determines the AQI (§5141.1(c), Appendix A); we re
 
 ## The 3-minute pitch (finalists: 3 min + 2 min Q&A)
 
-Slides: cover · problem · fines · outcome · plan · layers · app · grid · linecrew · ladder · model · base · ask.
+Slides (10): cover · problem · fines · plan · layers · app · ladder · grid · model · ask. Appendix: rules, live, outcome, base, bms, linecrew, physical, matrix, objections, cases.
 
 0:00 **Cover.** "Crew Air. California tells outdoor employers exactly what to do when smoke or heat
 hits a crew. Almost nobody does it. We turn the forecast into that shift plan."
