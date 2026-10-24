@@ -3,7 +3,7 @@
 **Smoke and heat forecasts turned into a shift plan, so the job site keeps working and stays within the law.**
 
 Stanford Cleantech Hackathon 2026 · Track 2 Climate & Health · Track 1 Energy & the Grid (the same hours for a home, airsignal.app/crew/grid) · Track 3 Resilient Systems (building, home and sensor signals; line crews after a fire)
-· **Live: [airsignal.app/crew](https://airsignal.app/crew)** · [Pitch deck](https://claude.ai/artifact/Kxr2SHzzCTs2JyCXoSFSsQ) · [pitch/](pitch/)
+· **Live: [airsignal.app/crew](https://airsignal.app/crew)** · [Pitch deck](https://claude.ai/artifact/2YRYbz8SuvFxQuQqYs9gTA) · [pitch/](pitch/)
 
 ## The problem
 
