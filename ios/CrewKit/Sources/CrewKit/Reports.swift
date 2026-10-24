@@ -57,25 +57,84 @@ public struct Report: Codable, Sendable, Equatable, Identifiable {
     public let createdAt: String
     public let kind: ReportKind
     public let note: String?
+    /// "open", "handled", or "unsent" for one that never left the phone.
     public let status: String
     public let handledAt: String?
+    public let handledNote: String?
+    /// What the plan said at the hour the report was made, attached by the server.
+    public let evidence: Evidence?
 
-    public init(id: String, createdAt: String, kind: ReportKind, note: String?, status: String, handledAt: String?) {
+    public init(
+        id: String, createdAt: String, kind: ReportKind, note: String?, status: String,
+        handledAt: String? = nil, handledNote: String? = nil, evidence: Evidence? = nil
+    ) {
         self.id = id
         self.createdAt = createdAt
         self.kind = kind
         self.note = note
         self.status = status
         self.handledAt = handledAt
+        self.handledNote = handledNote
+        self.evidence = evidence
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, kind, note, status
+        case id, kind, note, status, evidence
         case createdAt = "created_at"
         case handledAt = "handled_at"
+        case handledNote = "handled_note"
     }
 
     public var isOpen: Bool { status == "open" }
+    public var isHandled: Bool { status == "handled" }
+    public var isUnsent: Bool { status == "unsent" }
+}
+
+/// The facts a report carries: the NowCast hour, the nearest satellite fire, the ground monitor.
+public struct Evidence: Codable, Sendable, Equatable {
+    public let hour: String?
+    public let metrics: Metrics?
+    public let fire: Fire?
+    public let ground: Ground?
+
+    public init(hour: String? = nil, metrics: Metrics? = nil, fire: Fire? = nil, ground: Ground? = nil) {
+        self.hour = hour
+        self.metrics = metrics
+        self.fire = fire
+        self.ground = ground
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        hour = try? c.decodeIfPresent(String.self, forKey: .hour)
+        metrics = try? c.decodeIfPresent(Metrics.self, forKey: .metrics)
+        fire = try? c.decodeIfPresent(Fire.self, forKey: .fire)
+        ground = try? c.decodeIfPresent(Ground.self, forKey: .ground)
+    }
+}
+
+/// Body of `POST /api/crew/report` when the crew lead closes one.
+public struct HandleRequest: Codable, Sendable, Equatable {
+    public let place: String
+    public let date: String
+    public let action: String
+    public let id: Int
+    public let note: String
+
+    public init(place: String, date: String, id: Int, note: String) {
+        self.place = place
+        self.date = date
+        self.action = "handle"
+        self.id = id
+        self.note = note
+    }
+}
+
+/// Reply to a handle: `{id, status: "handled"}`.
+public struct HandleReceipt: Codable, Sendable, Equatable {
+    public let status: String
+
+    public init(status: String) { self.status = status }
 }
 
 /// Reply of `GET /api/crew/reports`.
@@ -102,6 +161,8 @@ extension Report {
         note = try c.decodeIfPresent(String.self, forKey: .note)
         status = try c.decode(String.self, forKey: .status)
         handledAt = try c.decodeIfPresent(String.self, forKey: .handledAt)
+        handledNote = try? c.decodeIfPresent(String.self, forKey: .handledNote)
+        evidence = try? c.decodeIfPresent(Evidence.self, forKey: .evidence)
     }
 }
 
@@ -110,5 +171,28 @@ extension KeyedDecodingContainer {
     func decodeFlexibleID(forKey key: Key) throws -> String {
         if let s = try? decode(String.self, forKey: key) { return s }
         return String(try decode(Int.self, forKey: key))
+    }
+}
+
+/// The 30-minute ladder: a report the crew lead has not fixed in this long can go further.
+public enum ReportClock {
+    public static let escalateAfterMinutes = 30
+
+    /// Parses the server's ISO timestamps, with or without fractional seconds.
+    public static func date(_ iso: String) -> Date? {
+        let full = ISO8601DateFormatter()
+        full.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        if let d = full.date(from: iso) { return d }
+        return ISO8601DateFormatter().date(from: iso)
+    }
+
+    /// Whole minutes since the report was made, never negative.
+    public static func minutesWaiting(since iso: String, now: Date) -> Int? {
+        date(iso).map { max(0, Int(now.timeIntervalSince($0) / 60)) }
+    }
+
+    /// Minutes until it can be escalated, 0 once it can.
+    public static func minutesUntilEscalation(since iso: String, now: Date) -> Int? {
+        minutesWaiting(since: iso, now: now).map { max(0, escalateAfterMinutes - $0) }
     }
 }

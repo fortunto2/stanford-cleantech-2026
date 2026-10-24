@@ -1,0 +1,28 @@
+{
+    "verdict": "Smoke or haze in the air.",
+    "smoke_call": "yes",
+    "sky_visible": true,
+    "smoke": 0.97,
+    "plume": 0.07,
+    "ash": 0.29,
+    "visibility": {
+        "label": "under 1 mile",
+        "category": "Hazardous",
+        "aqi_range": [
+            301,
+            500
+        ],
+        "confidence": 0.05,
+        "trusted": false
+    },
+    "model": {
+        "aqi": 41,
+        "place": "Fresno, California"
+    },
+    "looks_worse_than_model": true,
+    "source": {
+        "model": "jev-1.14.0",
+        "ms": 76,
+        "visibility_table": "EPA/CDC Wildfire Smoke: A Guide for Public Health Officials"
+    }
+}

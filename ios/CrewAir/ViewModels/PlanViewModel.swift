@@ -5,9 +5,14 @@ import Foundation
 @MainActor
 final class PlanViewModel {
     enum Day: String, CaseIterable, Identifiable {
-        case today = "Today"
-        case tomorrow = "Tomorrow"
+        case today, tomorrow
         var id: String { rawValue }
+        var title: String {
+            switch self {
+            case .today: String(localized: "Today")
+            case .tomorrow: String(localized: "Tomorrow")
+            }
+        }
     }
 
     var place = "Fresno"
@@ -25,18 +30,24 @@ final class PlanViewModel {
         self.response = response
     }
 
-    /// The crews are in California; the plan's hours are Pacific wall-clock.
-    static let calendar: Calendar = {
-        var c = Calendar(identifier: .gregorian)
-        c.timeZone = TimeZone(identifier: "America/Los_Angeles") ?? .current
-        return c
-    }()
-
     var date: String {
         let now = Date()
-        let d = day == .today ? now : Self.calendar.date(byAdding: .day, value: 1, to: now) ?? now
-        let parts = Self.calendar.dateComponents([.year, .month, .day], from: d)
+        let d = day == .today ? now : Clock.calendar.date(byAdding: .day, value: 1, to: now) ?? now
+        let parts = Clock.calendar.dateComponents([.year, .month, .day], from: d)
         return String(format: "%04d-%02d-%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0)
+    }
+
+    var digest: PlanDigest? { response.map { PlanDigest(plan: $0.plan) } }
+
+    /// The printable /crew page for the same place, day and shift.
+    var briefingURL: URL? {
+        var parts = URLComponents(string: "https://airsignal.app/crew")
+        parts?.queryItems = [
+            URLQueryItem(name: "place", value: place),
+            URLQueryItem(name: "date", value: date),
+            URLQueryItem(name: "shift", value: shift.query),
+        ]
+        return parts?.url
     }
 
     func load(force: Bool = false) async {

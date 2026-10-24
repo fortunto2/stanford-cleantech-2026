@@ -6,6 +6,7 @@ protocol CrewService: Sendable {
     func plan(place: String, date: String, shift: String) async throws -> CrewResponse
     func sendReport(_ report: ReportRequest) async throws -> ReportReceipt
     func reports(place: String, date: String) async throws -> [Report]
+    func handle(_ request: HandleRequest) async throws -> HandleReceipt
 }
 
 enum CrewServiceError: LocalizedError {
@@ -14,14 +15,21 @@ enum CrewServiceError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .notLive: "The reports endpoint is not live yet."
-        case .http(let code): "Server answered \(code)."
+        case .notLive: String(localized: "The reports server is not reachable.")
+        case .http(let code): String(localized: "Server answered \(code).")
         }
     }
 }
 
 struct LiveCrewService: CrewService {
     var base = URL(string: "https://airsignal.app/api")!
+
+    /// No local HTTP cache: a plan read hours ago must not stand in for today's, and reports are live.
+    private static let session: URLSession = {
+        let config = URLSessionConfiguration.ephemeral
+        config.requestCachePolicy = .reloadIgnoringLocalCacheData
+        return URLSession(configuration: config)
+    }()
 
     func plan(place: String, date: String, shift: String) async throws -> CrewResponse {
         let url = base.appending(path: "crew").appending(queryItems: [
@@ -33,13 +41,21 @@ struct LiveCrewService: CrewService {
     }
 
     func sendReport(_ report: ReportRequest) async throws -> ReportReceipt {
+        try JSONDecoder().decode(ReportReceipt.self, from: try await post(report))
+    }
+
+    func handle(_ request: HandleRequest) async throws -> HandleReceipt {
+        try JSONDecoder().decode(HandleReceipt.self, from: try await post(request))
+    }
+
+    private func post(_ body: some Encodable) async throws -> Data {
         var request = URLRequest(url: base.appending(path: "crew/report"))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(report)
-        let (data, response) = try await URLSession.shared.data(for: request)
+        request.httpBody = try JSONEncoder().encode(body)
+        let (data, response) = try await Self.session.data(for: request)
         try check(response)
-        return try JSONDecoder().decode(ReportReceipt.self, from: data)
+        return data
     }
 
     func reports(place: String, date: String) async throws -> [Report] {
@@ -51,14 +67,14 @@ struct LiveCrewService: CrewService {
     }
 
     private func get(_ url: URL) async throws -> Data {
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await Self.session.data(from: url)
         try check(response)
         return data
     }
 
     private func check(_ response: URLResponse) throws {
         guard let http = response as? HTTPURLResponse else { return }
-        if http.statusCode == 404 || http.statusCode == 405 { throw CrewServiceError.notLive }
+        if http.statusCode == 405 { throw CrewServiceError.notLive }
         guard (200 ..< 300).contains(http.statusCode) else { throw CrewServiceError.http(http.statusCode) }
     }
 }

@@ -3,3 +3,5 @@ build-sim/
 CrewKit/.build/
 CrewKit/.swiftpm/
 .DS_Store
+Makefile.local
+build/

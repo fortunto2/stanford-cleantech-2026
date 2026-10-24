@@ -1,3 +1,4 @@
+import CrewKit
 import SwiftUI
 
 @main
@@ -20,22 +21,32 @@ struct CrewAirApp: App {
 }
 
 struct RootView: View {
+    enum Screen: Hashable { case plan, sky, report }
+
     let plan: PlanViewModel
     let reports: ReportViewModel
+    @State private var screen: Screen = .plan
 
     var body: some View {
-        TabView {
-            Tab("Plan", systemImage: "list.bullet.clipboard") {
+        TabView(selection: $screen) {
+            Tab("Plan", systemImage: "list.bullet.clipboard", value: .plan) {
                 PlanView(model: plan)
             }
-            Tab("Sky", systemImage: "camera.viewfinder") {
-                SkyView(response: plan.response, checker: StubSkyChecker())
+            Tab("Sky", systemImage: "sun.horizon", value: .sky) {
+                SkyView(response: plan.response, checker: StubSkyChecker()) {
+                    reports.selected = .smoke
+                    reports.isLead = false
+                    screen = .report
+                }
             }
-            Tab("Report", systemImage: "exclamationmark.bubble") {
+            Tab("Report", systemImage: "flag", value: .report) {
                 ReportView(model: reports)
             }
         }
-        .tint(Theme.accent)
+        .tint(screen == .sky ? Theme.skyInk : Theme.ink)
+        // The design is one warm light theme; Sky darkens its own tab bar over the camera.
+        .preferredColorScheme(.light)
         .task { await plan.load() }
+        .onChange(of: plan.response?.place.name) { Task { await reports.refresh() } }
     }
 }

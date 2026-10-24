@@ -31,23 +31,26 @@ CrewAir/
 
 ## Tabs
 
-- **Plan**: place, today/tomorrow, shift hours. Fire warning (prominent when a fire is within
-  50 km), confidence level and notes, the actions with their citations, an hourly strip (AQI
-  in its EPA colour, °F floored), and the building ventilation (BMS) line.
-- **Sky**: rear camera with labels pinned to compass bearings on the horizon, using device
-  motion (true north once location is allowed, magnetic before). In the Simulator there is no
-  camera or compass: a dark backdrop, heading starts at 315°, drag sideways to turn.
-- **Report**: one tap per kind (smoke, ash, symptoms, no N95, no shade, no water, other), an
-  optional note, and today's reports with status. A report the server refuses stays on the
-  phone marked `unsent`.
+- **Plan**: one hero card in the colour of the shift's peak EPA band (peak AQI, the first
+  smoke rule as a sentence), Heat and Heavy-work tiles, "Air by the hour" bars, a Checked /
+  Model only chip, and "Print the briefing sheet" (opens airsignal.app/crew in Safari). Tap
+  the place name to change place, day or shift.
+- **Sky**: rear camera with the nearest fire and the nearest AirNow monitor pinned to their
+  compass bearings on the horizon (true north once location is allowed, magnetic before).
+  In the Simulator: dark backdrop, heading 315°, drag sideways to turn.
+- **Report**: four big kinds, "Where?", Send, today's reports with Waiting / Fixed pills,
+  and "Take it further" to the Escalate screen. "I'm the crew lead" turns the tab into the
+  lead board: open reports with a 30-minute countdown, the evidence the server attached,
+  "What you did" and Mark fixed (`action: "handle"`).
+
+English and Spanish: `CrewAir/Resources/Localizable.xcstrings` and `InfoPlist.xcstrings`.
+Rule texts from the API stay in English. After adding UI strings, build, then sync:
+`xcrun xcstringstool sync CrewAir/Resources/Localizable.xcstrings --stringsdata $(find build-sim -path '*CrewAir.build*arm64*' -name '*.stringsdata')`.
 
 ## Stubbed
 
 - **Check the sky** calls `StubSkyChecker`, which answers "not wired yet". The real one
   sends a sky-only crop (above the horizon line) to a vision model; swap it in `RootView`.
-- **Escalate anonymously** is a disabled mock row.
-- **AirNow monitor in the sky view**: the API gives the monitor's name and distance but not
-  its position, so it shows as "direction unknown". If `ground` gains `nearest_lat` /
-  `nearest_lon`, the app already decodes them and pins the monitor.
+- **Escalate**: only the Cal/OSHA complaint link is live; union and legal aid say "Coming".
 - Only one fire (`confidence.fire`, the nearest) is shown; the 8-point direction is all the
   bearing there is, so the pin can be up to 22.5° off.

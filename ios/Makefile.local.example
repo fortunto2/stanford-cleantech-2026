@@ -1,0 +1,3 @@
+# Copy to Makefile.local (gitignored)
+TEAM   := YOURTEAMID
+DEVICE := <xcrun devicectl list devices identifier>

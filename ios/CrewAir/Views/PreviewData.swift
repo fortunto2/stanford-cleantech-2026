@@ -26,7 +26,7 @@ extension CrewResponse {
           "confidence":{"level":"sensor-confirmed",
            "fire":{"nearest_km":32,"direction":"NW","within_50km":1},
            "ground":{"time":"2026-10-24T06:00","pm25":61,"stations":3,"nearest":"Fresno-Foundry Park","nearest_km":4.1,
-                     "nearest_lat":36.785,"nearest_lon":-119.773},
+                     "nearest_lat":36.785,"nearest_lon":-119.70},
            "notes":["AirNow monitor Fresno-Foundry Park, 4 km away, agrees with the model."]}}}
         """
         // A literal in our own source; failing here is a programming error.
@@ -37,5 +37,25 @@ extension CrewResponse {
 struct PreviewCrewService: CrewService {
     func plan(place: String, date: String, shift: String) async throws -> CrewResponse { .preview }
     func sendReport(_ report: ReportRequest) async throws -> ReportReceipt { throw CrewServiceError.notLive }
-    func reports(place: String, date: String) async throws -> [Report] { [] }
+    func reports(place: String, date: String) async throws -> [Report] { Report.previews }
+    func handle(_ request: HandleRequest) async throws -> HandleReceipt { HandleReceipt(status: "handled") }
+}
+
+extension Report {
+    static let previews: [Report] = {
+        let now = Date.now
+        let iso = { (minutesAgo: Double) in
+            ISO8601DateFormatter().string(from: now.addingTimeInterval(-minutesAgo * 60))
+        }
+        let evidence = Evidence(
+            hour: nil, metrics: nil,
+            fire: CrewResponse.preview.plan.confidence?.fire,
+            ground: CrewResponse.preview.plan.confidence?.ground
+        )
+        return [
+            Report(id: "3", createdAt: iso(18), kind: .smoke, note: "east block", status: "open", evidence: evidence),
+            Report(id: "2", createdAt: iso(70), kind: .noShade, note: nil, status: "handled",
+                   handledAt: iso(52), handledNote: "Canopy up"),
+        ]
+    }()
 }
