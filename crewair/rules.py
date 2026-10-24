@@ -52,7 +52,8 @@ def plan(hours: list[Hour], rules: list[Rule]) -> list[Action]:
         for r in sorted((r for r in rules if r.group == group), key=lambda r: -r.gte):
             h = next((h for h in hours if _crossed(h, r)), None)
             if h:
-                out.append(Action(h.time, r.cite, r.action.format(value=h.metrics[r.metric])))
+                text = r.action.format(value=h.metrics[r.metric], aqi=h.metrics.get("us_aqi_pm25"))
+                out.append(Action(h.time, r.cite, text))
                 break
     clear = [h.time[11:16] for h in hours if not any(_crossed(h, r) for r in rules)]
     if out and clear:
