@@ -42,4 +42,7 @@ uv run python work/sky_eval.py   # Jev known-answer eval against prod
   §5141.1 is coded `51410001 <sub>`; a bare `5141 A` is the older §5141, not the smoke rule.
 - Jev: the smoke question is reliable on our eval, its visibility score is not. Re-run `work/sky_eval.py`
   after changing any question wording; it prints every answer, not just the score.
+- Open-Meteo answers 429 "Daily API request limit exceeded" to the Worker for a whole UTC day: the limit is per
+  IP and Cloudflare's egress IPs are shared. The plan then holds the nearest AirNow reading and takes NWS
+  temperatures (`fallback` in the answer); errors carry the upstream status so this is visible in one curl.
 - Slides deck: edit via the Artifact (read first), then copy changed slides into `pitch/slides/`.

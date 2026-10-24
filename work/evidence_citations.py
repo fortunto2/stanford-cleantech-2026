@@ -36,24 +36,29 @@ def key() -> str:
     return k
 
 
-def get(table: str, filt: dict, fields: str, limit: int = 500) -> list[dict]:
+def get(table: str, filt: dict, fields: str, limit: int = 500, tries: int = 12) -> list[dict]:
     rows, offset = [], 0
     while True:
         q = urllib.parse.urlencode({"X-API-KEY": key(), "limit": limit, "offset": offset,
                                     "filter_object": json.dumps(filt), "fields": fields})
         # The API refuses urllib's default User-Agent with a 403; curl's passes.
         req = urllib.request.Request(f"{API.format(table=table)}?{q}", headers={"User-Agent": "curl/8.7.1"})
-        for attempt in range(12):
+        for attempt in range(tries):
             try:
                 with urllib.request.urlopen(req, timeout=180) as r:
                     page = json.load(r).get("data", [])
                 break
             except urllib.error.HTTPError as e:
                 # 429 when throttled; it has also answered 403 while throttled. Wait it out.
-                if e.code not in (403, 429, 500, 502, 503, 504) or attempt == 11:
+                if e.code not in (403, 429, 500, 502, 503, 504) or attempt == tries - 1:
                     raise
                 print(f"  {table}: HTTP {e.code}, waiting {15 * (attempt + 1)} s", file=sys.stderr, flush=True)
                 time.sleep(15 * (attempt + 1))
+            except (urllib.error.URLError, TimeoutError, ConnectionError) as e:  # DNS or wifi blip
+                if attempt == tries - 1:
+                    raise
+                print(f"  {table}: {e}, waiting 30 s", file=sys.stderr, flush=True)
+                time.sleep(30)
         rows += page
         print(f"  {table}: {len(rows)} rows", file=sys.stderr, flush=True)
         if len(page) < limit:
@@ -76,12 +81,27 @@ def main() -> None:
         cache.write_text(json.dumps(viols, default=str))  # the slow half survives a failed join
 
     nrs = sorted({v["activity_nr"] for vs in viols.values() for v in vs})
-    insp = {}
-    # 40 per call: a 200-id filter makes a URL the API's front door answers with 403.
-    for i in range(0, len(nrs), 40):
-        for row in get("inspection", {"field": "activity_nr", "operator": "in", "value": nrs[i:i + 40]},
-                       "activity_nr,site_state,site_city,naics_code,insp_type,open_date,estab_name"):
-            insp[row["activity_nr"]] = row
+    icache = OUT / "inspections.json"
+    insp = json.loads(icache.read_text()) if icache.exists() else {}
+    todo = [n for n in nrs if str(n) not in insp and n not in insp]
+    # 40 per call: a 200-id filter makes a URL the API's front door answers with 403. A batch that keeps
+    # failing is halved, and a single id that still fails is skipped, so one bad row cannot sink the join.
+    batches = [todo[i:i + 40] for i in range(0, len(todo), 40)]
+    while batches:
+        batch = batches.pop(0)
+        try:
+            rows = get("inspection", {"field": "activity_nr", "operator": "in", "value": batch},
+                       "activity_nr,site_state,site_city,naics_code,insp_type,open_date,estab_name", tries=4)
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as e:
+            print(f"  batch of {len(batch)} failed ({e}), splitting", file=sys.stderr, flush=True)
+            if len(batch) > 1:
+                batches[:0] = [batch[:len(batch) // 2], batch[len(batch) // 2:]]
+            continue
+        for row in rows:
+            insp[str(row["activity_nr"])] = row
+        icache.write_text(json.dumps(insp, default=str))
+        print(f"  inspections: {len(insp)} of {len(nrs)}", file=sys.stderr, flush=True)
+    insp = {**insp, **{int(k): v for k, v in insp.items() if str(k).isdigit()}}
     (OUT / "citations.json").write_text(json.dumps({"violations": viols, "inspections": insp}, default=str))
 
     for name, vs in viols.items():
