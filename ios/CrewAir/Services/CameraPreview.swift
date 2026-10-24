@@ -6,6 +6,9 @@ import SwiftUI
 final class CameraSession: @unchecked Sendable {
     let session = AVCaptureSession()
     private let queue = DispatchQueue(label: "co.superduperai.crewair.camera")
+    private let photoOutput = AVCapturePhotoOutput()
+    /// Held until the capture finishes: AVFoundation keeps only a weak reference.
+    private var inFlight: PhotoDelegate?
     /// Lens field of view across the sensor's long side, and the buffer size; nil until configured.
     private(set) var lensFOV: Double?
     private(set) var bufferSize: CGSize?
@@ -28,6 +31,24 @@ final class CameraSession: @unchecked Sendable {
         queue.async { self.session.stopRunning() }
     }
 
+    /// One still from the running session, portrait, as JPEG/HEIC file data.
+    func capture() async -> Data? {
+        await withCheckedContinuation { continuation in
+            queue.async {
+                guard self.session.isRunning, self.inFlight == nil else {
+                    continuation.resume(returning: nil)
+                    return
+                }
+                let delegate = PhotoDelegate { data in
+                    self.queue.async { self.inFlight = nil }
+                    continuation.resume(returning: data)
+                }
+                self.inFlight = delegate
+                self.photoOutput.capturePhoto(with: AVCapturePhotoSettings(), delegate: delegate)
+            }
+        }
+    }
+
     private func configureAndRun() -> Bool {
         if session.inputs.isEmpty {
             guard let device = AVCaptureDevice.default(
@@ -38,6 +59,10 @@ final class CameraSession: @unchecked Sendable {
             session.beginConfiguration()
             session.sessionPreset = .photo
             session.addInput(input)
+            if session.canAddOutput(photoOutput) { session.addOutput(photoOutput) }
+            if let connection = photoOutput.connection(with: .video), connection.isVideoRotationAngleSupported(90) {
+                connection.videoRotationAngle = 90
+            }
             session.commitConfiguration()
             lensFOV = Double(device.activeFormat.videoFieldOfView)
             let dims = CMVideoFormatDescriptionGetDimensions(device.activeFormat.formatDescription)
@@ -48,6 +73,18 @@ final class CameraSession: @unchecked Sendable {
         }
         session.startRunning()
         return session.isRunning
+    }
+}
+
+private final class PhotoDelegate: NSObject, AVCapturePhotoCaptureDelegate, @unchecked Sendable {
+    private let done: @Sendable (Data?) -> Void
+
+    init(done: @escaping @Sendable (Data?) -> Void) {
+        self.done = done
+    }
+
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        done(error == nil ? photo.fileDataRepresentation() : nil)
     }
 }
 

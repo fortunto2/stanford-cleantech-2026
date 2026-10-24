@@ -119,6 +119,16 @@
         }
       }
     },
+    "%lld%%": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        }
+      }
+    },
     "AQI": {
       "localizations": {
         "es": {
@@ -185,6 +195,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cae ceniza"
+          }
+        }
+      }
+    },
+    "Back to the camera": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volver a la cámara"
           }
         }
       }
@@ -259,6 +279,26 @@
         }
       }
     },
+    "Clear mountains (sample)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Montañas despejadas (ejemplo)"
+          }
+        }
+      }
+    },
+    "Close": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar"
+          }
+        }
+      }
+    },
     "Coming: once a partner agrees to receive reports": {
       "localizations": {
         "es": {
@@ -275,6 +315,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No se pudo marcar como arreglado: %@"
+          }
+        }
+      }
+    },
+    "Could not read that photo.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer esa foto."
           }
         }
       }
@@ -445,6 +495,16 @@
         }
       }
     },
+    "Looks worse than the forecast": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se ve peor que el pronóstico"
+          }
+        }
+      }
+    },
     "Mark fixed": {
       "localizations": {
         "es": {
@@ -525,6 +585,16 @@
         }
       }
     },
+    "No camera here: check a photo instead": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay cámara: revisa una foto"
+          }
+        }
+      }
+    },
     "No reports today.": {
       "localizations": {
         "es": {
@@ -551,6 +621,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sin sombra o agua"
+          }
+        }
+      }
+    },
+    "No sky in this photo. Point higher.": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se ve el cielo en la foto. Apunta más arriba."
           }
         }
       }
@@ -601,6 +681,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No se envió: %@ Se guardó en este teléfono."
+          }
+        }
+      }
+    },
+    "Not sure, take another photo": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No es seguro, toma otra foto"
           }
         }
       }
@@ -735,6 +825,16 @@
         }
       }
     },
+    "Sent to the crew lead": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviado al jefe de cuadrilla"
+          }
+        }
+      }
+    },
     "Sent to the crew lead.": {
       "localizations": {
         "es": {
@@ -835,6 +935,16 @@
         }
       }
     },
+    "Smoky city (sample)": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ciudad con humo (ejemplo)"
+          }
+        }
+      }
+    },
     "Someone feels sick": {
       "localizations": {
         "es": {
@@ -925,12 +1035,32 @@
         }
       }
     },
+    "Try a sample": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probar un ejemplo"
+          }
+        }
+      }
+    },
     "Union or worker center": {
       "localizations": {
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sindicato o centro de trabajadores"
+          }
+        }
+      }
+    },
+    "Use a photo": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar una foto"
           }
         }
       }
@@ -981,6 +1111,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "TU CIELO"
+          }
+        }
+      }
+    },
+    "YOUR SKY · JUST NOW": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TU CIELO · AHORA"
           }
         }
       }
@@ -1117,6 +1257,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "muy dañino"
+          }
+        }
+      }
+    },
+    "you can see %@": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "se ve a %@"
           }
         }
       }

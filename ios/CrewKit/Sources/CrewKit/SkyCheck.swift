@@ -6,25 +6,6 @@ public struct SkyCheckResult: Codable, Sendable, Equatable {
         case yes, no, unsure
     }
 
-    public struct Visibility: Codable, Sendable, Equatable {
-        public let label: String
-        public let category: String
-        public let aqiRange: [Int]?
-        public let confidence: Double?
-        /// The model's visibility estimate tested unreliable; show it only when trusted.
-        public let trusted: Bool
-
-        enum CodingKeys: String, CodingKey {
-            case label, category, confidence, trusted
-            case aqiRange = "aqi_range"
-        }
-    }
-
-    public struct Model: Codable, Sendable, Equatable {
-        public let aqi: Int?
-        public let place: String?
-    }
-
     public let verdict: String
     public let smokeCall: Call
     public let skyVisible: Bool
@@ -32,8 +13,8 @@ public struct SkyCheckResult: Codable, Sendable, Equatable {
     public let smoke: Double
     public let plume: Double?
     public let ash: Double?
-    public let visibility: Visibility?
-    public let model: Model?
+    public let visibility: SkyVisibility?
+    public let model: SkyForecast?
     public let looksWorseThanModel: Bool?
 
     enum CodingKeys: String, CodingKey {
@@ -51,13 +32,34 @@ public struct SkyCheckResult: Codable, Sendable, Equatable {
         smoke = try c.decodeIfPresent(Double.self, forKey: .smoke) ?? 0
         plume = try c.decodeIfPresent(Double.self, forKey: .plume)
         ash = try c.decodeIfPresent(Double.self, forKey: .ash)
-        visibility = try? c.decodeIfPresent(Visibility.self, forKey: .visibility)
-        model = try? c.decodeIfPresent(Model.self, forKey: .model)
+        visibility = try? c.decodeIfPresent(SkyVisibility.self, forKey: .visibility)
+        model = try? c.decodeIfPresent(SkyForecast.self, forKey: .model)
         looksWorseThanModel = try c.decodeIfPresent(Bool.self, forKey: .looksWorseThanModel)
     }
 
     /// Whether this result is worth sending to the crew lead as a smoke report.
     public var shouldReport: Bool { smokeCall == .yes || looksWorseThanModel == true }
+}
+
+/// Visibility estimated from the photo, with the EPA/CDC AQI range it implies.
+public struct SkyVisibility: Codable, Sendable, Equatable {
+    public let label: String
+    public let category: String
+    public let aqiRange: [Int]?
+    public let confidence: Double?
+    /// The model's visibility estimate tested unreliable; show it only when trusted.
+    public let trusted: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case label, category, confidence, trusted
+        case aqiRange = "aqi_range"
+    }
+}
+
+/// The forecast the photo is checked against.
+public struct SkyForecast: Codable, Sendable, Equatable {
+    public let aqi: Int?
+    public let place: String?
 }
 
 /// Where to cut a portrait camera frame so only the sky and a strip of horizon leave the phone.

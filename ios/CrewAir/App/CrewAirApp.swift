@@ -5,6 +5,7 @@ import SwiftUI
 struct CrewAirApp: App {
     @State private var plan: PlanViewModel
     @State private var reports: ReportViewModel
+    @State private var sky = SkyCheckModel(checker: LiveSkyChecker())
 
     init() {
         let service = LiveCrewService()
@@ -15,7 +16,7 @@ struct CrewAirApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView(plan: plan, reports: reports)
+            RootView(plan: plan, reports: reports, sky: sky)
         }
     }
 }
@@ -25,6 +26,7 @@ struct RootView: View {
 
     let plan: PlanViewModel
     let reports: ReportViewModel
+    let sky: SkyCheckModel
     @State private var screen: Screen = .plan
 
     var body: some View {
@@ -33,11 +35,7 @@ struct RootView: View {
                 PlanView(model: plan)
             }
             Tab("Sky", systemImage: "sun.horizon", value: .sky) {
-                SkyView(response: plan.response, checker: StubSkyChecker()) {
-                    reports.selected = .smoke
-                    reports.isLead = false
-                    screen = .report
-                }
+                SkyView(response: plan.response, sky: sky, reports: reports) { screen = .plan }
             }
             Tab("Report", systemImage: "flag", value: .report) {
                 ReportView(model: reports)

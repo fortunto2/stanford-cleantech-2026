@@ -1,46 +1,39 @@
 import CrewKit
+import PhotosUI
 import SwiftUI
 
-/// Camera preview with fires and monitors pinned to their compass bearings on the horizon.
+/// Camera preview with fires and monitors pinned to their compass bearings on the horizon, and
+/// a sky check: a frame, a library photo or a bundled sample, read by Jev.
 ///
 /// Only the camera layer ignores the safe area. Everything that takes touches sits inside it,
 /// so the tab bar is never covered, and the pins do not take touches at all.
 struct SkyView: View {
     let response: CrewResponse?
-    let checker: SkyChecker
-    var onReportSmoke: () -> Void = {}
+    let sky: SkyCheckModel
+    let reports: ReportViewModel
+    var onClose: () -> Void = {}
     @State private var heading = HeadingProvider()
     @State private var camera = CameraSession()
     @State private var cameraRunning = false
-    @State private var verdict: String?
-    @State private var checking = false
     @State private var dragStart: Double?
+    @State private var viewSize = CGSize.zero
+    @State private var pickerItem: PhotosPickerItem?
 
     /// Used until the camera reports its own: an iPhone wide lens in portrait, aspect-fill.
     private static let fallbackFOV = 45.0
 
     var body: some View {
         VStack(spacing: Theme.Space.m) {
-            CompassChip(heading: heading.heading, source: headingSource)
+            topBar
             dragArea
-            panel
+            SkyPanel(
+                response: response, sky: sky, reports: reports, cameraRunning: cameraRunning,
+                pickerItem: $pickerItem, onCamera: { Task { await checkCamera() } }
+            )
         }
         .padding(.horizontal, Theme.Space.l)
         .padding(.bottom, Theme.Space.m)
-        .background {
-            ZStack {
-                if cameraRunning {
-                    CameraPreview(session: camera.session)
-                } else {
-                    Theme.skyPlaceholder
-                }
-                GeometryReader { geo in
-                    SkyOverlay(projection: projection(in: geo.size), markers: SkyMarker.markers(for: response))
-                }
-            }
-            .ignoresSafeArea()
-            .allowsHitTesting(false)
-        }
+        .background { backdrop }
         .toolbarBackground(.visible, for: .tabBar)
         .toolbarColorScheme(.dark, for: .tabBar)
         .task {
@@ -52,12 +45,50 @@ struct SkyView: View {
             camera.stop()
             cameraRunning = false
         }
+        .onChange(of: pickerItem) { Task { await checkPicked() } }
+    }
+
+    private var backdrop: some View {
+        ZStack {
+            if let photo = sky.photo {
+                Theme.skyPlaceholder
+                Image(uiImage: photo).resizable().scaledToFill()
+            } else if cameraRunning {
+                CameraPreview(session: camera.session)
+            } else {
+                Theme.skyPlaceholder
+            }
+            GeometryReader { geo in
+                if sky.photo == nil {
+                    SkyOverlay(projection: projection(in: geo.size), markers: SkyMarker.markers(for: response))
+                }
+                Color.clear.onAppear { viewSize = geo.size }.onChange(of: geo.size) { viewSize = geo.size }
+            }
+        }
+        .ignoresSafeArea()
+        .allowsHitTesting(false)
+    }
+
+    private var topBar: some View {
+        ZStack(alignment: .topLeading) {
+            if sky.photo == nil {
+                CompassChip(heading: heading.heading, source: headingSource).frame(maxWidth: .infinity)
+            }
+            Button {
+                if sky.photo != nil || sky.result != nil { sky.clear() } else { onClose() }
+            } label: {
+                Image(systemName: "xmark").font(.system(size: 17, weight: .bold)).foregroundStyle(Theme.skyInk)
+                    .frame(width: 44, height: 44)
+                    .glass(.circle, interactive: true)
+            }
+            .accessibilityLabel(Text(sky.photo != nil || sky.result != nil ? "Back to the camera" : "Close"))
+        }
     }
 
     /// The open middle of the screen. Takes a drag only in the Simulator, where it turns you.
     @ViewBuilder
     private var dragArea: some View {
-        if heading.isSimulated {
+        if heading.isSimulated && sky.photo == nil {
             Color.clear.contentShape(.rect).gesture(panGesture)
         } else {
             Spacer()
@@ -93,57 +124,22 @@ struct SkyView: View {
             .onEnded { _ in dragStart = nil }
     }
 
-    private var panel: some View {
-        VStack(alignment: .leading, spacing: Theme.Space.s) {
-            Text("YOUR SKY").font(Theme.Font.mono).kerning(0.7).foregroundStyle(Theme.skyAccent)
-            Text(verdict ?? String(localized: "Point the camera at the horizon"))
-                .font(.system(size: 16, weight: .semibold)).foregroundStyle(Theme.skyInk)
-            if let line = forecastLine {
-                Text(line).font(.system(size: 13)).foregroundStyle(Theme.skyInkSecondary)
-            }
-            HStack(spacing: Theme.Space.s) {
-                Button(action: onReportSmoke) {
-                    Text("Report smoke").font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(Theme.monitorInk)
-                        .frame(maxWidth: .infinity, minHeight: 44)
-                        .background(Theme.skyInk, in: .rect(cornerRadius: 10))
-                }
-                Button { Task { await check() } } label: {
-                    Text(checking ? "Checking…" : verdict == nil ? "Check the sky" : "Check again")
-                        .font(.system(size: 14, weight: .medium)).foregroundStyle(Theme.skyInk)
-                        .padding(.horizontal, 14).frame(minHeight: 44)
-                        .glass(.rect(cornerRadius: 10), interactive: true)
-                }
-                .disabled(checking)
-            }
-            .padding(.top, Theme.Space.xs)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, Theme.Space.l).padding(.vertical, 14)
-        .background(Theme.skyPanel, in: .rect(cornerRadius: Theme.Radius.panel))
-        .overlay(RoundedRectangle(cornerRadius: Theme.Radius.panel).stroke(Theme.skyStroke))
+    private var place: String { response?.place.name ?? reports.place }
+
+    /// The preview fills the screen's height, so the horizon's height on screen is its height
+    /// in the portrait frame too.
+    private func checkCamera() async {
+        guard let data = await camera.capture(), let image = UIImage(data: data) else { return }
+        let horizon = viewSize.height > 0 ? projection(in: viewSize).horizonY / viewSize.height : nil
+        await sky.check(image, horizon: horizon, place: place, showPhoto: false)
     }
 
-    /// What the plan says for now, so what you see can be held against it.
-    private var forecastLine: String? {
-        guard let plan = response?.plan else { return nil }
-        let hour = Clock.calendar.component(.hour, from: .now)
-        let now = plan.hours.first { $0.hourOfDay == hour } ?? plan.hours.first
-        guard let aqi = now?.metrics.usAqiPm25 else { return nil }
-        return String(localized: "The model says AQI \(aqi) here. If it looks worse, tell the crew lead.")
-    }
-
-    private func check() async {
-        checking = true
-        defer { checking = false }
-        let request = SkyCheckRequest(
-            skyCropJPEG: nil, heading: heading.heading, place: response?.place.name ?? ""
-        )
-        do {
-            verdict = try await checker.check(request).summary
-        } catch {
-            verdict = error.localizedDescription
-        }
+    private func checkPicked() async {
+        guard let item = pickerItem else { return }
+        pickerItem = nil
+        guard let data = try? await item.loadTransferable(type: Data.self),
+              let image = UIImage(data: data) else { return }
+        await sky.check(image, horizon: nil, place: place, showPhoto: true)
     }
 }
 
@@ -277,5 +273,9 @@ struct SkyPin: View {
 }
 
 #Preview {
-    SkyView(response: .preview, checker: StubSkyChecker())
+    let plan = PlanViewModel(service: PreviewCrewService(), response: .preview)
+    SkyView(
+        response: .preview, sky: SkyCheckModel(checker: StubSkyChecker()),
+        reports: ReportViewModel(service: PreviewCrewService(), plan: plan)
+    )
 }

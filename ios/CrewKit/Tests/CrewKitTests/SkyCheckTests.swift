@@ -18,7 +18,8 @@ import Testing
     }
 
     @Test func toleratesNullsAndUnknownCall() throws {
-        let json = #"{"verdict":"?","smoke_call":"maybe","sky_visible":false,"smoke":0.4,"visibility":null,"model":null,"#
+        let json = #"{"verdict":"?","smoke_call":"maybe","sky_visible":false,"smoke":0.4,"#
+            + #""visibility":null,"model":null,"#
             + #""looks_worse_than_model":null}"#
         let r = try JSONDecoder().decode(SkyCheckResult.self, from: Data(json.utf8))
         #expect(r.smokeCall == .unsure)

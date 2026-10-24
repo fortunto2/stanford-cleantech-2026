@@ -37,7 +37,15 @@ CrewAir/
   the place name to change place, day or shift.
 - **Sky**: rear camera with the nearest fire and the nearest AirNow monitor pinned to their
   compass bearings on the horizon (true north once location is allowed, magnetic before).
-  In the Simulator: dark backdrop, heading 315°, drag sideways to turn.
+  In the Simulator: dark backdrop, heading 315°, drag sideways to turn. The X closes to Plan
+  (or back to the camera after a photo check).
+  **Check the sky** sends one frame to Jev (`POST /api/sky-check?place=`, raw `image/jpeg`).
+  Before upload, on the phone: every face Vision finds is painted black, a camera frame is
+  cut 12% below the horizon line, the long side is capped at 768 px, JPEG q0.8. Also works on
+  a library photo ("Use a photo") or a bundled sample ("Try a sample"), for indoor demos.
+  On our 12 known-answer photos Jev got the smoke call right 11–12 of 12 across two runs;
+  ~70–100 ms server side. Its visibility estimate is shown only when it says `trusted`.
+  "Looks worse than the forecast" offers Report smoke, which files kind `smoke` with the verdict.
 - **Report**: four big kinds, "Where?", Send, today's reports with Waiting / Fixed pills,
   and "Take it further" to the Escalate screen. "I'm the crew lead" turns the tab into the
   lead board: open reports with a 30-minute countdown, the evidence the server attached,
@@ -47,10 +55,18 @@ English and Spanish: `CrewAir/Resources/Localizable.xcstrings` and `InfoPlist.xc
 Rule texts from the API stay in English. After adding UI strings, build, then sync:
 `xcrun xcstringstool sync CrewAir/Resources/Localizable.xcstrings --stringsdata $(find build-sim -path '*CrewAir.build*arm64*' -name '*.stringsdata')`.
 
+## Sample photos
+
+Bundled in `CrewAir/Resources/Samples/`, both public domain, Wikimedia Commons:
+
+- `sample-smoke.jpg`: "Orange Haze Hides Manhattan"
+- `sample-clear.jpg`: "Fall View from Stony Dome" (NPS)
+
 ## Stubbed
 
-- **Check the sky** calls `StubSkyChecker`, which answers "not wired yet". The real one
-  sends a sky-only crop (above the horizon line) to a vision model; swap it in `RootView`.
+- `StubSkyChecker` remains for previews only; the app uses `LiveSkyChecker`.
+- Horizon crop uses the app's own horizon line (heading + pitch), not `VNDetectHorizonRequest`:
+  Vision returns the horizon's angle, not its height. Library photos are sent uncropped.
 - **Escalate**: only the Cal/OSHA complaint link is live; union and legal aid say "Coming".
 - Only one fire (`confidence.fire`, the nearest) is shown; the 8-point direction is all the
   bearing there is, so the pin can be up to 22.5° off.

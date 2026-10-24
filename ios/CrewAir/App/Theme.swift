@@ -47,6 +47,7 @@ enum Theme {
     static let fire = hex(0xB5532E)
     static let monitorInk = hex(0x14181D)
     static let skyAccent = hex(0xE08A62)
+    static let skyGlassTint = hex(0x14181D).opacity(0.55)
 
     // MARK: EPA bands, bright
     static func color(_ band: AQIBand) -> Color {
@@ -128,13 +129,15 @@ enum Theme {
 }
 
 extension View {
-    /// Liquid Glass on iOS 26, a thin material below (from reelcam).
+    /// Dark-tinted Liquid Glass on iOS 26, a dark material below (from reelcam). Tinted so
+    /// white labels stay readable over a bright sky photo.
     @ViewBuilder
     func glass<S: Shape>(_ shape: S, interactive: Bool = false) -> some View {
         if #available(iOS 26.0, *) {
-            glassEffect(interactive ? Glass.regular.interactive() : Glass.regular, in: shape)
+            let glass = Glass.regular.tint(Theme.skyGlassTint)
+            glassEffect(interactive ? glass.interactive() : glass, in: shape)
         } else {
-            background(.ultraThinMaterial, in: shape)
+            background(.ultraThinMaterial, in: shape).environment(\.colorScheme, .dark)
         }
     }
 
