@@ -83,11 +83,27 @@ summer's peak days against our hours."
 - Dollars? Not claimed: a load model and a pilot.
 - Can you certify the air? No: the employer determines, Appendix A allows any direct-reading PM2.5
   monitor used per the manufacturer; we record how, and the worse of model and reading applies.
-- Drone? A task with a bearing; a node or a drone outside the TFR; the payload is a concept.
+- Drone? Say "concept" first. Utilities already have Part 107 pilots (a judge said so herself at 17:21); over the
+  fire is a TFR; today it is a fixed node every 15 minutes and the API. Never "the drone sampled".
+- Do you predict the fire? No. We measure the air and print the record; the plume cone is wind, not a fire model.
+  (Asher said "core = predict how the fire will be" at 17:21; agree on this line before the next table.)
+- Sensors for anything else? Yes: the same JSON goes to the BMS damper and the DERMS pre-cool.
+- Partner with utilities? The utility is the channel; the crew's employer pays per site. One payer in one sentence,
+  not "utilities and contractors pay".
 - Overstory? Before the fire, for the utility; we are the hour the air changes, for the crew.
 - What was built before? Hosting, AQI merge, camera geometry; the engine, page, app and map in hacking hours.
 
-## The 2-minute video (Rustam records, screen + voice)
+## Judges' round 1, 17:06–17:28 (from the supervox transcript)
+Three questions: the drone's dispatch and FAA licence (answered "I don't know"), other uses of the sensors,
+partnering with utilities. The judge closed the drone question herself: utilities have drone pilots and
+certificates. Fixes are in the Q&A above.
+
+## Videos
+- Explainer, 89 s, on Devpost: https://youtu.be/cflNvJU9x5o (`pitch/video/explainer.py`)
+- Trailer, 30 s, for the laptop only: `pitch/video/crew-air-trailer.mp4` (`pitch/video/trailer.py`)
+- Beat cut, 65 s: https://youtu.be/9-UBqW48rsg (`pitch/video/cut.py`)
+
+## The 2-minute video (the original plan, superseded by the explainer)
 
 0:00–0:15 airsignal.app/crew?place=Fresno&shift=07-17: the headline, peak AQI and °F, the actions list.
 0:15–0:35 Scroll: hourly strip with "cool" and "peak", the Home block, the Building block.
