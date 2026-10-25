@@ -56,3 +56,27 @@ Decisions are logged here with the reason; the three repos stay the source of tr
 ## Log
 - 20:20 started; agents ios-ship and web-ship spawned.
 - 20:24 bundle ID already exists; app record blocked on the Apple web session (2FA), command prepared above.
+- 00:45 web-ship: /simplify findings applied in four commits (1695939 reuse+dead, 900949d grid_co2 efficiency, af15423
+  root causes, 355f2f1 fix), deployed 9730d084, all curl-verified. Shipped: src/lib/tz.ts (one zone helper, tested
+  across DST and 3 zones), src/lib/stats.ts median (AirNow 2-monitor case now averages the middle pair), planFromQuery
+  for both plan routes, paths.crewPlan/crewApi/crewPlanIcs, REPORT_KINDS/apps imported from observation.ts
+  everywhere, strict observation kinds (no aliases), ics events from plan.actions and the engine's clear-window text
+  (no thresholds in ics.ts), cron writes only the last two hours and backfills 3 days in parallel with a failed-day
+  marker row (hour -1), typical CO2 remembered per day for 30 min, report path skips the grid read. Root causes:
+  every hour in /api/crew is in place.tz (geocoder, or Open-Meteo timezone=auto for coordinates); the geocoder is
+  global, California first; outside the US the engine gets an empty rulebook (jurisdiction null, actions [], home
+  null, said on the page); boards keyed country-state-town with the two older key generations still read
+  ("barstow", "barstow-california"); every crew query carries app='crewair' (handle, get, list; retention and the
+  rate limit stay app-agnostic on purpose); evidence hour = observation.observed_at when present;
+  dispatch.reading_advised with sensor kept as the deprecated alias. Judgment calls: tz.ts not pacific.ts (after
+  the change only CAISO is Pacific); UTC instants instead of a VTIMEZONE per zone; coordinates still look their town
+  up because countries.iso is NULL for all 156 rows (fill it and the lookup is skipped for foreign points); no
+  node fixture of a whole US-CA answer (crew.ts pulls the WASM core and cloudflare:workers), the zone helpers are
+  tested instead and Fresno was verified live (07:00 first hour, US-CA, 2 actions, home, grid_co2).
+  Verified live: Berlin → "Berlin, Germany", DE, Europe/Berlin, jurisdiction null; Paris, France → FR; Springfield,
+  Illinois → America/Chicago; 52.52,13.40 → near Berlin, DE; 36.75,-119.77 → near Fresno, California, US-CA; boards
+  Barstow 5 (3 legacy + 2 older), Fresno 1; an airsignal observation with observed_at 13:30Z got evidence hour
+  2026-10-25T06:00 and wind, could not be handled (404) nor escalated ("No such report"); test row deleted.
+  Next, not done: a separate /api/report route for observations (bigger API change); air-signal-ios CLAUDE.md
+  still says /api/crew answers in Los Angeles time, now it is place.tz, and PacificTime.swift can go.
+
