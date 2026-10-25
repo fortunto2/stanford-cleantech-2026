@@ -61,6 +61,8 @@ make evidence                                                            # the 4
 
 Every commit for the above is dated 23–24 Oct 2026 inside hacking hours (Fri 17:00 – Sat 17:00 PT).
 
+After the event the iOS code continues in [air-signal-ios](https://github.com/fortunto2/air-signal-ios) (private, Crew Air plus a consumer app on a shared core); `ios/` here stays as built in the 24 hours.
+
 **Earlier open-source work it stands on, disclosed:** the Air Signal site's hosting and layout
 (airsignal.app, [air-signal-web](https://github.com/fortunto2/air-signal-web)), and from the
 [airq-core](https://github.com/fortunto2/airq) library the EPA AQI breakpoints, the sensor/model merge
