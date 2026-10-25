@@ -31,8 +31,13 @@ Decisions are logged here with the reason; the three repos stay the source of tr
       `/api/crew/plan.ics`, `src/lib/ics.ts`, 4 node:test cases)
 - [x] Home block: backup battery sizing (matcha idea): devices × hours → kWh, deterministic, three presets
       (fridge, CPAP, phone+router), no AI. Prints on the sheet. (577e7a4, `src/lib/battery.ts`, 4 tests)
-- [~] Time-boxed 1 h: hourly grid CO2 next to the TOU bar from CAISO Today's Outlook (GridLight). Skipped after
-      15 min; what was found is in the log (21:20).
+- [x] Hourly grid CO2 next to the TOU bar from CAISO Today's Outlook (GridLight). Done properly on the lead's
+      request (23:00): Worker cron every 30 min → D1 `grid_co2`, 14 days kept, /crew and /api/crew show the median
+      of the last 7 days per hour, California only, labelled "not a forecast". (air-signal-web 63c5662)
+- [x] /privacy for the Air Signal app (was 404): legal/airsignal/privacy-policy.md from air-signal-ios, footer link,
+      guide sitemap. (801eee8)
+- [x] /api/crew/report takes `app` and `observation` from Air Signal; observations stored, kept off crew boards;
+      wind in the server's evidence; migration 0012. (6955fa6)
 - [x] /crew/privacy matches `legal/privacy-policy.md` (analytics counter line included): the "Usage counter" section
       now has a paragraph on the web counter (`sda.js`, source `airsignal`, page views, no cookies, no account) in
       both copies, byte-identical.
