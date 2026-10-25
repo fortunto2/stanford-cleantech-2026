@@ -6,34 +6,39 @@ Decisions are logged here with the reason; the three repos stay the source of tr
 ## Tracks
 
 ### A. iOS → App Store (agent `ios-ship`)
-- [ ] Remove the drone/dispatch concept from the UI: the Plan tab keeps "Fire N km, direction, check the sky";
+- [x] Remove the drone/dispatch concept from the UI: the Plan tab keeps "Fire N km, direction, check the sky";
       the orange "Sensor task: launch" card goes (it described hardware that does not exist). CrewKit keeps
       parsing `dispatch` so the API stays compatible.
-- [ ] Keep: Plan, Check the sky (Jev + AR horizon with fire and monitor markers), Report, crew-lead board, print/share.
-- [ ] Analytics: superduper-analytics `app_launched`, `plan_viewed`, `sky_checked` with an install UUID
+- [x] Keep: Plan, Check the sky (Jev + AR horizon with fire and monitor markers), Report, crew-lead board, print/share.
+- [x] Analytics: superduper-analytics `app_launched`, `plan_viewed`, `sky_checked` with an install UUID
       (generated on first launch, stored locally); source id from `~/startups/shared/superduper-analytics/registry/sources.yaml`
       (add `crewair-ios` if missing). Declared in `legal/app-store-privacy.md` and `legal/privacy-policy.md` in the same commit.
-- [ ] Version 1.0 (1). Icon present. `make test`, `make build` green. 37 CrewKit tests stay green.
-- [ ] Screenshots: iPhone 6.9" (iPhone 17 Pro Max simulator) ×5: plan with fire, sky check, AR, report, print sheet.
+- [x] Version 1.0 (1). Icon present. `make test`, `make build` green. 37 CrewKit tests stay green.
+- [x] Screenshots: iPhone 6.9" (iPhone 17 Pro Max simulator) ×5: plan with fire, sky check, AR, report, print sheet.
       Saved to `ios/metadata/screenshots/`.
-- [ ] `ios/metadata/` for `asc`: name "Crew Air", subtitle, description (≤4000), keywords, support URL
+- [x] `ios/metadata/` for `asc`: name "Crew Air", subtitle, description (≤4000), keywords, support URL
       https://airsignal.app/crew, privacy URL https://airsignal.app/crew/privacy, review notes (AR tab: where, what,
       no markers; the camera photo goes to TypeSafe for one analysis; no account).
-- [ ] Archive + export .ipa (`make build-device` signing with TEAM from Makefile.local; `asc xcode archive`/`export`).
+- [x] Archive + export .ipa (`make build-device` signing with TEAM from Makefile.local; `asc xcode archive`/`export`).
       If signing needs an Apple ID session (2FA was locked at 423 today), stop and write the exact command.
 
 ### B. Site (agent `web-ship`, repo ~/startups/active/air-signal-web)
-- [ ] /crew: the "Sensor task: launch" card becomes "A worksite reading is advised" (fire within 50 km):
-      bearing/distance stay, the drone sentence goes; the API `dispatch` field stays.
-- [ ] CrewMap note: distance rounded to one decimal (today prints 14.902251688490937 km).
-- [ ] Download the shift plan as `.ics` (GridLight idea): events for "N95 from HH:00", "heat: shade+water from HH:00",
-      "heavy work window", "pre-cool", "TOU peak". One link in the plan header, generated in the Worker.
-- [ ] Home block: backup battery sizing (matcha idea): devices × hours → kWh, deterministic, three presets
-      (fridge, CPAP, phone+router), no AI. Prints on the sheet.
-- [ ] Time-boxed 1 h: hourly grid CO2 next to the TOU bar from CAISO Today's Outlook (GridLight). If the feed
-      needs more than a cron + one table, leave a note in docs and skip.
-- [ ] /crew/privacy matches `legal/privacy-policy.md` (analytics counter line included).
-- [ ] `make deploy`, then curl /crew, /api/crew, /crew/grid, /crew/privacy, the .ics.
+- [x] /crew: the "Sensor task: launch" card becomes "A worksite reading is advised" (fire within 50 km):
+      bearing/distance stay, the drone sentence goes; the API `dispatch` field stays. (air-signal-web 8a0cf56)
+- [x] CrewMap note: distance rounded to one decimal (today prints 14.902251688490937 km). (8a0cf56)
+- [x] Download the shift plan as `.ics` (GridLight idea): events for "N95 from HH:00", "heat: shade+water from HH:00",
+      "heavy work window", "pre-cool", "TOU peak". One link in the plan header, generated in the Worker. (577e7a4,
+      `/api/crew/plan.ics`, `src/lib/ics.ts`, 4 node:test cases)
+- [x] Home block: backup battery sizing (matcha idea): devices × hours → kWh, deterministic, three presets
+      (fridge, CPAP, phone+router), no AI. Prints on the sheet. (577e7a4, `src/lib/battery.ts`, 4 tests)
+- [~] Time-boxed 1 h: hourly grid CO2 next to the TOU bar from CAISO Today's Outlook (GridLight). Skipped after
+      15 min; what was found is in the log (21:20).
+- [x] /crew/privacy matches `legal/privacy-policy.md` (analytics counter line included): the "Usage counter" section
+      now has a paragraph on the web counter (`sda.js`, source `airsignal`, page views, no cookies, no account) in
+      both copies, byte-identical.
+- [x] `make deploy`, then curl /crew, /api/crew, /crew/grid, /crew/privacy, the .ics. Deployed 21:40 (version
+      9cf22c75); all five answer as expected (log 21:45). One catch: `/openapi.json` is edge-cached 24 h with a key
+      that drops the query string, so it still shows the old spec until about 15:30 PT Sun 25 Oct, or until a purge.
 
 ### C. App Store Connect (me)
 - [x] Bundle ID `co.superduperai.crewair` registered (J7FW562VSY, team 8N495BBBLM, UNIVERSAL).

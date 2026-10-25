@@ -22,15 +22,21 @@ of our own, described below.
 Notes you type are free text. Please do not write names or phone numbers in them; anyone who opens the
 same site's page can read the reports for that day.
 
-## Usage counter (app only)
+## Usage counter
 
 The iOS app sends three events to our own counter at analytics.superduperai.co: the app was opened, a
 plan was shown, a sky check finished. Each carries the app version and an install code: a random UUID
 the app makes on first launch and keeps on the phone. It is not Apple's advertising identifier or
 vendor identifier, it is shared with no other app, and it is deleted with the app. No place, photo,
 report or location travels with these events, and there is no account to tie them to. The counter runs
-on Cloudflare; its code is public at https://github.com/fortunto2/superduper-analytics. The website
-uses the same counter for page views, without any identifier stored in your browser.
+on Cloudflare; its code is public at https://github.com/fortunto2/superduper-analytics.
+
+The website (airsignal.app, including /crew) uses the same counter for page views: a script, `sda.js`,
+loaded from analytics.superduperai.co with the source id `airsignal`, sends the page path (without the
+query string, so not the place you planned for), the site you came from if it was another site, any
+`utm_` tags in the link you followed, and one event when you first scroll or click. It sets no cookies,
+stores nothing in your browser, needs no account, and carries no report, photo or location. Blocking the
+script changes nothing on the page.
 
 ## Sky photos
 
