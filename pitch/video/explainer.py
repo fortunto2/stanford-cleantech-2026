@@ -8,27 +8,15 @@ Site screens come from Playwright at zoom 1.8, dark scheme (pitch/video/build/si
 
 from __future__ import annotations
 
-import subprocess
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 
-ROOT = Path(__file__).resolve().parents[2]
-D = Path.home() / "Downloads"
-V = ROOT / "pitch" / "video"
-BUILD = V / "build"
+from style import ACCENT, AMBER, AMBIENT as MUSIC, BUILD, D, FPS, GREEN, H, INK, MUTED, PAPER, V, W, ffmpeg, font
+
 STORY = V / "crew-air-story-silent.mp4"
 PHONE = D / "WhatsApp Video 2026-10-24 at 16.35.50.mp4"  # AR horizon at Stanford, fire 21 km E, then the Plan tab
-MUSIC = Path.home() / "Music" / "!AudioStable" / "ambient.mp3"
-FONT = "/System/Library/Fonts/HelveticaNeue.ttc"
-W, H, FPS = 1920, 1080, 30
 BAND = 180  # caption band height
-INK, PAPER, MUTED, ACCENT = (18, 24, 38), (251, 247, 242), (201, 191, 180), (232, 85, 28)
-GREEN, AMBER = (46, 158, 91), (251, 227, 161)
-
-
-def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
-    return ImageFont.truetype(FONT, size, index=1 if bold else 0)
 
 
 def band(i: int, line1: str, line2: str) -> Path:
@@ -165,13 +153,9 @@ def main() -> None:
     script = BUILD / "explainer_filter.txt"
     script.write_text(";\n".join(chains + [concat, audio]))
     out = V / "crew-air-explainer.mp4"
-    cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs, "-stream_loop", "-1", "-i", str(MUSIC),
+    ffmpeg(*inputs, "-stream_loop", "-1", "-i", str(MUSIC),
            "-/filter_complex", str(script), "-map", "[vout]", "-map", "[aout]",
-           "-c:v", "libx264", "-crf", "20", "-preset", "medium", "-c:a", "aac", "-b:a", "160k", "-shortest", str(out)]
-    r = subprocess.run(cmd, capture_output=True, text=True)
-    if r.returncode:
-        print(r.stderr[-2000:])
-        raise SystemExit(r.returncode)
+           "-c:v", "libx264", "-crf", "20", "-preset", "medium", "-c:a", "aac", "-b:a", "160k", "-shortest", str(out))
     print(out, f"{total:.1f} s")
 
 
