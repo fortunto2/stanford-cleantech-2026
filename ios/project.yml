@@ -24,7 +24,7 @@ settings:
     # Empty on purpose: pass DEVELOPMENT_TEAM=... for a device build.
     DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Automatic
-    MARKETING_VERSION: "0.1.0"
+    MARKETING_VERSION: "1.0"
     CURRENT_PROJECT_VERSION: "1"
     ENABLE_USER_SCRIPT_SANDBOXING: NO
 
