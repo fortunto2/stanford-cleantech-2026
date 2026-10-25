@@ -65,8 +65,10 @@ Every commit for the above is dated 23–24 Oct 2026 inside hacking hours (Fri 1
 (airsignal.app, [air-signal-web](https://github.com/fortunto2/air-signal-web)), and from the
 [airq-core](https://github.com/fortunto2/airq) library the EPA AQI breakpoints, the sensor/model merge
 (`merge.rs`) and haversine. The iOS AR overlay adapts camera-geometry code from our app
-[Starlapse](https://github.com/fortunto2/starlapse). All three are public repositories by the same author,
-older than the event. The rest is new.
+[Starlapse](https://github.com/fortunto2/starlapse). The app's usage counter is our shared package
+[superduperai-analytics-swift](https://github.com/fortunto2/superduperai-analytics-swift) (three events, an
+install UUID, August 2026). All four are public repositories by the same author, older than the event. The
+rest is new.
 
 ## Rulebooks: one file per jurisdiction
 
