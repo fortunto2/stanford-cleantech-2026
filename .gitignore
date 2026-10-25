@@ -13,3 +13,7 @@ pitch/video/build/
 pitch/story/frames/
 pitch/story/actions.json
 pitch/export/
+.DS_Store
+pitch/anatomy/shots/frames/
+pitch/anatomy/shots/zoom-*.png
+pitch/anatomy/shots/lines.png

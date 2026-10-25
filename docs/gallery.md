@@ -79,7 +79,7 @@ Considered and left out: Pismo's forecast-ahead trigger (rain >= 15 mm or wind >
 - Pismo: one storm, one county, tuned on two months; kept only as an idea (see section 2).
 - matcha: the useful parts are in section 2; the product needs paid ElevenLabs and Lovable AI calls, and marketplace revenue was the answer to judges' monetization question.
 
-## 5. On stage (9 finalists)
+## 5. On stage (from the room transcript)
 
 Source: room transcript `/Users/rustam/.supervox/live/current.jsonl`, pitches 18:22-19:15 PT. Speech-to-text is rough, so only short phrases are quoted. **Differs** marks a place where the stage claim and the Devpost page disagree or the page is silent.
 
