@@ -79,4 +79,17 @@ Decisions are logged here with the reason; the three repos stay the source of tr
   2026-10-25T06:00 and wind, could not be handled (404) nor escalated ("No such report"); test row deleted.
   Next, not done: a separate /api/report route for observations (bigger API change); air-signal-ios CLAUDE.md
   still says /api/crew answers in Los Angeles time, now it is place.tz, and PacificTime.swift can go.
+- 01:45 web-ship: POST /api/report shipped (air-signal-web d799c7f, deployed fe6a9b18). Storage: new `observations`
+  table (migration 0013, applied remotely), not crew_reports: an observation has no site board, status or handling,
+  and its readers want rows shaped lat/lon/kind/intensity/hour/evidence. Body {lat, lon, observation {kind,
+  intensity 1–5, observed_at?}, sky? {smoke_score 0–1}, snapshot?}; server rounds to 2 decimals, names the point
+  from our cities, builds the plan for the local day of observed_at in place.tz and stores evidence for that hour
+  (NowCast, PM2.5, temp, wind, fire, monitor). Same 10/10 min limit and daily salted sender hash; retention in the
+  same purge. /api/crew/report keeps app/observation one release, deprecated in openapi. 31 tests green (validator
+  7, evidence 2 new). Verified live: valid body → 201 id 1, row: lat 36.75/-119.77, hour 2026-10-25T00:00 for
+  observed_at 07:19Z, metrics {aqi 68, nowcast 18 µg/m³, 56.3 °F}, wind {100°, 6 km/h}, snapshot trimmed (junk key
+  dropped), sender 16 hex; six bad bodies → 400 with the field named; crew board unchanged; deprecated path still
+  201; test rows deleted. openapi.json still edge-cached until ~15:30 PT (same 24 h key as before). Privacy copy on
+  the site updated (observations in their own table, not shown on crew pages); air-signal-ios/legal/airsignal/
+  privacy-policy.md has the old sentence and should take the same edit.
 
