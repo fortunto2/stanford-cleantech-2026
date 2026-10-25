@@ -5,7 +5,6 @@
   svg{display:block}
   .cap{font-size:44px;font-weight:600;fill:#FBF7F2}
   .sub{font-size:30px;fill:#C9BFB4}
-  .big{font-size:120px;font-weight:700;fill:#FF7A3D}
   .mono{font-family:Menlo,monospace}
 </style></head>
 <body>
@@ -15,43 +14,47 @@
     <radialGradient id="glow"><stop offset="0" stop-color="#FF7A3D" stop-opacity="0.9"/><stop offset="1" stop-color="#FF7A3D" stop-opacity="0"/></radialGradient>
   </defs>
   <rect width="1920" height="1080" fill="url(#sky)"/>
-  <!-- hills -->
   <path d="M0 720 Q 300 560 620 680 T 1200 660 T 1920 700 L1920 1080 L0 1080Z" fill="#1E2740"/>
   <path d="M0 800 Q 400 700 800 780 T 1920 790 L1920 1080 L0 1080Z" fill="#161D30"/>
-  <!-- fire -->
+  <g id="cones" opacity="0">
+    <path id="cone1" d="M300 600 L700 480 L760 620 Z" fill="#E8551C" opacity="0.35"/>
+    <path id="cone2" d="M300 600 L950 440 L1050 640 Z" fill="#E8551C" opacity="0.22"/>
+    <path id="cone3" d="M300 600 L1250 420 L1400 660 Z" fill="#E8551C" opacity="0.12"/>
+    <text id="conelbl" x="1120" y="400" class="sub mono" style="font-size:28px" fill="#FBE3A1"></text>
+  </g>
   <g id="fire">
     <circle cx="300" cy="640" r="140" fill="url(#glow)"/>
     <path d="M250 660 L300 540 L350 660Z" fill="#FF7A3D"/>
     <path d="M280 660 L300 590 L320 660Z" fill="#FBE3A1"/>
     <path d="M330 665 L372 580 L410 665Z" fill="#E8551C"/>
   </g>
-  <!-- smoke puffs -->
   <g id="smoke" fill="#8A8F9C" opacity="0.55">
     <circle id="p1" cx="340" cy="560" r="40"/><circle id="p2" cx="420" cy="520" r="55"/><circle id="p3" cx="520" cy="490" r="70"/>
     <circle id="p4" cx="640" cy="470" r="85"/><circle id="p5" cx="780" cy="460" r="100"/><circle id="p6" cx="940" cy="455" r="115"/>
   </g>
-  <!-- power line: poles and a broken span -->
   <g stroke="#C9BFB4" stroke-width="6" fill="none">
     <line x1="560" y1="700" x2="560" y2="520"/><line x1="900" y1="690" x2="900" y2="510"/><line x1="1240" y1="700" x2="1240" y2="520"/>
-    <line x1="560" y1="530" x2="730" y2="560"/><line id="brk" x1="900" y1="520" x2="1240" y2="530"/>
+    <line x1="560" y1="530" x2="730" y2="560"/><line x1="900" y1="520" x2="1240" y2="530"/>
     <line x1="730" y1="560" x2="800" y2="690" stroke="#FF7A3D"/>
   </g>
   <circle id="spark" cx="800" cy="690" r="14" fill="#FBE3A1"/>
-  <!-- truck -->
+  <g id="nodes">
+    <g id="n1" opacity="0"><rect x="548" y="560" width="24" height="24" rx="4" fill="#3D74C4"/><circle cx="560" cy="572" r="30" fill="none" stroke="#3D74C4" stroke-width="3"/><text x="590" y="580" class="mono" fill="#FBF7F2" style="font-size:26px">41 µg/m³</text></g>
+    <g id="n2" opacity="0"><rect x="888" y="550" width="24" height="24" rx="4" fill="#3D74C4"/><circle cx="900" cy="562" r="30" fill="none" stroke="#3D74C4" stroke-width="3"/><text x="930" y="570" class="mono" fill="#FBF7F2" style="font-size:26px">35 µg/m³</text></g>
+    <g id="n3" opacity="0"><rect x="1228" y="560" width="24" height="24" rx="4" fill="#3D74C4"/><circle cx="1240" cy="572" r="30" fill="none" stroke="#3D74C4" stroke-width="3"/><text x="1270" y="580" class="mono" fill="#FBF7F2" style="font-size:26px">29 µg/m³</text></g>
+  </g>
   <g id="truck">
     <rect x="1560" y="650" width="150" height="60" rx="8" fill="#FBF7F2"/>
     <rect x="1700" y="665" width="60" height="45" rx="6" fill="#FBF7F2"/>
     <circle cx="1595" cy="716" r="16" fill="#C9BFB4"/><circle cx="1725" cy="716" r="16" fill="#C9BFB4"/>
     <rect x="1600" y="632" width="30" height="16" fill="#FF7A3D"/>
   </g>
-  <!-- clock -->
   <g id="clock">
     <circle cx="1700" cy="200" r="90" fill="#121826" stroke="#FBF7F2" stroke-width="6"/>
     <line id="hh" x1="1700" y1="200" x2="1700" y2="150" stroke="#FBF7F2" stroke-width="8" stroke-linecap="round"/>
     <line id="mh" x1="1700" y1="200" x2="1700" y2="130" stroke="#FF7A3D" stroke-width="5" stroke-linecap="round"/>
     <text id="ct" x="1700" y="330" text-anchor="middle" class="sub mono" style="font-size:40px">06:00</text>
   </g>
-  <!-- map card -->
   <g id="map" opacity="0">
     <rect x="1040" y="120" width="560" height="380" rx="24" fill="#FBF7F2"/>
     <text x="1070" y="170" class="sub" fill="#6A7080" style="font-size:24px;letter-spacing:3px">WHERE THE MONITOR IS</text>
@@ -60,13 +63,11 @@
     <line x1="1130" y1="400" x2="1520" y2="230" stroke="#121826" stroke-width="3" stroke-dasharray="10 10"/>
     <text x="1250" y="320" fill="#E8551C" style="font-size:64px;font-weight:700">48 km</text>
   </g>
-  <!-- satellite -->
   <g id="sat" opacity="0">
     <rect x="-30" y="-14" width="60" height="28" rx="6" fill="#FBF7F2"/>
     <rect x="-110" y="-8" width="70" height="16" fill="#3D74C4"/><rect x="40" y="-8" width="70" height="16" fill="#3D74C4"/>
   </g>
   <line id="beam" x1="0" y1="0" x2="0" y2="0" stroke="#FBE3A1" stroke-width="3" stroke-dasharray="12 12" opacity="0"/>
-  <!-- task card -->
   <g id="task" opacity="0">
     <rect x="1040" y="120" width="560" height="300" rx="24" fill="#1B2232" stroke="#FF7A3D" stroke-width="3"/>
     <text x="1070" y="170" class="sub mono" style="font-size:26px">GET /api/crew · dispatch</text>
@@ -75,21 +76,34 @@
     <text x="1070" y="345" class="mono" fill="#FBF7F2" style="font-size:34px">"distance_km": 9</text>
     <text x="1070" y="398" class="mono" fill="#C9BFB4" style="font-size:26px">sample PM2.5 toward it, outside the TFR</text>
   </g>
-  <!-- drone -->
+  <g id="netcard" opacity="0">
+    <rect x="1040" y="120" width="560" height="300" rx="24" fill="#FBF7F2"/>
+    <text x="1070" y="170" class="sub" fill="#6A7080" style="font-size:24px;letter-spacing:3px">SENSOR NETWORK</text>
+    <text x="1070" y="235" fill="#121826" style="font-size:34px;font-weight:700">Fixed PM2.5 nodes on the poles</text>
+    <text x="1070" y="285" fill="#4A5160" style="font-size:28px">every 15 minutes, through POST /api/crew/report</text>
+    <text x="1070" y="340" fill="#4A5160" style="font-size:28px">a drone where there is no node</text>
+    <text x="1070" y="390" fill="#2E9E5B" style="font-size:28px;font-weight:700">3 nodes reporting · 29–41 µg/m³</text>
+  </g>
   <g id="drone" opacity="0">
     <rect x="-40" y="-10" width="80" height="20" rx="6" fill="#FBF7F2"/>
     <line x1="-60" y1="-10" x2="-20" y2="-10" stroke="#C9BFB4" stroke-width="5"/><line x1="20" y1="-10" x2="60" y2="-10" stroke="#C9BFB4" stroke-width="5"/>
     <rect x="-14" y="10" width="28" height="18" fill="#3D74C4"/>
   </g>
-  <!-- reading card -->
   <g id="read" opacity="0">
     <rect x="1040" y="120" width="560" height="300" rx="24" fill="#FBF7F2"/>
-    <text x="1070" y="170" class="sub" fill="#6A7080" style="font-size:24px;letter-spacing:3px">READING AT THE SITE</text>
+    <text x="1070" y="170" class="sub" fill="#6A7080" style="font-size:24px;letter-spacing:3px">READING AT THE BREAK</text>
     <text x="1070" y="260" fill="#121826" style="font-size:72px;font-weight:700">38 µg/m³</text>
     <text x="1070" y="320" fill="#121826" style="font-size:34px">NowCast AQI 108 · N95s available</text>
     <text x="1070" y="380" fill="#2E9E5B" style="font-size:34px;font-weight:700">Under 151: the crew can go</text>
   </g>
-  <!-- sheet -->
+  <g id="pred" opacity="0">
+    <rect x="1040" y="120" width="560" height="300" rx="24" fill="#1B2232" stroke="#FBE3A1" stroke-width="3"/>
+    <text x="1070" y="170" class="sub" style="font-size:24px;letter-spacing:3px">PREDICTION · WIND BY THE HOUR</text>
+    <text x="1070" y="235" fill="#FBF7F2" style="font-size:34px;font-weight:700">Plume moves east, 6 km/h</text>
+    <text x="1070" y="285" fill="#C9BFB4" style="font-size:28px">canyon at the break clears by 10:30</text>
+    <text x="1070" y="340" fill="#C9BFB4" style="font-size:28px">model checked against the nodes: agree</text>
+    <text x="1070" y="390" fill="#FBE3A1" style="font-size:28px;font-weight:700">confidence: sensor-confirmed</text>
+  </g>
   <g id="sheet" opacity="0">
     <rect x="1040" y="120" width="560" height="380" rx="12" fill="#FBF7F2"/>
     <text x="1070" y="170" fill="#121826" style="font-size:26px;font-weight:700">SHIFT PLAN · 24 Oct · site 36.95,-120.15</text>
@@ -102,12 +116,18 @@
     <text x="1070" y="420" fill="#121826" style="font-size:24px">Briefing given by ____________  at 10:40</text>
     <text x="1070" y="470" fill="#121826" style="font-size:24px">Signed: ______  ______  ______  ______</text>
   </g>
-  <!-- captions -->
+  <g id="board" opacity="0">
+    <rect x="1040" y="120" width="560" height="300" rx="24" fill="#1B2232" stroke="#2E9E5B" stroke-width="3"/>
+    <text x="1070" y="170" class="sub" style="font-size:24px;letter-spacing:3px">UTILITY DISPATCH</text>
+    <text x="1070" y="235" fill="#FBF7F2" style="font-size:34px;font-weight:700">Crew 7 · span 412 · cleared</text>
+    <text x="1070" y="285" fill="#C9BFB4" style="font-size:28px">record attached · reading 10:32 · plan 10:40</text>
+    <text x="1070" y="340" fill="#C9BFB4" style="font-size:28px">the same JSON to the DERMS and the home panel</text>
+    <text x="1070" y="390" fill="#2E9E5B" style="font-size:28px;font-weight:700">trucks rolling 10:40</text>
+  </g>
   <rect x="0" y="900" width="1920" height="180" fill="#0D1220"/>
   <rect x="0" y="900" width="14" height="180" fill="#E8551C"/>
   <text id="c1" x="90" y="975" class="cap"></text>
   <text id="c2" x="90" y="1030" class="sub"></text>
-  <!-- end card -->
   <g id="end" opacity="0">
     <rect width="1920" height="1080" fill="#121826"/>
     <text x="960" y="470" text-anchor="middle" fill="#FBF7F2" style="font-size:150px;font-weight:700;letter-spacing:4px">CREW AIR</text>
@@ -120,6 +140,7 @@ const $ = (id) => document.getElementById(id);
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 const ease = (t) => t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t);
 const cap = (a, b) => { $("c1").textContent = a; $("c2").textContent = b; };
+const card = (id, t0, t1) => $(id).setAttribute("opacity", ease((window._t - t0) / 0.5) * (1 - ease((window._t - t1) / 0.4)));
 function clock(h, m) {
   const ang = (h % 12 + m / 60) * 30, mang = m * 6;
   const r = (x, y, a) => { const s = Math.sin(a * Math.PI / 180), c = Math.cos(a * Math.PI / 180); return [1700 + x * c - y * s, 200 + x * s + y * c]; };
@@ -128,37 +149,43 @@ function clock(h, m) {
   $("ct").textContent = String(h).padStart(2, "0") + ":" + String(Math.floor(m)).padStart(2, "0");
 }
 window.setT = function (t) {
-  // smoke drifts right, always
+  window._t = t;
   for (let i = 1; i <= 6; i++) { const p = $("p" + i); const base = 340 + (i - 1) * 120; p.setAttribute("cx", base + ((t * 40 + i * 37) % 120)); p.setAttribute("cy", (560 - (i - 1) * 22) + Math.sin(t * 1.5 + i) * 10); }
   $("spark").setAttribute("opacity", t < 4 ? (Math.sin(t * 25) > 0 ? 1 : 0.2) : 0);
-  // scene 1: 0-4 fire + break; waiting clock runs 06:00 -> 10:00 over 0..8
-  const wait = clamp(t / 8, 0, 1); const mins = 240 * wait; clock(6 + Math.floor(mins / 60), mins % 60);
-  if (t < 4) cap("A fire takes down a line. The crew is ready at 06:00.", "Cal/OSHA: determine the air they will breathe, and log it, before they go in.");
-  // scene 2: 4-8 map, 48 km, waiting
-  $("map").setAttribute("opacity", ease((t - 4) / 0.6) * (1 - ease((t - 8) / 0.4)));
+  let h = 6, m = 0;
+  if (t < 8) { const mins = 240 * clamp(t / 8, 0, 1); h = 6 + Math.floor(mins / 60); m = mins % 60; }
+  else if (t < 27) { h = 10; m = 32 * clamp((t - 12) / 10, 0, 1); }
+  else { h = 10; m = 32 + 8 * clamp((t - 27) / 2, 0, 1); }
+  clock(h, m);
+  if (t < 4) cap("A fire takes down a line. The utility's crew is ready at 06:00.", "Cal/OSHA §5141.1: determine the air they will breathe, and log it, before they go in.");
+  card("map", 4, 8);
   if (t >= 4 && t < 8) cap("The smoke model has 40 km cells. The nearest monitor is 48 km away.", "So the dispatcher waits. Hours pass while the wind has already cleared the canyon.");
-  // scene 3: 8-12 satellite + task
   const sx = -200 + clamp((t - 8) / 3, 0, 1) * 1100, sy = 90;
   $("sat").setAttribute("transform", `translate(${sx},${sy})`); $("sat").setAttribute("opacity", t >= 8 && t < 12.5 ? 1 : 0);
-  const beamOn = t >= 9 && t < 12; $("beam").setAttribute("opacity", beamOn ? 1 : 0);
+  $("beam").setAttribute("opacity", t >= 9 && t < 12 ? 1 : 0);
   $("beam").setAttribute("x1", sx); $("beam").setAttribute("y1", sy + 14); $("beam").setAttribute("x2", 320); $("beam").setAttribute("y2", 600);
-  $("task").setAttribute("opacity", ease((t - 9.5) / 0.5) * (1 - ease((t - 12.5) / 0.4)));
-  if (t >= 8 && t < 12.5) cap("NASA VIIRS sees the fire. The API issues a task.", "dispatch: launch · bearing 333° · 9 km · a fixed node, or a drone outside the flight restriction");
-  // scene 4: 12.5-17 drone flies from truck to the break, reading
-  const f = clamp((t - 12.5) / 2.5, 0, 1); const dx = 1640 + (800 - 1640) * ease(f), dy = 600 - Math.sin(ease(f) * Math.PI) * 160;
-  $("drone").setAttribute("transform", `translate(${dx},${dy})`); $("drone").setAttribute("opacity", t >= 12.5 && t < 20 ? 1 : 0);
-  $("read").setAttribute("opacity", ease((t - 15) / 0.5) * (1 - ease((t - 17.5) / 0.4)));
-  if (t >= 12.5 && t < 17.5) cap("A reading at the site, in minutes, not hours.", "PM2.5 at the break, reported through /api/crew/report; a photo of the sky is the second check.");
-  // scene 5: 17.5-21 sheet, truck goes, clock 10:40
-  $("sheet").setAttribute("opacity", ease((t - 17.5) / 0.5) * (1 - ease((t - 21.5) / 0.4)));
-  const g = clamp((t - 18.5) / 3, 0, 1); $("truck").setAttribute("transform", `translate(${-ease(g) * 700},0)`);
-  if (t >= 17.5 && t < 21.5) { cap("The record the rule requires, printed and signed. The crew goes in.", "How the AQI was determined, the instrument, the hour, the rule. The document an inspector asks for."); clock(10, 32 + 8 * clamp((t - 17.5) / 2, 0, 1)); }
-  if (t >= 8 && t < 17.5) clock(10, 0 + clamp((t - 12.5) / 5, 0, 1) * 32);
-  // end
-  $("end").setAttribute("opacity", ease((t - 21.5) / 0.6));
+  card("task", 9.5, 12.5);
+  if (t >= 8 && t < 12.5) cap("NASA VIIRS sees the fire. Crew Air issues a sensor task.", "dispatch: launch · bearing 333° · 9 km · the API the dispatcher's system already polls");
+  for (let i = 1; i <= 3; i++) { const on = t >= 12.5 + (i - 1) * 0.8; $("n" + i).setAttribute("opacity", on && t < 32 ? 1 : 0); }
+  card("netcard", 13, 17);
+  if (t >= 12.5 && t < 17) cap("Fixed PM2.5 nodes on the poles report every 15 minutes.", "Where there is infrastructure, a node. Where there is none, a drone.");
+  const f = clamp((t - 17) / 2.5, 0, 1); const dx = 1640 + (800 - 1640) * ease(f), dy = 600 - Math.sin(ease(f) * Math.PI) * 160;
+  $("drone").setAttribute("transform", `translate(${dx},${dy})`); $("drone").setAttribute("opacity", t >= 17 && t < 32 ? 1 : 0);
+  card("read", 19.5, 22);
+  if (t >= 17 && t < 22) cap("A drone takes the reading at the break, outside the flight restriction.", "38 µg/m³ at the site, reported through /api/crew/report; a photo of the sky is the second check.");
+  const pc = clamp((t - 22) / 2, 0, 1); $("cones").setAttribute("opacity", t >= 22 && t < 27 ? 1 : 0);
+  $("cone1").setAttribute("opacity", 0.35 * ease(pc * 3)); $("cone2").setAttribute("opacity", 0.22 * ease(pc * 3 - 1)); $("cone3").setAttribute("opacity", 0.12 * ease(pc * 3 - 2));
+  $("conelbl").textContent = pc < 0.34 ? "+1 h" : pc < 0.67 ? "+2 h" : "+3 h · clear at the break";
+  card("pred", 22.5, 27);
+  if (t >= 22 && t < 27) cap("The model moves the plume hour by hour, and the nodes confirm it.", "Wind NW 6 km/h: the canyon at the break clears by 10:30. Confidence: sensor-confirmed.");
+  card("sheet", 27, 30); card("board", 30, 32.5);
+  const g = clamp((t - 29) / 3, 0, 1); $("truck").setAttribute("transform", `translate(${-ease(g) * 700},0)`);
+  if (t >= 27 && t < 30) cap("The record the rule requires, printed and signed at the briefing.", "How the AQI was determined, the instrument, the hour, the rule. The document an inspector asks for.");
+  if (t >= 30 && t < 32.5) cap("Dispatch clears the crew at 10:40, not 14:00.", "The same JSON goes to the DERMS and the home panel: the grid gets the hour the air changes.");
+  $("end").setAttribute("opacity", ease((t - 32.5) / 0.6));
 };
 let start = performance.now();
-function loop() { const t = (performance.now() - start) / 1000; setT(t % 25); requestAnimationFrame(loop); }
+function loop() { const t = (performance.now() - start) / 1000; setT(t % 36); requestAnimationFrame(loop); }
 if (location.search.includes("play")) loop(); else setT(0);
 </script>
 </body></html>
