@@ -1489,26 +1489,6 @@
         }
       }
     },
-    "Sensor task: launch": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tarea del sensor: lanzar"
-          }
-        }
-      }
-    },
-    "Sensor: standby · nearest fire %@ km": {
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Sensor: en espera · incendio más cercano a %@ km"
-          }
-        }
-      }
-    },
     "Sent": {
       "localizations": {
         "es": {

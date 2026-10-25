@@ -110,7 +110,6 @@ struct PlanContent: View {
         VStack(spacing: Theme.Space.m) {
             HeroCard(digest: digest)
             if let alert = response.alerts?.first { AlertNote(alert: alert) }
-            if let dispatch = response.dispatch { SensorTaskCard(dispatch: dispatch) }
             if let fire = response.plan.confidence?.fire, fire.isClose { FireCard(fire: fire) }
             HStack(spacing: Theme.Space.m) {
                 HeatTile(digest: digest)
@@ -119,74 +118,6 @@ struct PlanContent: View {
             AirChart(hours: response.plan.hours)
             RecordLine(response: response)
         }
-    }
-}
-
-/// The sensor task from the API: launch toward the fire (orange, with a bearing) or stand by (one grey line).
-struct SensorTaskCard: View {
-    let dispatch: Dispatch
-
-    var body: some View {
-        switch dispatch.sensor {
-        case .launch: launch
-        case .standby: standby
-        }
-    }
-
-    private var km: String {
-        dispatch.distanceKm.map { String(format: "%.0f", $0) } ?? "–"
-    }
-
-    private var launch: some View {
-        HStack(alignment: .top, spacing: Theme.Space.m) {
-            BearingDial(bearing: dispatch.bearingDeg)
-            VStack(alignment: .leading, spacing: 3) {
-                Text("Sensor task: launch").font(Theme.Font.cardTitle)
-                Text("\(km) km \(dispatch.direction ?? "")").font(Theme.Font.tileNote)
-                    .monospacedDigit()
-                Text(dispatch.reason).font(Theme.Font.caption).lineLimit(3)
-                    .foregroundStyle(Theme.ink.opacity(0.75))
-            }
-            Spacer(minLength: 0)
-        }
-        .foregroundStyle(Theme.ink)
-        .padding(Theme.Space.l + 2)
-        .background(Theme.color(.sensitive), in: .rect(cornerRadius: Theme.Radius.tile))
-        .accessibilityElement(children: .combine)
-    }
-
-    private var standby: some View {
-        HStack(spacing: Theme.Space.s) {
-            Image(systemName: "sensor").font(.system(size: 14, weight: .bold))
-            Text("Sensor: standby · nearest fire \(km) km").font(Theme.Font.caption)
-            Spacer(minLength: 0)
-        }
-        .foregroundStyle(Theme.inkSecondary)
-        .padding(.horizontal, Theme.Space.l)
-        .padding(.vertical, Theme.Space.m)
-        .background(Theme.neutralPill, in: .rect(cornerRadius: Theme.Radius.panel))
-    }
-}
-
-/// A small compass: north tick, and an arrow turned to the bearing (degrees from true north).
-struct BearingDial: View {
-    let bearing: Double?
-
-    var body: some View {
-        ZStack {
-            Circle().stroke(Theme.ink.opacity(0.35), lineWidth: 2)
-            Text("N").font(.system(size: 9, weight: .heavy)).offset(y: -19)
-            if let bearing {
-                Image(systemName: "location.north.fill")
-                    .font(.system(size: 22, weight: .bold))
-                    .rotationEffect(.degrees(bearing))
-            } else {
-                Text("?").font(.system(size: 18, weight: .heavy))
-            }
-        }
-        .frame(width: 48, height: 48)
-        .foregroundStyle(Theme.ink)
-        .accessibilityLabel(Text(bearing.map { "Bearing \(Int($0))°" } ?? "Bearing unknown"))
     }
 }
 
