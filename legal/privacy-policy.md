@@ -4,8 +4,9 @@
 **Applies to:** the Crew Air iOS app (`co.superduperai.crewair`) and airsignal.app/crew
 **Operator:** SuperDuperAI · privacy questions: info@superduperai.co
 
-Crew Air works without an account. We never ask for your name, phone number or email, we run no
-analytics, ads or trackers, and we do not sell or share personal information.
+Crew Air works without an account. We never ask for your name, phone number or email, we run no ads
+or trackers, and we do not sell or share personal information. The app keeps one small usage counter
+of our own, described below.
 
 ## What we collect, and why
 
@@ -20,6 +21,16 @@ analytics, ads or trackers, and we do not sell or share personal information.
 
 Notes you type are free text. Please do not write names or phone numbers in them; anyone who opens the
 same site's page can read the reports for that day.
+
+## Usage counter (app only)
+
+The iOS app sends three events to our own counter at analytics.superduperai.co: the app was opened, a
+plan was shown, a sky check finished. Each carries the app version and an install code: a random UUID
+the app makes on first launch and keeps on the phone. It is not Apple's advertising identifier or
+vendor identifier, it is shared with no other app, and it is deleted with the app. No place, photo,
+report or location travels with these events, and there is no account to tie them to. The counter runs
+on Cloudflare; its code is public at https://github.com/fortunto2/superduper-analytics. The website
+uses the same counter for page views, without any identifier stored in your browser.
 
 ## Sky photos
 

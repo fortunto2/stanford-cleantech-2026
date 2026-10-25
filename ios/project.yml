@@ -9,6 +9,11 @@ options:
 packages:
   CrewKit:
     path: CrewKit
+  # The counter shared by our apps: install-scoped UUID in UserDefaults, three events, no IDFA.
+  # Source: https://github.com/fortunto2/superduperai-analytics-swift (carries its own privacy manifest).
+  SuperDuperAnalytics:
+    url: https://github.com/fortunto2/superduperai-analytics-swift
+    from: "1.1.0"
 
 settings:
   base:
@@ -34,6 +39,8 @@ targets:
     dependencies:
       - package: CrewKit
         product: CrewKit
+      - package: SuperDuperAnalytics
+        product: SuperDuperAnalytics
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: co.superduperai.crewair

@@ -1,5 +1,6 @@
 import CrewKit
 import ImageIO
+import SuperDuperAnalytics
 import UIKit
 
 /// One sky check at a time: a camera frame, a library photo or a bundled sample, prepared on
@@ -55,6 +56,7 @@ final class SkyCheckModel {
             sentImage = UIImage(data: jpeg)
             result = try await checker.check(jpeg: jpeg, place: place)
             checkedAt = .now
+            Analytics.track("sky_checked")
         } catch {
             result = nil
             self.error = error.localizedDescription

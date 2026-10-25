@@ -1,4 +1,5 @@
 import CrewKit
+import SuperDuperAnalytics
 import SwiftUI
 
 @main
@@ -9,6 +10,14 @@ struct CrewAirApp: App {
     @State private var heading = HeadingProvider()
 
     init() {
+        // The counter: three events, an install-scoped UUID, nothing else. A debug build says
+        // it is a machine so simulator runs never count as people (the flag rides on the event).
+        #if DEBUG
+        Analytics.configure(source: "crewair", automated: true)
+        #else
+        Analytics.configure(source: "crewair")
+        #endif
+        Analytics.track("app_launched")
         let service = LiveCrewService()
         let plan = PlanViewModel(service: service)
         _plan = State(initialValue: plan)
@@ -31,6 +40,7 @@ struct RootView: View {
     let heading: HeadingProvider
     @State private var screen: Screen = .plan
     @State private var showGuide = false
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("guideSeen") private var guideSeen = false
 
     var body: some View {
@@ -68,5 +78,7 @@ struct RootView: View {
         }
         // Location is asked for when it is first useful: after the guide, or on Sky or Report.
         .onChange(of: screen) { if screen != .plan { heading.startLocation() } }
+        // Buffered events die with the process; the background edge is the moment to send them.
+        .onChange(of: scenePhase) { if scenePhase == .background { Analytics.flush() } }
     }
 }

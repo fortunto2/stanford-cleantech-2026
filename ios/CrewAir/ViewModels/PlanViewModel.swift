@@ -1,5 +1,6 @@
 import CrewKit
 import Foundation
+import SuperDuperAnalytics
 
 @Observable
 @MainActor
@@ -122,6 +123,7 @@ final class PlanViewModel {
             response = try await service.plan(place: place, date: date, shift: shift.query)
             loaded = key
             error = nil
+            Analytics.track("plan_viewed")
         } catch {
             self.error = error.localizedDescription
         }
