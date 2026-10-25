@@ -18,7 +18,10 @@ struct CrewAirApp: App {
         Analytics.configure(source: "crewair")
         #endif
         Analytics.track("app_launched")
-        let service = LiveCrewService()
+        // `-demo` (a launch argument, for store screenshots and indoor demos): the recorded
+        // Fresno plan with a fire 32 km NW instead of the live API. Sky checks stay live.
+        let demo = ProcessInfo.processInfo.arguments.contains("-demo")
+        let service: CrewService = demo ? PreviewCrewService() : LiveCrewService()
         let plan = PlanViewModel(service: service)
         _plan = State(initialValue: plan)
         _reports = State(initialValue: ReportViewModel(service: service, plan: plan))
@@ -38,7 +41,9 @@ struct RootView: View {
     let reports: ReportViewModel
     let sky: SkyCheckModel
     let heading: HeadingProvider
-    @State private var screen: Screen = .plan
+    // `-tab sky|report` and `-sample` (launch arguments, for store screenshots): open on that
+    // tab, and run the smoky sample check once the plan is in. No effect without them.
+    @State private var screen: Screen = Self.startScreen
     @State private var showGuide = false
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("guideSeen") private var guideSeen = false
@@ -71,6 +76,7 @@ struct RootView: View {
             if !guideSeen { showGuide = true } else { heading.startLocation() }
             reports.originProvider = { [heading] in heading.origin(cameraHeading: false) }
             await plan.load()
+            if Self.arguments.contains("-sample") { await sky.check(sample: .smoke, place: reports.place) }
         }
         .onChange(of: plan.response?.place.name) { Task { await reports.refresh() } }
         .onChange(of: heading.location) {
@@ -80,5 +86,17 @@ struct RootView: View {
         .onChange(of: screen) { if screen != .plan { heading.startLocation() } }
         // Buffered events die with the process; the background edge is the moment to send them.
         .onChange(of: scenePhase) { if scenePhase == .background { Analytics.flush() } }
+    }
+
+    private static var arguments: [String] { ProcessInfo.processInfo.arguments }
+
+    private static var startScreen: Screen {
+        let args = arguments
+        guard let at = args.firstIndex(of: "-tab"), at + 1 < args.count else { return .plan }
+        switch args[at + 1] {
+        case "sky": return .sky
+        case "report": return .report
+        default: return .plan
+        }
     }
 }
