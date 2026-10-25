@@ -1,3 +1,28 @@
+# After the hackathon: a free app that lives on its own (decided Sat 24 Oct 2026, 18:00 PT)
+
+No business around it. Crew Air ships to the App Store as a free utility for outdoor crews in California,
+with the site and the API as they are, and then runs without attention. The order:
+
+1. **Cut what needs a human.** Keep: Plan, Check the sky, Report, the AR horizon, the print sheet, `/api/crew`.
+   Drop or hide: the drone/dispatch card (concept), the escalation page beyond the draft, the crew-lead board
+   if nobody uses it. The site stays, `/crew/grid` stays (it is static-ish and cheap).
+2. **Make it not break while nobody watches.** Open-Meteo 429 already falls back to AirNow + NWS; keep that.
+   Keep the Jev sky check only if the TypeSafe key has no monthly cost; otherwise ship the camera photo to the
+   report without the score. One health check in `solo systems` that curls `/api/crew` daily.
+3. **App Store, by the `solo:ios-release` skill.** ASC app record (`co.superduperai.crewair`, team 8N495BBBLM),
+   the privacy page at airsignal.app/crew/privacy from `legal/privacy-policy.md`, App Privacy answers from
+   `legal/app-store-privacy.md`, review notes for the camera/AR tab (what it is, where, no markers needed),
+   screenshots from the simulator (`pitch/shots/v2-*.png` are the base). `asc validate` drives the checklist.
+   The Apple ID was 2FA-locked (423) on Sat; wait a day before retrying.
+4. **A counter, declared.** superduper-analytics `app_launched` + `plan_viewed` with an install UUID, and
+   the matching line in the privacy page and the App Privacy declaration, in the same commit.
+5. **Then leave it.** Dependabot off, no roadmap. Fix only what a user reports through the App Store.
+
+Not for this plan: the utility pilot, HRRR-Smoke, nodes, the PG&E smart-panel contact (private memory:
+`contact-rongxin-yin-lbnl`): those are the business track, parked unless someone asks.
+
+---
+
 # Next steps (handoff, Fri 23 Oct 2026, ~21:00 PT)
 
 Deadline: **Devpost by Sat 24 Oct 17:00 PT** (https://stanford-cleantech-hackathon.devpost.com/), finalists
