@@ -17,6 +17,10 @@ with the site and the API as they are, and then runs without attention. The orde
 4. **A counter, declared.** superduper-analytics `app_launched` + `plan_viewed` with an install UUID, and
    the matching line in the privacy page and the App Privacy declaration, in the same commit.
 5. **Then leave it.** Dependabot off, no roadmap. Fix only what a user reports through the App Store.
+6. **Read the demand around 24 Nov 2026.** The site counter (superduper-analytics, source `airsignal`,
+   page views by path, in the Layout since before the hackathon) already covers /crew, /crew/grid and /api:
+   `analytics-dig` for those paths, plus `crew_reports` rows in D1 and the App Store units. `/api/crew` calls
+   from scripts are not counted by the browser script; count them from the Worker logs if it matters.
 
 Not for this plan: the utility pilot, HRRR-Smoke, nodes, the PG&E smart-panel contact (private memory:
 `contact-rongxin-yin-lbnl`): those are the business track, parked unless someone asks.
