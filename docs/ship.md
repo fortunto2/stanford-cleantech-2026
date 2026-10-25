@@ -92,4 +92,9 @@ Decisions are logged here with the reason; the three repos stay the source of tr
   201; test rows deleted. openapi.json still edge-cached until ~15:30 PT (same 24 h key as before). Privacy copy on
   the site updated (observations in their own table, not shown on crew pages); air-signal-ios/legal/airsignal/
   privacy-policy.md has the old sentence and should take the same edit.
+- 02:00 web-ship: lead's catch fixed (air-signal-web cdfc57b, deployed 5c12d562): Illinois and Oregon were given Cal/OSHA
+  rules and PG&E TOU. `src/lib/jurisdiction.ts` jurisdictionFor(country, state) → "US-CA" only for US/California
+  (tested CA, IL, OR, DE, missing fields); everywhere else jurisdiction null, actions [], home null, and the page says
+  "No workplace smoke or heat rulebook for <state|this country> yet", naming the state's OSHA for a US place.
+  AirNow, fires, NWS alerts and the hours still apply everywhere. 32 tests green.
 
