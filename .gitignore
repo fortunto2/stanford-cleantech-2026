@@ -14,3 +14,4 @@ pitch/story/frames/
 pitch/story/actions.json
 pitch/export/
 .DS_Store
+*.local.md
